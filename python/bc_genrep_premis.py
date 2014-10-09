@@ -35,11 +35,11 @@ class BcPremisFile:
         object1.append(objectIdentifier)
 
         objectIdentifierType = etree.Element('objectIdentifierType')
-        objectIdentifierType.text = str(uuid.uuid1())
+        objectIdentifierType.text = image_name
         objectIdentifier.append(objectIdentifierType)
 
         objectIdentifierValue = etree.Element('objectIdentifierValue')
-        objectIdentifierValue.text = image_name
+        objectIdentifierValue.text = str(uuid.uuid1())
         objectIdentifier.append(objectIdentifierValue)
 
     # Extract the image_name from the dfxml line "command_line"

@@ -921,6 +921,7 @@ class BcFileStructure:
 
         parent0 = image
         parent0_item = QtGui.QStandardItem('Disk Image: {}'.format(image))
+        parent0_item.setEditable(False)
         global g_parent0_item
         g_parent0_item = parent0_item
 
@@ -957,6 +958,7 @@ class BcFileStructure:
             current_partition_item = QtGui.QStandardItem('Volume {} ({})'.format((k+1), self.ftype_list[k]))
             font = QtGui.QFont("Times",12,QtGui.QFont.Bold)
             current_partition_item.setFont(font)
+            current_partition_item.setEditable(False)
             current_partition_item.setForeground(QtGui.QColor('green'))
             item_of[current_partition] = current_partition_item
 
