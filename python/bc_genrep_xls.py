@@ -43,6 +43,12 @@ def process_files(fn, ws):
             if ext:
                 build_local_wb(ws, fi, row_idx[0])
                 row_idx[0] += 1
+        # Certain HFS volumes may have a "-" name_type. Check and continue:
+        elif fi.name_type() == '-' and fi.meta_type == '1':
+            ext = fi.ext()
+            if ext:
+                build_local_wb(ws, fi, row_idx[0])
+                row_idx[0] += 1
 
     '''
     ## NOTE: Original code preserved for reference and context. It was
