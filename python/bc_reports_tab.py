@@ -1231,18 +1231,18 @@ class Ui_MainWindow(object):
     def getAllrepOutDir(self):
         # Since This directory should not exist, use getSaveFileName
         # to let the user create a new directory.
-        #outdir = QtGui.QFileDialog.getSaveFileName(caption="Create a report directory")
-        outdir_dialog = QtGui.QFileDialog(caption="Find or create an output directory")
-        outdir_dialog.setFileMode(QtGui.QFileDialog.Directory)
-        outdir_dialog.setOption(QtGui.QFileDialog.ShowDirsOnly)
-        result = outdir_dialog.exec_()
-        if result:
-            outdir = outdir_dialog.selectedFiles()[0]
+        outdir = QtGui.QFileDialog.getSaveFileName(caption="Enter a folder name for a new output directory")
+        #outdir_dialog = QtGui.QFileDialog(caption="Find or create an output directory")
+        #outdir_dialog.setFileMode(QtGui.QFileDialog.Directory)
+        #outdir_dialog.setOption(QtGui.QFileDialog.ShowDirsOnly)
+        #result = outdir_dialog.exec_()
+        #if result:
+        #    outdir = outdir_dialog.selectedFiles()[0]
             # print("D: Output Directory Selected by navigating: ", outdir)
-            self.lineEdit_allrep_outdir.setText(outdir)
-            self.allrepOutDir = outdir
-        else:
-            print(">> Warning! No output directory selected! ")
+        self.lineEdit_allrep_outdir.setText(outdir)
+        self.allrepOutDir = outdir
+        #else:
+        #    print(">> Warning! No output directory selected! ")
         return outdir
 
     # getConfigFile: Select the config file from the directory structure.
