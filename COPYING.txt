@@ -2,12 +2,15 @@ BitCurator
 ----------
 BitCurator is a research and development project incorporating software
 from many different contributors. Code produced by the BitCurator team
-is licensed under the GNU General Public License Version 3. All other code
+is licensed under the GNU General Public License, Version 3. All other code
 is distributed under the terms of the licenses specified by the respective
 authors.
 
 If you believe that software within this repository has been distributed
-with incorrect attribution or incorrect licensing, please let us know!
+with incorrect attribution or incorrect licensing, please submit a message
+to the BitCurator user's forum:
+
+https://groups.google.com/d/forum/bitcurator-users
 
 A copy of the complete GNU GPL v3 appears below this line.
 
