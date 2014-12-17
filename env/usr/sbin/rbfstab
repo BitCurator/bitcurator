@@ -14,7 +14,7 @@
 #:          : after rbfstab -r
 #: 12/15/11 : v0.1.2, bug fix for ext3: noload option not accepted by
 #:          : mount even though suggested in manual, forced ext2 instead
-#: 09/12/12 : ext3 mounted as ext4
+#: 09/09/14 : v0.1.3, all devices loop-mounted to protect journals
 
 ## Variables
 PATH="/bin:/sbin:/usr/bin:/usr/sbin"
@@ -152,8 +152,8 @@ do
     [ -d $MOUNTPOINT ] || mkdir -p $MOUNTPOINT 
     
     ## default read-only options
-    OPTIONS="ro,noauto,noexec,nodev,noatime"
-	[ "$FSTYPE" = "ext3" ] && FSTYPE="ext4"
+    OPTIONS="ro,loop,noauto,noexec,nodev,noatime"
+
     ## file system specific options
     case "$FSTYPE" in
         ntfs) FSTYPE="ntfs-3g"; OPTIONS="${OPTIONS},umask=000,\
@@ -162,17 +162,17 @@ show_sys_files,streams_interface=windows,allow_other" ;;
         vfat) OPTIONS="${OPTIONS},umask=000,shortname=mixed,quiet" ;;
         ext) OPTIONS="${OPTIONS}" ;;
         ext2) OPTIONS="${OPTIONS}" ;;
-        ext3) $FSTYPE="ext4"; OPTIONS="${OPTIONS}" ;;
+        ext3) OPTIONS="${OPTIONS}" ;;
         ext4) OPTIONS="${OPTIONS},noload" ;;
-        xfs) OPTIONS="norecovery,${OPTIONS},loop" ;;
+        xfs) OPTIONS="norecovery,${OPTIONS}" ;;
         jfs) OPTIONS="nointegrity,${OPTIONS}" ;;
-        reiserfs) OPTIONS="nolog,${OPTIONS},loop" ;;
+        reiserfs) OPTIONS="nolog,${OPTIONS}" ;;
         hfs) FSTYPE="hfsplus"; OPTIONS="${OPTIONS}" ;;
         hfsplus) OPTIONS="${OPTIONS}" ;;
         swap) OPTIONS=ro,noauto ;;
     esac
 
-	#
+	[ "$FSTYPE" = "ext3" ] && FSTYPE="ext2"
 	
     ## Make partition with label $WRITE_LABEL writeable
     if [ "$(blkid -s LABEL -o value "$DEVICE")" = "LABEL=\"$WRITE_LABEL\"" ]
