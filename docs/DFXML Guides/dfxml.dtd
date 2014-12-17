@@ -1,0 +1,301 @@
+<!-- Note that the original schema declarations may be stricter than
+     represented here; please see the documentation for each element
+     type. -->
+
+
+<!-- IMPORT:
+     namespace: http://www.forensicswiki.org/wiki/Category:Digital_Forensics_XML
+     URI: wiki.xsd -->
+
+<!-- ELEMENT html -->
+<!ELEMENT html ( xhtml:body ) ><!ATTLIST html
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT body -->
+<!ELEMENT body ( xhtml:dfxml ) ><!ATTLIST body
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT dfxml -->
+<!ELEMENT dfxml ( wiki:metadata, xhtml:creator, xhtml:source, xhtml:sectorsize, xhtml:pagesize, xhtml:acquisition_seconds, xhtml:volume, xhtml:runstats ) >
+<!--
+version: 
+-->
+<!ATTLIST dfxml
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml"
+  version #REQUIRED >
+
+<!-- ELEMENT creator -->
+<!ELEMENT creator ( xhtml:program, xhtml:version, xhtml:build_environment, xhtml:execution_environment ) >
+<!--
+version: 
+-->
+<!ATTLIST creator
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml"
+  version #REQUIRED >
+
+<!-- ELEMENT program -->
+<!ELEMENT program ( #PCDATA ) ><!ATTLIST program
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT version -->
+<!ELEMENT version ( #PCDATA ) ><!ATTLIST version
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT build_environment -->
+<!ELEMENT build_environment ( xhtml:compiler, xhtml:library+ ) ><!ATTLIST build_environment
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT compiler -->
+<!ELEMENT compiler ( #PCDATA ) ><!ATTLIST compiler
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT library -->
+<!ELEMENT library EMPTY >
+<!--
+name: 
+
+version: 
+-->
+<!ATTLIST library
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml"
+  name #REQUIRED
+  version #REQUIRED >
+
+<!-- ELEMENT execution_environment -->
+<!ELEMENT execution_environment ( xhtml:os_sysname, xhtml:os_release, xhtml:os_version, xhtml:host, xhtml:arch, xhtml:command_line, xhtml:start_time ) ><!ATTLIST execution_environment
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT os_sysname -->
+<!ELEMENT os_sysname ( #PCDATA ) ><!ATTLIST os_sysname
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT os_release -->
+<!ELEMENT os_release ( #PCDATA ) ><!ATTLIST os_release
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT os_version -->
+<!ELEMENT os_version ( #PCDATA ) ><!ATTLIST os_version
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT host -->
+<!ELEMENT host ( #PCDATA ) ><!ATTLIST host
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT arch -->
+<!ELEMENT arch ( #PCDATA ) ><!ATTLIST arch
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT command_line -->
+<!ELEMENT command_line ( #PCDATA ) ><!ATTLIST command_line
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT start_time -->
+<!ELEMENT start_time ( #PCDATA ) ><!ATTLIST start_time
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT source -->
+<!ELEMENT source ( xhtml:image_filename ) ><!ATTLIST source
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT image_filename -->
+<!ELEMENT image_filename ( #PCDATA ) ><!ATTLIST image_filename
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT sectorsize -->
+<!ELEMENT sectorsize ( #PCDATA ) ><!ATTLIST sectorsize
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT pagesize -->
+<!ELEMENT pagesize ( #PCDATA ) ><!ATTLIST pagesize
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT acquisition_seconds -->
+<!ELEMENT acquisition_seconds ( #PCDATA ) ><!ATTLIST acquisition_seconds
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT volume -->
+<!ELEMENT volume ( xhtml:partition_offset, xhtml:block_size, xhtml:ftype, xhtml:ftype_str, xhtml:block_count, xhtml:first_block, xhtml:last_block, xhtml:fileobject+ ) >
+<!--
+offset: 
+-->
+<!ATTLIST volume
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml"
+  offset #REQUIRED >
+
+<!-- ELEMENT partition_offset -->
+<!ELEMENT partition_offset ( #PCDATA ) ><!ATTLIST partition_offset
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT block_size -->
+<!ELEMENT block_size ( #PCDATA ) ><!ATTLIST block_size
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT ftype -->
+<!ELEMENT ftype ( #PCDATA ) ><!ATTLIST ftype
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT ftype_str -->
+<!ELEMENT ftype_str ( #PCDATA ) ><!ATTLIST ftype_str
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT block_count -->
+<!ELEMENT block_count ( #PCDATA ) ><!ATTLIST block_count
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT first_block -->
+<!ELEMENT first_block ( #PCDATA ) ><!ATTLIST first_block
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT last_block -->
+<!ELEMENT last_block ( #PCDATA ) ><!ATTLIST last_block
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT fileobject -->
+<!ELEMENT fileobject ( xhtml:filename, xhtml:partition, xhtml:id, xhtml:name_type, xhtml:filesize, xhtml:alloc, xhtml:used, xhtml:inode, xhtml:meta_type, xhtml:mode, xhtml:nlink, xhtml:uid, xhtml:gid, ( xhtml:mtime, xhtml:ctime, xhtml:atime, xhtml:crtime, xhtml:seq )?, ( xhtml:byte_runs, xhtml:hashdigest+ )? ) ><!ATTLIST fileobject
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT filename -->
+<!ELEMENT filename ( #PCDATA ) ><!ATTLIST filename
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT partition -->
+<!ELEMENT partition ( #PCDATA ) ><!ATTLIST partition
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT id -->
+<!ELEMENT id ( #PCDATA ) ><!ATTLIST id
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT name_type -->
+<!ELEMENT name_type ( #PCDATA ) ><!ATTLIST name_type
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT filesize -->
+<!ELEMENT filesize ( #PCDATA ) ><!ATTLIST filesize
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT alloc -->
+<!ELEMENT alloc ( #PCDATA ) ><!ATTLIST alloc
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT used -->
+<!ELEMENT used ( #PCDATA ) ><!ATTLIST used
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT inode -->
+<!ELEMENT inode ( #PCDATA ) ><!ATTLIST inode
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT meta_type -->
+<!ELEMENT meta_type ( #PCDATA ) ><!ATTLIST meta_type
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT mode -->
+<!ELEMENT mode ( #PCDATA ) ><!ATTLIST mode
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT nlink -->
+<!ELEMENT nlink ( #PCDATA ) ><!ATTLIST nlink
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT uid -->
+<!ELEMENT uid ( #PCDATA ) ><!ATTLIST uid
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT gid -->
+<!ELEMENT gid ( #PCDATA ) ><!ATTLIST gid
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT mtime -->
+<!ELEMENT mtime ( #PCDATA ) ><!ATTLIST mtime
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT ctime -->
+<!ELEMENT ctime ( #PCDATA ) ><!ATTLIST ctime
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT atime -->
+<!ELEMENT atime ( #PCDATA ) ><!ATTLIST atime
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT crtime -->
+<!ELEMENT crtime ( #PCDATA ) ><!ATTLIST crtime
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT seq -->
+<!ELEMENT seq ( #PCDATA ) ><!ATTLIST seq
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT byte_runs -->
+<!ELEMENT byte_runs ( xhtml:byte_run+ ) ><!ATTLIST byte_runs
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT byte_run -->
+<!ELEMENT byte_run EMPTY >
+<!--
+file_offset: 
+
+fs_offset: 
+
+img_offset: 
+
+len: 
+
+type: 
+-->
+<!ATTLIST byte_run
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml"
+  file_offset #REQUIRED
+  fs_offset #REQUIRED
+  img_offset #REQUIRED
+  len #REQUIRED
+  type #IMPLIED >
+
+<!-- ELEMENT hashdigest -->
+<!ELEMENT hashdigest ( #PCDATA ) >
+<!--
+type: 
+-->
+<!ATTLIST hashdigest
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml"
+  type #REQUIRED >
+
+<!-- ELEMENT runstats -->
+<!ELEMENT runstats ( xhtml:user_seconds, xhtml:system_seconds, xhtml:maxrss, xhtml:reclaims, xhtml:faults, xhtml:swaps, xhtml:inputs, xhtml:outputs, xhtml:stop_time ) ><!ATTLIST runstats
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT user_seconds -->
+<!ELEMENT user_seconds ( #PCDATA ) ><!ATTLIST user_seconds
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT system_seconds -->
+<!ELEMENT system_seconds ( #PCDATA ) ><!ATTLIST system_seconds
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT maxrss -->
+<!ELEMENT maxrss ( #PCDATA ) ><!ATTLIST maxrss
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT reclaims -->
+<!ELEMENT reclaims ( #PCDATA ) ><!ATTLIST reclaims
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT faults -->
+<!ELEMENT faults ( #PCDATA ) ><!ATTLIST faults
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT swaps -->
+<!ELEMENT swaps ( #PCDATA ) ><!ATTLIST swaps
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT inputs -->
+<!ELEMENT inputs ( #PCDATA ) ><!ATTLIST inputs
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT outputs -->
+<!ELEMENT outputs ( #PCDATA ) ><!ATTLIST outputs
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
+
+<!-- ELEMENT stop_time -->
+<!ELEMENT stop_time ( #PCDATA ) ><!ATTLIST stop_time
+  xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml" >
