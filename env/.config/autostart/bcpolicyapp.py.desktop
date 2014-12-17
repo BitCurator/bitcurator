@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/local/bin/bc_policyapp.py
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=BitCurator Mount Policy
+Name=BitCurator Mount Policy
+Comment[en_US]=Requires sudo access for current user
+Comment=Requires sudo access for current user
