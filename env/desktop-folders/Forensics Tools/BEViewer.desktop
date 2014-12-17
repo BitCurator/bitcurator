@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.3
+Name=Bulk Extractor Viewer
+GenericName=ForensicTool
+Comment=Bulk Extractor GUI
+Exec=java -Xmx1g -jar /home/bcadmin/Tools/bulk_extractor/java_gui/BEViewer.jar
+Terminal=false
+Icon=/usr/share/icons/bitcurator/bcview.svg

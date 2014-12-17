@@ -1,0 +1,16 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+X-AppInstall-Package=gtkhash
+X-AppInstall-Popcon=815
+X-AppInstall-Section=universe
+
+Name=GtkHash
+Comment=Compute message digests and checksums
+Exec=gtkhash
+Icon=gtkhash
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;Utility;
+
+X-Ubuntu-Gettext-Domain=app-install-data

@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=BagIt Library (BIL)
+GenericName=BIL
+Comment=BagIt command-line
+Terminal=true
+Icon=/usr/share/icons/Humanity/apps/128/terminal.svg
+Icon[en_US]=/
+Exec=/home/bcadmin/Tools/scripts/run-bil.sh

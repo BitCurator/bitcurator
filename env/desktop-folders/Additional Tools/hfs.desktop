@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=HFS Explorer
+GenericName=HFS Explorer
+Comment=Explore HFS
+Exec=/home/bcadmin/Tools/HFSExplorer/bc-runfsb.sh %F
+Terminal=false
+Type=Application
+Icon=/usr/share/icons/unity-icon-theme/apps/128/web.svg
+Categories=GNOME;GTK;Development;
