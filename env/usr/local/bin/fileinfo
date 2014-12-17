@@ -105,7 +105,7 @@ meta_report(){
                 zenity --error \
                   --text="Canceled."
         fi
-	cat $MI_REPORT | sed 's/:/\n/' | zenity --title="Meda Data - $BASENAME" --list --column='Meta' --column='Description' --width 650 --height 500
+	cat $MI_REPORT | sed 's/:/\n/' | zenity --title="Metadata - $BASENAME" --list --column='Meta' --column='Description' --width 650 --height 500
 }
 
 strings_report(){
