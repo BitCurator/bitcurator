@@ -1,0 +1,106 @@
+#!/bin/bash
+#: Title		: Show Deleted Files Here
+#: Date			: 2010-06-30
+#: Author		: "John Lehr" <slo.sleuth@gmail.com>
+#: Version		: 1.1
+#: Description	: Shows deleted files in current directory using Sleutkit
+
+## Change log
+# v1.1
+#	-	Made it possible to extract deleted files
+#	-	Improved mountpoint and inode detection
+
+## Script variables
+title="Find Deleted Here"
+icon=/usr/share/icons/gnome-colors-common/16x16/actions/stock_delete.png
+export_dir="$HOME/Desktop/Undeleted_Files"
+
+## Script Functions
+
+# Determine the mountpoint and device node to pass to Sleuthkit
+determine_mountpoint ()
+{
+	mpoint="$PWD"
+
+	while ! mountpoint -q "$mpoint"
+	do
+		mpoint="$(dirname "$mpoint")"
+	done
+
+	device_node="$(mount | grep "$mpoint" |sed -e 's/ on /\t/' -e 's/ /\\ /g'| cut -f1)"
+	export mpoint device_node
+}
+
+# Determine the inode number for Sleuthkit
+determine_inode ()
+{
+	directory=$(pwd | sed 's.'${mpoint}'/..')
+	if [ "$directory" = "$mpoint" ]
+	then
+		inode=
+	else
+		inode=$(sudo ifind "$device_node" -n "$directory")
+	fi
+	echo "Device: $device_node \nMount Point: $mpoint \nDirectory: $directory \nInode: $inode"
+	export inode
+}
+
+# Determine if user cancelled operation
+check_for_cancel ()
+{
+	if [ $? = 1 ]
+	then
+		zenity --info \
+			--title="$title" \
+			--window-icon=$icon \
+			--text="Operation cancelled by user."
+		exit 1
+	fi
+}
+
+
+## Main script
+
+# Obtain root permission
+gksu -k -m "Enter password for administrative access." /bin/echo
+
+# Obtain inode of current working directory and determine device node
+determine_mountpoint
+determine_inode
+
+# Display deleted files in directory
+file_list=$(sudo fls -Fdl "$device_node" $inode | sed -e 's/ /_/g')
+
+selection=$(zenity --list \
+	--title="$title" \
+	--window-icon=$icon \
+	--text="Select the file(s) you want to examine (shift- or ctrl-click):" \
+	--width=800 \
+	--height=600 \
+	--multiple \
+	--separator=" " \
+	--column=Inode --column=Filename --column=Modified --column=Accessed --column=Changed --column=Created  --column=Size --column=UID --column=GID  $file_list)
+check_for_cancel
+
+# Save selected files to desktop
+mkdir -p "$export_dir"
+cd "$export_dir"
+
+count=0
+for entry in $selection
+do
+	
+	inode=$(echo $entry | sed -e 's/.\/._\*_//g' -e 's/://g')
+	file_name=$(sudo ffind "$device_node" "$inode" | sed 's/\* \///')
+	sudo icat $device_node $inode > "$(basename "$file_name")-$inode"
+	count=$((count+1))
+done
+
+# File extraction confirmation
+
+zenity --info \
+	--title="$title" \
+	--window-icon=$icon \
+	--text="$count files copied to desktop"
+
+exit 0

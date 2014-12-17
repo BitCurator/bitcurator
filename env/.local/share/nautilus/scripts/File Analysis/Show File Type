@@ -1,0 +1,13 @@
+#!/bin/bash
+#: Title		: Show File Type
+#: Date			: 2010-05-11
+#: Author		: "John Lehr" <slo.sleuth@gmail.com>
+#: Version		: 1.0
+#: Description	: Display file type
+
+file "$@" | zenity --text-info \
+	--title "Show File Type" \
+	--width=640 \
+	--height=480
+
+exit 0

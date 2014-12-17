@@ -1,0 +1,2 @@
+#pkexec --user root fmount -t "$@"
+sudo fmount -t "$@"

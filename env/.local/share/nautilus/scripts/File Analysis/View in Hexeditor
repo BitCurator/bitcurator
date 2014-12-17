@@ -1,0 +1,10 @@
+#!/bin/bash
+#: Title		: View in Hexeditor
+#: Date			: 2010-05-11
+#: Author		: "John Lehr" <slo.sleuth@gmail.com>
+#: Version		: 1.0
+#: Description	: Opens selected files in ghex, adapted for paths with spaces
+
+ghex "$@"
+
+exit 0

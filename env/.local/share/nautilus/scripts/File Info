@@ -1,0 +1,3 @@
+for uri in $NAUTILUS_SCRIPT_SELECTED_URIS; do
+fileinfo $uri &
+done

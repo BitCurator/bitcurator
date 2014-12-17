@@ -1,0 +1,9 @@
+#!/bin/bash
+#: Title		: Open Browser as Root
+#: Date			: 2010-05-11
+#: Author		: "John Lehr" <slo.sleuth@gmail.com>
+#: Version		: 1.0
+#: Description	: Opens present directory as super user, adapted for paths with spaces
+
+gksu nautilus "$(pwd)"
+

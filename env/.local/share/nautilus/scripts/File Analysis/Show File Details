@@ -1,0 +1,18 @@
+#!/bin/bash
+#: Title		: Show File Details
+#: Date			: 2010-05-11
+#: Author		: "John Lehr" <slo.sleuth@gmail.com>
+#: Version		: 1.0
+#: Description	: Displays file statistics in a window
+# Show File Details
+# by John Lehr (c) 2009
+
+TITLE="File Details"
+
+stat "$@" | \
+	zenity --text-info \
+		--title "File Details" \
+		--width=640 \
+		--height=480
+
+exit 0

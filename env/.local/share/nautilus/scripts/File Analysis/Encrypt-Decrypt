@@ -1,0 +1,38 @@
+##Written by Akshay Srinivasan.
+##Requirements - Ccrypt , and Zenity.
+
+#!/bin/sh
+
+if [ -z which ccrypt ] 
+then
+	zenity --info --title='Requirements not met' --text='This script requires zenity and ccrypt to be installed. Please install and try again.'
+fi
+
+WD=`pwd`
+FILES=`echo -n $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS`
+FILES=`echo $FILES | sed "s|$WD|.|g"`
+TYPE=`expr length "$FILES"`
+TYPE=`expr $TYPE - 3`
+TYPE="`expr substr "$FILES" $TYPE 4`"
+
+
+if [ $TYPE != ".cpt" ]
+then
+	p=`zenity --entry --hide-text --text='Enter password to encrypt' --title='Enter password'`
+	pr=`zenity --entry --hide-text --text='Repeat password' --title='Repeat password'`
+	if [ $p != $pr ]
+	then
+		zenity --info --title="Passwords don't match" --text="The entered passwords don't match"
+	exit
+	fi
+	tar -c $FILES | ccencrypt -K $p > foo.tar.cpt
+	rm -r $FILES
+else
+	p=`zenity --entry --hide-text --text='Enter password to decrypt' --title='Enter password'`
+	ccdecrypt -K $p $FILES
+	tar -xvvf `echo "$FILES" | sed "s|.cpt||g"`
+	rm `echo "$FILES" | sed "s|.cpt||g"`
+fi
+
+
+

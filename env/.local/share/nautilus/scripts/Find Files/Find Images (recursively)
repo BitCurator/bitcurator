@@ -1,0 +1,43 @@
+#!/bin/bash
+#: Title		: Find Images (recursively)
+#: Date			: 2010-06-30
+#: Author		: "John Lehr" <slo.sleuth@gmail.com>
+#: Version		: 1.0
+#: Description	: Finds images by magic recursively from working directory
+
+## Script Variables
+title="$Find Images (recursively)"
+temp_dir=$(mktemp -d)
+
+# Open a browser window to view results
+nautilus "$temp_dir"
+
+# find images in pwd, create links in temp dir, show progress
+find "$PWD" -type f | tee \
+	>(sleep 2
+		zenity --progress \
+			--title="Find images" \
+			--text="Searching recursively in \"$PWD\"..." \
+			--pulsate  \
+			--auto-close \
+			--auto-kill) \
+	>(while read filename
+		do
+			image="$(file -bi "$filename" | grep image)"
+		if [ -n "$image" ]
+		then
+			new_filename="$(basename "$filename")-$(stat -L -c %i "$filename")"
+			ln -s -T "$filename" "$temp_dir/$new_filename"
+		fi
+	done)
+
+# open temp dir
+
+if $(zenity --question \
+	--text="Do you want to delete the temp directory?")
+then
+	rm -rf "$temp_dir"
+fi
+	
+exit 0
+

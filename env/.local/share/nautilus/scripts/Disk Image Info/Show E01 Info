@@ -1,0 +1,18 @@
+#!/bin/bash
+#: Title		: Show EnCase Image Info
+#: Date			: 08-07-2013
+#: Author		: "Porter Olsen" polsen@umd.edu
+#: Version		: 1.0
+#: Description	: Shows meta data saved with the EnCase (E01) disk image
+# by Porter Olsen and James Smith (c) 2013
+
+TITLE="EnCase Disk Image Info"
+
+CONTENT=`( echo "<tt>"; ewfinfo "$@"; echo "</tt>")`
+zenity --info \
+	--title "EnCase Disk Image Info" \
+	--width=640 \
+	--height=480 \
+	--text="$CONTENT"
+
+exit 0

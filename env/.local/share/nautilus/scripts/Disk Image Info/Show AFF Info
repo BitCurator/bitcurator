@@ -1,0 +1,18 @@
+#!/bin/bash
+#: Title		: Show AFF Info
+#: Date			: 08-07-2013
+#: Author		: "Porter Olsen" polsen@umd.edu
+#: Version		: 1.0
+#: Description	: Shows metadata saved with the AFF disk image
+# by Porter Olsen and James Smith (c) 2013
+
+TITLE="AFF Disk Image Info"
+
+CONTENT=`( echo "<tt>"; affinfo "$@"; echo "</tt>")`
+zenity --info \
+	--title "AFF Disk Image Info" \
+	--width=1024 \
+	--height=768 \
+	--text="$CONTENT"
+
+exit 0
