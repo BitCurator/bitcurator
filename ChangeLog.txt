@@ -7,6 +7,100 @@ Real-World Collecting Institutions
 Copyright (C) 2011-2014
 All rights reserved.
 
+October 30, 2014
+BitCurator 1.1.0 released
+The 1.1.0 release includes the following bugfixes, software updates, and additions:
+
+- BitCurator Reporting Tool directory selection dialogue updated in Run All to prevent crash on first run
+- objectIdentifierType / Value entries in BitCurator PREMIS output fixed
+- VirtualBox guest additions updated to 4.3.18
+- FITS updated to 0.8.3
+- gnome-sushi included to preview various file formats (left-click on file and hit the space bar; preview pops up)
+- VLC newly included to play and examine metadata in A/V media files
+- TestDisk newly included (damaged/lost partition recovery)
+- PhotoRec newly included (damaged/lost file recovery)
+- Minor updates to Nautilus scripts (typo fixes)
+
+September 25, 2014
+BitCurator 1.0.0 released
+The 1.0 release introduces an improved version of the BitCurator Disk Image Access tool, a GUI interface allowing you to browse the contents (both regular and deleted/unallocated files) of raw and forensically packaged disk images. The updated tool includes stability and performance enhancements when working with FAT, NTFS, and HFS+ volumes, including better handling of multi-volume disk images and real-time feedback on file export actions.
+
+September 5, 2014
+BitCurator 0.9.20 released
+The 0.9.20 release eliminates a bug that prevented export of files from certain FAT16 file systems in the Disk Image Access tool, and includes various other core system updates and environment cleanup.
+
+August 29, 2014
+BitCurator 0.9.19 released
+The 0.9.19 release addresses various bugs and usability issues in the 0.9.16 and 0.9.18 releases. In addition, this release includes an updated version of the BitCurator Disk Image Access tool. Performance of this tool when loading disk images has been substantially improved, and the interface now provides a streamlined method to export *only* the deleted or *only* the allocated items (via the Edit menu). The tool also now provides realtime feedback during file export.
+
+Check out a sample screenshot of the tool in action: http://wiki.bitcurator.net/downloads/bc0919-diac.png
+
+The BitCurator environment now also includes the LoC's Bagger tool (2.1.3) in addition to the BagIt Library (4.9.0). Both can be launched from the "Accession" directory on the BitCurator desktop.
+
+Finally, you may have noticed that the safe mounting applet (adapted from the CAINE forensics environment and used in BitCurator 0.9.13 and previous versions) became unusable with recent Ubuntu updates. We've rewritten in from scratch. It is now split into two individual applications: The safe mounting appindicator (the green-colored disk in the top right menubar) and the BitCurator Mounter (found in the Forensics Tools directory on the desktop) which now uses udiskctrl to mount volumes from disks according to the current mount policy (read-only or read-write). Mount actions should continue to be consistent - whether you choose to click on disk that appears in the Unity bar on the left of the screen, or mount it from the BitCurator Mounter app.
+
+Additional updates:
+- bulk_extractor updated to 1.5.3, many additional scanners and improvements
+- DFXML tools updated
+
+June 30, 2014
+BitCurator 0.9.13 released
+In 0.9.13, we're excited to include a much-improved version of the "File Access" tab in the BitCurator Reporting Tool. This module now allows you to export files and deleted/unallocated items directly from FAT12, FAT16, FAT32, NTFS, HFS+, ISO9660, and ext volumes stored in raw, AFF, and EWF (including split AFF and split EWF) disk images.
+
+0.9.13 also includes the 4.9.0 release of the BagIt (Java) library, along with a few other new tools (Antiword for export of legacy Word documents to TXT / PDF, ssdeep for fuzzy hashing, and ddrescue to complement the existing imaging tools).
+
+May 29, 2014
+BitCurator 0.9.9 released
+This update improves compatibility with matplotlib, reinstates the HFS Explorer tool (providing access to early Macintosh raw disk images), updates Ubuntu 14.04LTS packages, and includes several bugfixes for the BitCurator reporting tool.
+
+May 21, 2014
+BitCurator 0.9.8 released
+This update restores access to the BitCurator reporting tool via the Desktop launcher, which was inadvertently broken in 0.9.7, and updates some Ubuntu dependencies. If you downloaded 0.9.7 recently, you do not need to download this update - you can fix the problem by following the simple steps below:
+
+1. Start a Terminal session by clicking on the Terminal icon in the launch bar on the left-hand side of the screen.
+2. Type "cd Tools/bitcurator/python"
+(without the quotes) and hit enter
+3. Type "chmod 755 bc_reports_tab.py"
+(without the quotes) and hit enter
+4. Close the terminal
+
+You should now be able to run the BitCurator reporting tool using the Desktop launcher in the "Forensics Tools" folder.
+
+May 20, 2014
+BitCurator 0.9.7 released
+This update restores the "right-click-to-mount" functionality for raw and forensically packaged disk images, addresses several bugs in the BitCurator reporting tool, and updates several core software libraries.
+
+May 18, 2014
+BitCurator 0.9.6 released
+A change to the udisks disk management system in Ubuntu 14.04LTS resulted in limited access to floppy disk drive access in the previous BitCurator release, 0.9.4. This release includes a fix for that issue.
+
+May 15, 2014
+BitCurator 0.9.4 released
+The BitCurator virtual machine and ISO installation image are now built using the most recent "long term service" release of Ubuntu, 14.04LTS. The base requirements for running the BitCurator virtual machine remain unchanged. Due to a VirtualBox limitation, "dragging and dropping" files from the host to the BitCurator virtual machine will no longer work when only one processing core is assigned. If you wish to use this feature, please assign at least two processing cores to the virtual machine (via "Settings" in the VirtualBox manager).
+
+Additional updates in 0.9.4:
+
+- libewf updated to 20140427 release. TSK and fiwalk now built against this version.
+- The Sleuth Kit updated from latest github sources. Improves performance and reporting on disk images.
+- SDHash updated to 3.4.
+- BitCurator PDF reports generated from bulk_extractor output now include additional provenance and performance metadata.
+- BitCurator configuration (in /etc/bitcurator/bc_report_config.txt) updated to manage additional bulk_extractor reports.
+- DFXML sources updated to latest release
+
+April 17, 2014
+BitCurator 0.8.4 released
+This release includes a range of stability updates and bug fixes. Items of note:
+
+- Floppy disk drive access restored. This had become disabled in the previous release due to a system update to the Ubuntu core.
+- Installation bug preventing complete installation on laptops with certain types of webcams fixed.
+- File system output in Excel format now includes file format identification field.
+- BitCurator configuration file (in /etc/bitcurator/bc_report_config.txt) and supporting software module updated to simplify tuning of report file output. Additional documentation to follow on the wiki.
+- VirtualBox additions updated to 4.3.10.
+
+March 31, 2014
+BitCurator 0.8.0 released
+This is a maintenance release that removes the previously used "Identify and Delete Duplicates" tool and replaces it with FSLint (a tool that is more powerful, safer, and provides simplified exports for lists of duplicate files identified). This release also updates various back-end dependencies.
+
 February 21, 2014
 BitCurator 0.7.6 released
 This is a maintenance release that addresses an issue in the File Access tab of the BitCurator reporting tool where disk images located under certain paths could not be accessed.
