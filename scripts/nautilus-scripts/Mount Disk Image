@@ -1,1 +1,0 @@
-pkexec --user root fmount -t "$@"

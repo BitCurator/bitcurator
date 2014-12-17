@@ -1,5 +1,0 @@
-#!/bin/bash
-#Find by Content
-#by John Lehr (c) 2009
-
-gnome-search-tool "$(pwd)"
