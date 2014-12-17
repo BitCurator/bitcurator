@@ -7,5 +7,7 @@ Real-World Collecting Institutions
 Copyright (C) 2011-2014
 All rights reserved.
 
-The latest project updates can be found on our wiki at http://wiki.bitcurator.net/
+The latest project updates can be found on our wiki at http://wiki.bitcurator.net/. Ongoing support for BitCurator is provided by the BitCurator Consortium, managed by the Educopia Institute (http://educopia.org).
+
+Find out more at http://www.bitcurator.net/bcc-membership/
 
