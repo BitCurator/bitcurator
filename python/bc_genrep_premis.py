@@ -61,7 +61,7 @@ class BcPremisFile:
             # print("D: command_line as list: ", templist[2] )
             return templist[2]
 
-    def bcGenPremisEvent(self, root, eIdType, eIdVal, eType, eDateTime, eOutcome, eoDetail, of_premis, write_to_file = False):
+    def bcGenPremisEvent(self, root, eIdType, eType, eDetail, eDateTime, eOutcome, eoDetail, of_premis, write_to_file = False):
         # Generate the Event:
         event = etree.SubElement(root, 'event')
         root.append(event)
@@ -70,20 +70,25 @@ class BcPremisFile:
 
         eventIdentifierType = etree.SubElement(eventIdentifier, "eventIdentifierType")
         # Use UUID generation if eIDType is set to 0
-        if (eIdType == 0):
-            eventIdentifierType.text = str(uuid.uuid1())
-        else:
-            eventIdentifierType.text = str(eIdType)
+        #if (eIdType == 0):
+        eventIdentifierType.text = "UUID"
+        #else:
+        #    eventIdentifierType.text = str(eIdType)
 
         eventIdentifier.append(eventIdentifierType)
      
         eventIdentifierValue = etree.SubElement(eventIdentifier, "eventIdentifierValue")
-        eventIdentifierValue.text = eIdVal
+        #eventIdentifierValue.text = eIdVal
+        eventIdentifierValue.text = str(uuid.uuid1())
         eventIdentifier.append(eventIdentifierValue)
 
         eventType = etree.SubElement(event, "eventType")
         eventType.text = eType
         event.append(eventType)
+
+        eventDetail = etree.SubElement(event, "eventDetail")
+        eventDetail.text = eDetail
+        event.append(eventDetail)
 
         eventDateTime = etree.SubElement(event, "eventDateTime")
         eventDateTime.text = eDateTime
@@ -121,14 +126,18 @@ class BcPremisFile:
 
         # Generate the disk image event segment
         eventIdType = 0  # UUID
-        if image_name.endswith(".aff"):
-            eventIdVal = "affinfo "+image_name
-        elif image_name.endswith(".E01"):
-            eventIdVal = "E01"+image_name
-        else:
-            eventIdVal = image_name
+        #if image_name.endswith(".aff"):
+        #    eventIdVal = "affinfo "+image_name
+        #elif image_name.endswith(".E01"):
+        #    eventIdVal = "E01"+image_name
+        #else:
+        #    eventIdVal = image_name
 
         eventType = "Capture"
+
+        # Display image path and name as eventDetail
+        eventDetail = image_name
+
         eDateTime = premis_image_info['acq_date']
         eoDetail = 'Version: '+ str(premis_image_info['version']) + ', Image size: '+ str(premis_image_info['imagesize'])
         if image_name.endswith(".aff"):
@@ -142,7 +151,7 @@ class BcPremisFile:
 
         ## print("D: Geenrating disk image Event: ", root, image_name)
 
-        self.bcGenPremisEvent(root, eventIdType, eventIdVal, eventType, eDateTime, eOutcome, eoDetail, of_premis, False)
+        self.bcGenPremisEvent(root, eventIdType, eventType, eventDetail, eDateTime, eOutcome, eoDetail, of_premis, False)
         return root
 
     # Generate premis XML code for Fiwalk event
@@ -167,7 +176,7 @@ class BcPremisFile:
           else:
             of_premis = "null"
         else:
-            of_premis = "null"
+            of_premis = "premis_file"
 
         # Get the image name from "command_line" part of dfxml file:
         dfxml_command_line = fiwalk.fiwalk_xml_command_line(dfxmlfile)
@@ -175,18 +184,21 @@ class BcPremisFile:
         
         # Generate the Fiwalk Event:
         eventIdType = 0  # UUID
-        eventIdVal = dfxml_command_line
+
+        #eventIdVal = dfxml_command_line
+        eventDetail = dfxml_command_line
+
         eDateTime = fiwalk.fiwalk_xml_start_time(dfxmlfile)
-        eoDetail = "DFXML File: " + dfxmlfile
+        eoDetail = "Produced DFXML file: " + dfxmlfile
         if (outcome == True):
-            eOutcome = "Fiwalk Success" 
+            eOutcome = "Completed" 
         else:
-            eOutcome = "Fiwalk Failure" 
+            eOutcome = "Failed" 
 
         ## print("D:bcGenPremisXmlFiwalk: Generating Premis Event: ", root, dfxmlfile)
 
         if of_premis != "null":
-           self.bcGenPremisEvent(root, eventIdType, eventIdVal,  "File System Analysis", eDateTime, eOutcome, eoDetail, of_premis, fw_tab)
+           self.bcGenPremisEvent(root, eventIdType, "File System Analysis", eventDetail, eDateTime, eOutcome, eoDetail, of_premis, fw_tab)
 
         #self.bcGenPremisEvent(root, eventIdType, eventIdVal,  "File System Analysis", eDateTime, eOutcome, eoDetail, of_premis, fw_tab)
         return root
@@ -204,26 +216,29 @@ class BcPremisFile:
         else:
             of_premis = "null"
 
-        print(">>> Generating Bulk Extractor Premis Events XML ")
+        print(">>> Generating bulk_extractor Premis Event")
 
         eventIdType = 0  # If this is 0, we will generate UUID
-        eventIdVal = beReportXml_command_line
-        eventType = "Feature Stream Analysis"
-        eDateTime = fiwalk.fiwalk_xml_start_time(beReportFile)
 
-        # FIXME: Need more input on what to extract for Details
-        eoDetail = "version: "+be_version
+        #eventIdVal = beReportXml_command_line
+        eventDetail = beReportXml_command_line
+
+        eventType = "bulk_extractor"
+        eDateTime = fiwalk.fiwalk_xml_start_time(beReportFile)
 
         # We don't check the flag for eOutcome as we don't run the 
         # bulk extractor on command line. We already have th feature files
         # from a previous run of the beViewer. We just use the information from
         # the report.xml file for generating premis events.
-        eOutcome = "Bulk Extractor Output" 
+        eOutcome = "Completex" 
+
+        # FIXME: Need more input on what to extract for Details
+        eoDetail = "bulk_extractor version: "+be_version
 
         line1 = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
         of_premis.write(bytes(line1, 'UTF-8'))
 
-        self.bcGenPremisEvent(root, eventIdType, eventIdVal,  eventType, eDateTime, eOutcome, eoDetail, of_premis, True)
+        self.bcGenPremisEvent(root, eventIdType, eventType, eventDetail, eDateTime, eOutcome, eoDetail, of_premis, True)
         
 if __name__=="__main__":
     import sys, time, re
