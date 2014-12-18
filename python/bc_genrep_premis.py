@@ -31,11 +31,16 @@ class BcPremisFile:
         object1 = etree.SubElement(root, 'object')
         root.append(object1)
 
+        originalName = etree.SubElement(object1, "originalName")
+        originalName.text = image_name
+        object1.append(originalName)
+
         objectIdentifier = etree.SubElement(object1, "objectIdentifier")
         object1.append(objectIdentifier)
 
         objectIdentifierType = etree.Element('objectIdentifierType')
-        objectIdentifierType.text = image_name
+        #objectIdentifierType.text = image_name
+        objectIdentifierType.text = "UUID"
         objectIdentifier.append(objectIdentifierType)
 
         objectIdentifierValue = etree.Element('objectIdentifierValue')
@@ -109,7 +114,7 @@ class BcPremisFile:
 
         # create XML 
         global root
-        root = etree.Element("premis", xmlns="info:lc/xmlns/premis-v2", xsi="http://www.w3c.org/2001/XMLSchema-instance", version="2.0")
+        root = etree.Element("premis", xmlns="info:lc/xmlns/premis-v2", xsi="info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis-v2-1.xsd", version="2.1")
         
         # Generate the disk image Object segment 
         self.bcPremisGenXmlObject(image_name)
