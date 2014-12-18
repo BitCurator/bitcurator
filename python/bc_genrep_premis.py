@@ -230,7 +230,7 @@ class BcPremisFile:
         # bulk extractor on command line. We already have th feature files
         # from a previous run of the beViewer. We just use the information from
         # the report.xml file for generating premis events.
-        eOutcome = "Completex" 
+        eOutcome = "Completed" 
 
         # FIXME: Need more input on what to extract for Details
         eoDetail = "bulk_extractor version: "+be_version
