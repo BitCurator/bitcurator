@@ -218,7 +218,8 @@ def bcGetAffInfo(image_name):
             aff_info['version'] = tmplist[3]
         elif "acquisition_date" in line:
             tmplist = line.split()
-            aff_info['acq_date'] = tmplist[3]
+            # Pull out the exact slice of the string with the datetime
+            aff_info['acq_date'] = tmplist[3] + ' ' + tmplist[4][:-1]
         elif "imagesize" in line:
             tmplist = line.split()
             aff_info['imagesize'] = tmplist[4]
@@ -236,8 +237,8 @@ def bcGetE01Info(image_name):
             tmplist = line.split(':')
             e01_info['version'] = tmplist[1]
         elif "Acquisition date" in line:
-            tmplist = line.split(':')
-            e01_info['acq_date'] = tmplist[1]
+            tmplist = line.split('\t')
+            e01_info['acq_date'] = tmplist[2]
     e01_info['imagesize'] = os.path.getsize(image_name)
 
     ##print("D: E01 Info", e01_info)
