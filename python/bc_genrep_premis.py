@@ -145,8 +145,8 @@ class BcPremisFile:
         elif image_name.endswith(".E01"):
             eOutcome = "E01"
         else:
-            eOutcome = "Unknown image type"
-            print(">> No Premis Events generated: ", eOutcome)
+            eOutcome = "Raw or unknown image type"
+            print(">> PREMIS Capture Event not generated: ", eOutcome)
             return(" ")
 
         ## print("D: Geenrating disk image Event: ", root, image_name)
