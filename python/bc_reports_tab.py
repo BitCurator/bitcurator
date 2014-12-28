@@ -1805,9 +1805,8 @@ class Ui_MainWindow(object):
     # BE Viewer launching routine
     def on_pushButton_bev_clicked(self):
         
-        #cmd = ['/usr/bin/java -Xmx1g -jar /home/sunitha/BC/beviewer/BEViewer.jar']
-        cmdstr = '/usr/bin/java -Xmx1g -jar /home/bcadmin/Tools/bulk_extractor/java_gui/BEViewer.jar'
-        #cmdstr = "/home/sunitha/BC/kambc/bitcurator/python/beviewer_sh"
+        #cmdstr = '/usr/bin/java -Xmx1g -jar /home/bcadmin/Tools/bulk_extractor/java_gui/BEViewer.jar'
+        cmdstr = '/usr/local/bin/BEViewer'
 
         print(">> Launching BEViewer >> ")
         
