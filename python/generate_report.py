@@ -131,7 +131,7 @@ class PDF_BE(FPDF):
             self.set_line_width(.3)
 
             self.underline = 1
-            self.cell(0, 5, 'Run Metadata', border=0, ln=1)
+            self.cell(0, 5, 'Event details', border=0, ln=1)
             self.underline = 0
 
             self.set_text_color(20)
