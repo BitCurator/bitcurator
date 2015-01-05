@@ -39,7 +39,6 @@ class BcPremisFile:
         object1.append(objectIdentifier)
 
         objectIdentifierType = etree.Element('objectIdentifierType')
-        #objectIdentifierType.text = image_name
         objectIdentifierType.text = "UUID"
         objectIdentifier.append(objectIdentifierType)
 
@@ -69,16 +68,11 @@ class BcPremisFile:
         event.append(eventIdentifier)
 
         eventIdentifierType = etree.SubElement(eventIdentifier, "eventIdentifierType")
-        # Use UUID generation if eIDType is set to 0
-        #if (eIdType == 0):
         eventIdentifierType.text = "UUID"
-        #else:
-        #    eventIdentifierType.text = str(eIdType)
 
         eventIdentifier.append(eventIdentifierType)
      
         eventIdentifierValue = etree.SubElement(eventIdentifier, "eventIdentifierValue")
-        #eventIdentifierValue.text = eIdVal
         eventIdentifierValue.text = str(uuid.uuid1())
         eventIdentifier.append(eventIdentifierValue)
 
@@ -126,13 +120,6 @@ class BcPremisFile:
 
         # Generate the disk image event segment
         eventIdType = 0  # UUID
-        #if image_name.endswith(".aff"):
-        #    eventIdVal = "affinfo "+image_name
-        #elif image_name.endswith(".E01"):
-        #    eventIdVal = "E01"+image_name
-        #else:
-        #    eventIdVal = image_name
-
         eventType = "Capture"
 
         # Display image path and name as eventDetail
@@ -148,8 +135,6 @@ class BcPremisFile:
             eOutcome = "Raw or unknown image type"
             print(">> PREMIS Capture Event not generated: ", eOutcome)
             return(" ")
-
-        ## print("D: Geenrating disk image Event: ", root, image_name)
 
         self.bcGenPremisEvent(root, eventIdType, eventType, eventDetail, eDateTime, eOutcome, eoDetail, of_premis, False)
         return root
@@ -195,12 +180,9 @@ class BcPremisFile:
         else:
             eOutcome = "Failed" 
 
-        ## print("D:bcGenPremisXmlFiwalk: Generating Premis Event: ", root, dfxmlfile)
-
         if of_premis != "null":
            self.bcGenPremisEvent(root, eventIdType, "File System Analysis", eventDetail, eDateTime, eOutcome, eoDetail, of_premis, fw_tab)
 
-        #self.bcGenPremisEvent(root, eventIdType, eventIdVal,  "File System Analysis", eDateTime, eOutcome, eoDetail, of_premis, fw_tab)
         return root
 
     def bcGenPremisXmlBulkExtractor(self, beReportFile, premis_file, isFirstEvent=False):
@@ -219,8 +201,6 @@ class BcPremisFile:
         print(">>> Generating bulk_extractor Premis Event")
 
         eventIdType = 0  # If this is 0, we will generate UUID
-
-        #eventIdVal = beReportXml_command_line
         eventDetail = beReportXml_command_line
 
         eventType = "bulk_extractor"

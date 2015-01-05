@@ -30,7 +30,7 @@ def make_header(this, header_text):
     header_text = 'Report: ' + header_text
     this.cell(0,0,header_text,0,0,'L')
 
-    # Logo
+    # Logo - disabled right now
     #this.image(logo,150,5,33)
 
     # Line break

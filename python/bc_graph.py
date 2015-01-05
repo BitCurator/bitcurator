@@ -74,12 +74,10 @@ def bc_generate_bar_graph(PdfReport, image_info, outfile, item_dict):
  
     #pp = PdfPages(outfile)
     canvas.print_figure(outfile)
-
     bc_addToReportFileList(outfile, PdfReport)
 
     #pp.savefig(fig)
     #pp.close()
-
     #os.system("evince ./bc_format_bargraph.pdf")
 
 def bc_draw_histogram_fileformat(PdfReport, image_info, outfile, item_dict):

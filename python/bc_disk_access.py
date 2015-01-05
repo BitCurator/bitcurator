@@ -20,16 +20,19 @@
 #    [--dfxmlfile ~/aaa/charlie_xml] \
 #    --listfiles
 # 3. Invoked through BitCurator GUI
-#################################################################### 
-# The basic GUI is designed using PyQT4 Designer. Code manually added
+#
+#
+# Notes:
+# This GUI was constructed using PyQT4 Designer. Code manually added
 # to QTreeView and for the functionality of all widgets.
-# From the DFXML file, the "filename" attribute is read using 
+#
+# The "filename" attribute is read from an existing DFXML file using 
 # fiwalk.fiwalk_using_sax() API. The list of file-paths is stored in 
 # the dictionary fiDictList. 
-# To store the Tree structure of the directory hierarchy, the QStandardItemModel
-# class of the QtPy4's Model/View framework is used:
+#
+# To store the Tree structure of the directory hierarchy, the 
+# QStandardItemModel class of the QtPy4's Model/View framework is used:
 # http://pyqt.sourceforge.net/Docs/PyQt4/qstandarditemmodel.html#details
-#################################################################### 
 
 import os, fiwalk, sys
 from PyQt4 import QtCore, QtGui
@@ -54,11 +57,6 @@ try:
 except ImportError:
     from cStringIO import StringIO
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-## app = QtGui.QApplication(sys.argv)
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# init widgets
-
 global g_model
 global g_image
 global g_dfxmlfile
@@ -67,7 +65,7 @@ global g_breakout
 
 class Ui_MainWindow(object):
     progressBar = "null"
-    ## The following lines are added for debugging
+    # Stdout handling for debugging
     oldstdout = sys.stdout
     sys.stdout = StringIO()
 
@@ -100,11 +98,10 @@ class Ui_MainWindow(object):
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.DirectoryTree.sizePolicy().hasHeightForWidth())
-        # Note:
-        # The following line was added in an attempt to get the horizontal
-        # scroll bar automatically when there is text longer than the window size.
-        # But with or without this line, it still needs one to drag the top bar
-        # to the right to make the scroll bar start working. Could be a bug with 
+
+        # This line was added to get the horizontal scroll bar automatically when 
+        # there is text longer than the window. However, you still needs one to drag 
+        # the top bar to the right to make the scroll bar start working. Could be a bug with 
         # pyQT4 implementation.
         self.DirectoryTree.header().setResizeMode(0, QtGui.QHeaderView.ResizeToContents)
 
@@ -305,13 +302,9 @@ class Ui_MainWindow(object):
         else:
             exportDir = self.outdir
 
+        ## Testing:
         ## print(">> D: Output Directory Selected: ", exportDir)
         
-        # FIXME: Check if the following is necessary
-        ##oldstdout = sys.stdout
-        ##sys.stdout = StringIO()
-        ##x = Ui_MainWindow
-
         # Invoke bcOperateOnfiles routine with check=2
         thread1 = daThread(2, exportDir)
 
@@ -324,10 +317,6 @@ class Ui_MainWindow(object):
         thread1.start()
         thread2.start()
 
-    '''
-    def buttonClickedDump(self):
-        BcFileStructure.bcOperateOnFiles(BcFileStructure, 3, None)
-    '''
     def buttonClickedSelectAll(self):
         BcFileStructure.bcOperateOnFiles(BcFileStructure, 1, None)
 
@@ -378,8 +367,7 @@ class BcFileStructure:
                 isdir = False
             pathlist = path.split('/')
             pathlen = len(pathlist)
-            ## print("D: Path LiSt: ", pathlist, len(pathlist))
-            ## print("D: =================")
+            ## print("D: Path List: ", pathlist, len(pathlist))
             last_elem = pathlist[pathlen-1]
             if last_elem == "." or last_elem == "..":
                 # Ignore . and ..
@@ -388,9 +376,7 @@ class BcFileStructure:
             if isdir == False:
                 # First get the name of the current file
                 current_fileordir = pathlist[pathlen-1]
-
-                # Now using the dict of files, file_item_of, get the item 
-                # for this file
+                # Now using the dict of files, file_item_of, get the item for this file
                 unique_path = path + '-' + str(inode)
                 current_item = self.file_item_of[unique_path]
                 if check == 1:
@@ -403,8 +389,7 @@ class BcFileStructure:
                     if g_breakout == True:
                         break
                     # If "check" is 2, we use this routine to dump the 
-                    # contents of the specified file to the specified output
-                    # file. 
+                    # contents of the specified file to the specified output file. 
                     # If this file is "checked", download its contents.
                     # item.checkState has 0 if not checked, 1 if partially
                     # checked and 2 if checked. 
@@ -459,10 +444,8 @@ class BcFileStructure:
                         sys.stdout = self.oldstdout
 
     def bcHandleSpecialChars(self, filename):
+        # Escape characters such as $, space, {, and }
         #filename = filename.replace("$", "\$")
-        #filename = filename.replace(" ", "\ ")
-        #filename = filename.replace("(", "\(")
-        #filename = filename.replace(")", "\)")
         return re.escape(filename)
                     
     def bcGetFilenameFromPath(self, path):
@@ -563,8 +546,8 @@ class BcFileStructure:
                 current_fileordir = pathlist[pathlen-1]
                 unique_current_file = current_fileordir + '-' + str(inode)
                 current_item = QtGui.QStandardItem(unique_current_file)
-                ## print("D: It is a file:  ", current_fileordir, current_item)
-                ## print("D: pathlen: ", pathlen)
+                ## print("D: Found a file:  ", current_fileordir, current_item)
+                ## print("D: Path length: ", pathlen)
 
                 # We want just the filename in the GUI - without the inode
                 current_item.setText(current_fileordir)
@@ -578,7 +561,7 @@ class BcFileStructure:
                 if deleted == True:
                     current_item.setForeground(QtGui.QColor('red'))
 
-                # save the "item" of each file
+                # Save the "item" of each file
                 unique_path = path + '-' + str(inode)
                 self.file_item_of[unique_path] = current_item
 
@@ -607,9 +590,8 @@ class BcFileStructure:
         #x.oldstdout = sys.stdout
         #sys.stdout = StringIO()
 
-        # First traverse through dfxmlfile to get the block containing 
+        # Traverse through dfxmlfile to get the block containing 
         # "filename" to extract the inode. Do this just once.
-
         if len(self.fiDictList) == 0:
             self.bcProcessDfxmlFileUsingSax(dfxmlfile)
             ## print("D: Length of fiDictList ", len(self.fiDictList))
@@ -620,9 +602,9 @@ class BcFileStructure:
             if (self.fiDictList[i]['filename'] == filename and self.fiDictList[i]['inode'] == inode):
                 ## print("D: Extracting the contents of the file:inode ", \ 
                 ##                  filename, self.fiDictList[i]['inode']) 
-                # First get the offset of the 2nd partition using mmls cmd
-                # ex: mmls -i aff ~/aaa/jo-favorites-usb-2009-12-11.aff
 
+                # Get the offset of the 2nd partition using mmls cmd
+                # ex: mmls -i aff ~/aaa/jo-favorites-usb-2009-12-11.aff
                 if image.endswith(".E01") or image.endswith(".e01"):
                     imgtype = 'ewf'
                 elif image.endswith(".aff") or image.endswith(".AFF"):
@@ -635,7 +617,7 @@ class BcFileStructure:
                 # Extract the file-system type from dfxml file volume
                 ftype = self.bc_get_ftype_from_sax(dfxmlfile) 
                 
-                # For fat12 file-system there is no partiton information.
+                # For FAT12 file-system there is no partiton information.
                 # So skip the step for extracting partition offset.
                 part2_start = 0
                 if self.ftype != 'fat12' and self.ftype != 'iso9660' and imgtype != 'iso':
@@ -647,7 +629,6 @@ class BcFileStructure:
 
                     part2_list = part2.split()
                     part2_start = int(part2_list[2])
-                
 
                 ## print("D: Start offset of Partition-2: ", part2_start)
                 ## icat_cmd ex: icat -o 1 ~/aaa/charlie-work-usb-2009-12-11.aff 130 
@@ -718,9 +699,9 @@ class BcFileStructure:
     def bc_get_ftype_from_sax(self, dfxmlfile):
         fiwalk.fiwalk_vobj_using_sax(xmlfile=open(dfxmlfile, 'rb'),callback=self.cbv_ftype)
        
-# Generate the XML file using the Fiwalk cmd
-# It generates a temporary file <image_path>/dfxmlfile.xml
-# If such a file exists, the script terminates indicating the reason.
+# Generate the XML file using fiwalk
+# Generates a temporary file <image_path>/dfxmlfile.xml
+# If the file exists, the script terminates indicating the reason.
 # User can remove it or rename it to continue.
 # The Close routine removes this temporary file.
 def bcGenerateDfxmlFile(image, dfxmlfile):
@@ -779,18 +760,14 @@ class daThread(threading.Thread):
         g_textEdit.append( sys.stdout.getvalue() )
         sys.stdout = oldstdout
 
-    # A placeholder for any clean-up operation to be done upon pressing
-    # the cancel button.
+    # A placeholder for any clean-up operations after cancel is pressed
     def stop(self):
         pass
         ## print(">> D: Terminating the Thread for \"Export Files\"")
         ## g_textEdit.append( sys.stdout.getvalue() )
         ## sys.stdout = oldstdout
 
-           
-
-# This is the thread which spins in a loop till the other thread which
-# does the work sets the flag once the task is completed.
+# Thread which spins in a loop until the working thread which sets the completed flag.
 class guiThread(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)

@@ -26,7 +26,6 @@ def bc_generate_feature_xlsx(PdfReport, data, feature_file):
     dest_filename = PdfReport.featuredir +'/'+ (filename_from_path(feature_file))[10:-3] + "xlsx"
     row_idx = [2]
     ws = wb.worksheets[0]
-    #ws = wb.create_sheet()
     ws.title = "File Feature Information"
 
     ws.cell('%s%s'%('A', '1')).value = '%s' % "Filename"
