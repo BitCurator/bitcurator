@@ -8,7 +8,7 @@ BitCurator is a research and development effort designed to bring digital forens
 
 The most current BitCurator virtual machine can be downloaded from
 
-  https://wiki.bitcurator.net/
+  http://wiki.bitcurator.net/
 
 The default username and password for the virtual machine are as follows:
 
