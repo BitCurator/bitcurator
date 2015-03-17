@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=BitCurator Logo (Scale x2)
+Description=A theme that features a blank background with a logo.
+ModuleName=script
+
+[script]
+ImageDir=/lib/plymouth/themes/bitcurator-logo
+ScriptFile=/lib/plymouth/themes/bitcurator-logo/bitcurator-logo-scale-2.script
