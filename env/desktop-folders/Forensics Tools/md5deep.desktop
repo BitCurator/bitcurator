@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Type=Application
+Version=4.4
+Name=md5deep
+GenericName=ForensicTool
+Comment=md5deep command-line tool
+Terminal=true
+Icon=/usr/share/icons/Humanity/apps/128/terminal.svg
+Icon[en_US]=/
+Exec=/home/bcadmin/Tools/scripts/run-md5deep.sh
