@@ -9,4 +9,4 @@ Comment=disktype command-line tool
 Terminal=true
 Icon=/usr/share/icons/Humanity/apps/128/terminal.svg
 Icon[en_US]=/
-Exec=/home/bcadmin/Tools/scripts/run-disktype.sh
+Exec=run-disktype.sh

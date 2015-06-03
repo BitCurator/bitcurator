@@ -9,4 +9,4 @@ Comment=fiwalk command-line tool
 Terminal=true
 Icon=/usr/share/icons/unity-icon-theme/apps/128/web.svg
 Icon[en_US]=/
-Exec=/home/bcadmin/Tools/scripts/run-fiwalk.sh
+Exec=run-fiwalk.sh
