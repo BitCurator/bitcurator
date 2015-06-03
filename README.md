@@ -21,9 +21,7 @@ The core BitCurator tools have been tested in Ubuntu 12.04LTS and Ubuntu 14.04LT
 
 * git clone https://github.com/kamwoods/bitcurator
 
-The installation script bc-install.sh will install required dependencies, the BitCurator Python tools, and other supporting software. (Note: In pre-1.0 releases, this script is a work-in-progress)
-
-* ./bc-install.sh
+Installation scripts found in the provision directory are works-in-progress. They will install required dependencies, the BitCurator Python tools, and other supporting software. These scripts should not currently be used.
 
 # BitCurator Documentation, Help, and other Information
 
