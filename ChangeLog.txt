@@ -4,8 +4,8 @@ Tools for Digital Forensics Methods and Workflows in
 Real-World Collecting Institutions
 ----------------------------------------------------
 
-Copyright (C) 2011-2014
-All rights reserved.
+BitCurator documentation is licensed under Creative Commons (CC 2.0 BY)
+2011 - 2015
 
 * '''1.2.1 (January 3, 2014)'''
 ** USB 3.0 device access (when installed as the host OS) restored

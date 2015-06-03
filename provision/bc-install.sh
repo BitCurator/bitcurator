@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # BitCurator Install Scripts
-# Last updated: December 15, 2013
 #
 # BitCurator is free and open source. You can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License version 3. 
@@ -10,7 +9,7 @@
 # If not, see <http://www.gnu.org/licenses/>.
 
 # @package BitCurator 
-# @author Kam Woods <kamwoods@bitcurator.net>
+# @author KW
 # @version svn: $Id$
 
 user_home=$HOME

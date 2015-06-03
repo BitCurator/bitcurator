@@ -10,7 +10,7 @@
 # If not, see <http://www.gnu.org/licenses/>.
 
 # @package BitCurator 
-# @author Kam Woods <kamwoods@bitcurator.net>
+# @author KW
 # @version svn: $Id$
 
 user_home=$HOME
@@ -50,13 +50,13 @@ echo "Skipping: ${seq}"
 echo ""
 fi
 
-seq="pull down the current BitCurator source code"
+seq="pull down the current BitCurator source, tools, and supporting scripts"
 echo -n " -- Would you like to ${seq}? -- (y/N) "
 read a
 if [[ $a == "Y" || $a == "y" ]]; then
 echo "Going to ${seq} ..."
         #echo "sudo apt-get install git -y"
-        git clone https://github.com/kamwoods/bitcurator
+        git clone https://github.com/bitcurator/bitcurator
         echo ""
 else
 echo "Skipping: ${seq}"
