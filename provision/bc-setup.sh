@@ -17,6 +17,7 @@ user_home=$HOME
 curr_dir=`pwd`
 cd `dirname $0`
 
+echo ""
 echo "@@@@@     @@    C      @@@@@"
 echo "@@  @@@    @   @@     @@@  @                          @@"
 echo "@@   @@        @@     @@                              @@"
@@ -30,13 +31,15 @@ echo "@@    @@  @@   @@    @@       @@   @@   @@   @@   @@  @@     fLLCGGGGC  ,@
 echo "@@   @@@  @@   @@     @@      @@   @@   @@   @@   @@   @      LCGGGGGG  ,@"
 echo "@@@@@@@   @@    @@@    @@@@@@  @@@@@@   @@    @@@@@@   @@@@    CGGGGG   ,@"
 
+echo ""
 echo "Welcome to the BitCurator Installer!"
-
-echo "Ok, let's get started!"
+echo ""
+echo "Ok, let's get started."
 echo ""
 echo "It looks like your current working directory is ${curr_dir}."
+echo ""
 echo "We'll be installing some software in ${user_home}."
-
+echo ""
 seq="install git, in order to download BitCurator"
 echo -n " -- Would you like to ${seq}? -- (y/N) "
 read a

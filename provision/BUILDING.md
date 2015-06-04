@@ -1,4 +1,4 @@
-BitCurator Environment Build Procedure (Current: Trusty Tahr / BC v1.1.0)
+BitCurator Environment Build Procedure (Current: Trusty Tahr / BC v1.3.7)
 
 This document contains many sequential dependencies, not all of which are strict. Please add comments if you find errors or see an obvious cleanup.
 
