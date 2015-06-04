@@ -24,8 +24,13 @@ setup(name='bctools',
       maintainer = "Kam Woods",
       maintainer_email = "kamwoods@gmail.com",
       url="https://github.com/kamwoods/bitcurator",
-      packages=['bctools', ],
-      package_data={'bctools': ['font/*.ttf', 'font/*.txt']},
+      #packages=['bctools', ],
+      #package_data={'bctools': ['font/*.ttf', 'font/*.txt']},
+
+      py_modules = ['dfxml', 'fiwalk', 'bc_config', 'bc_genrep_dfxml', 'bc_genrep_feature_xls', 'bc_genrep_premis', 'bc_genrep_text', 'bc_genrep_xls', 'bc_graph', 'bc_pdf', 'bc_regress', 'bc_utils'],
+
+      scripts = ['bc_disk_access_v2.py', 'bc_reports_tab.py', 'generate_report.py'],
+
       classifiers = ['Development Status :: 2 - Pre-Alpha'
                      "Intended Audience :: Developers",
                      "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
