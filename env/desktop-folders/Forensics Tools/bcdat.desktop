@@ -9,7 +9,7 @@ Name=BitCurator Disk Image Access
 GenericName=bcdat
 Comment=GUI for the BitCurator Disk Image Access Tool
 Icon=/usr/share/icons/bitcurator/bcdisk.svg
-Exec=/home/bcadmin/Tools/bitcurator/python/bc_disk_access_v2.py
+Exec=bc_disk_access_v2.py
 Terminal=false
 # Categorie entry according to version 1.0 of
 # http://www.freedesktop.org/wiki/Specifications/menu-spec
