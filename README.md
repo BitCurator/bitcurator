@@ -47,5 +47,13 @@ See http://wiki.bitcurator.net/ for up-to-date project information.
 
 # Credits
 
-BitCurator is a joint project led by the University of North Carolina at Chapel Hill School of Information and Libaray Science and the Maryland Institute for Technology in the Humanities. BitCurator is funded by the Andrew W. Mellon Foundation.
+BitCurator is a product of the BitCurator team housed at the School of 
+Information and Library Science at the University of North Carolina at 
+Chapel Hill. Funding between 2011 and 2014 was provided by the Andrew
+W. Mellon Foundation.
+
+Ongoing support for the BitCurator environment and related tools is provided
+by the BitCurator Consortium. Find out more at:
+
+http://www.bitcuratorconsortium.net/
 
