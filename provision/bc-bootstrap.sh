@@ -366,28 +366,76 @@ install_ubuntu_14.04_pip_packages() {
 # Global: Works on 12.04 and 14.04
 install_perl_modules() {
 	# Required by macl.pl script
-	perl -MCPAN -e "install Net::Wigle" >> $HOME/bitcurator-install.log 2>&1
+	#perl -MCPAN -e "install Net::Wigle" >> $HOME/bitcurator-install.log 2>&1
+        echoinfo "No perl modules to install at this time."
 }
 
-#install_bitcurator_files() {
-#  # Checkout code from bitcurator and put these files into place
-#  echoinfo "SIFT VM: Installing SIFT Files"
-#	CDIR=$(pwd)
-#	git clone --recursive https://github.com/kamwoods/bitcurator /tmp/bitcurator >> $HOME/bitcurator-install.log 2>&1
-#	cd /tmp/bitcurator
-#	bash install.sh >> $HOME/bitcurator-install.log 2>&1
-#	cd $CDIR
-#	rm -r -f /tmp/bitcurator
-#}
+install_bitcurator_files() {
+  # Checkout code from bitcurator and put these files into place
+  echoinfo "BitCurator environment: Installing BitCurator Tools"
+	CDIR=$(pwd)
+	git clone --recursive https://github.com/kamwoods/bitcurator /tmp/bitcurator >> $HOME/bitcurator-install.log 2>&1
+	cd /tmp/bitcurator/bctools
+        python3 setup.py build
+        python3 setup.py install
+	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+
+  echoinfo "BitCurator environment: Installing py3fpdf"
+        cd /tmp/bitcurator/externals/py3fpdf
+        python3 setup.py build
+        sudo python3 setup.py install
+  
+  echoinfo "BitCurator environment: Installing BitCurator mount policy app and mounter"
+        cd /tmp/bitcurator/mounter
+        cp *.py /usr/local/bin
+
+  echoinfo "BitCurator environment: Installing BitCurator desktop launcher scripts"
+        cd /tmp/bitcurator/scripts
+        cp ./launch-scripts/* /usr/local/bin 
+  
+  echoinfo "BitCurator environment: Moving BitCurator configuration files to /etc/bitcurator"
+        cd /tmp/bitcurator/env/etc
+        cp -r bitcurator /etc
+
+  echoinfo "BitCurator environment: Disabling fstrim in cron.weekly"
+        cd /tmp/bitcurator/env/etc
+        cp cron.weekly/fstrim /etc/cron.weekly/fstrim
+
+  echoinfo "BitCurator environment: Updating sudoers"
+        echoinfo "(not implemented currently)"
+
+  echoinfo "BitCurator environment: Copying fmount support scripts to /usr/local/bin"
+        cd /tmp/bitcurator/env/usr/local/bin
+        cp * /usr/local/bin
+
+  echoinfo "BitCurator environment: Copying rbfstab scripts to /usr/sbin"
+        cd /tmp/bitcurator/env/usr/sbin
+        cp * /usr/sbin
+  
+  echoinfo "BitCurator environment: Force fstab options for devices"
+        cd /tmp/bitcurator/env/etc/udev/rules.d
+        cp fstab.rules /etc/udev/rules.d
+
+  echoinfo "BitCurator environment: Moving BitCurator icons and pixmaps to /usr/share"
+        cd /tmp/bitcurator/env/usr/share/icons
+        cp -r bitcurator /usr/share/icons
+        cd /tmp/bitcurator/env/usr/share/pixmaps
+        cp -r * /usr/share/pixmaps
+  
+  echoinfo "BitCurator environment: Cleaning up..."
+	cd $CDIR
+	rm -r -f /tmp/bitcurator
+
+}
 
 configure_ubuntu() {
-  echoinfo "BitCurator VM: Creating Cases Folder"
-	if [ ! -d /cases ]; then
-		mkdir -p /cases
-		chown $SUDO_USER:$SUDO_USER /cases
-		chmod 775 /cases
-		chmod g+s /cases
-	fi
+  #echoinfo "BitCurator VM: Creating Cases Folder"
+  #	if [ ! -d /cases ]; then
+  #		mkdir -p /cases
+  #		chown $SUDO_USER:$SUDO_USER /cases
+  #		chmod 775 /cases
+  #		chmod g+s /cases
+  #	fi
 
   echoinfo "BitCurator VM: Creating Mount Folders"
 	for dir in usb vss shadow windows_mount e01 aff ewf bde iscsi
@@ -456,7 +504,7 @@ configure_ubuntu() {
 # Global: Ubuntu BitCurator VM Configuration Function
 # Works with 12.04 and 14.04 Versions
 configure_ubuntu_bitcurator_vm() {
-  echoinfo "BitCurator VM: Setting Hostname: siftworkstation"
+  echoinfo "BitCurator VM: Setting Hostname: bitcurator"
 	OLD_HOSTNAME=$(hostname)
 	sed -i "s/$OLD_HOSTNAME/bitcurator/g" /etc/hosts
 	echo "bitcurator" > /etc/hostname
@@ -467,12 +515,12 @@ configure_ubuntu_bitcurator_vm() {
 	# user so there is write permissions to samba.
 	sed -i "s/BITCURTOR_USER/$SUDO_USER/g" /etc/samba/smb.conf
 
-  echoinfo "BITCURATOR VM: Restarting Samba"
+  echoinfo "BitCurator VM: Restarting Samba"
 	# Restart samba services 
 	service smbd restart >> $HOME/sift-install.log 2>&1
 	service nmbd restart >> $HOME/sift-install.log 2>&1
 
-  echoinfo "BITCURATOR VM: Setting Timezone to UTC" >> $HOME/sift-install.log 2>&1
+  echoinfo "BitCurator VM: Setting Timezone to UTC" >> $HOME/sift-install.log 2>&1
   echo "Etc/UTC" > /etc/timezone >> $HOME/sift-install.log 2>&1
     
   #echoinfo "SIFT VM: Fixing Regripper Files"
@@ -670,7 +718,7 @@ else
 fi
 
 if [ "$UPGRADE_ONLY" -eq 1 ]; then
-  echoinfo "SIFT Update"
+  echoinfo "BitCurator update/upgrade requested."
   echoinfo "All other options will be ignored!"
   echoinfo "This could take a few minutes ..."
   echo ""
@@ -695,8 +743,11 @@ if [ "$(echo $ITYPE | egrep '(dev|stable)')x" = "x" ]; then
     exit 1
 fi
 
-echoinfo "Welcome to the BitCurator Bootstrap"
+echoinfo "******************************************"
+echoinfo "Welcome to the BitCurator Bootstrap Scrtip"
 echoinfo "This script will now proceed to configure your system."
+echoinfo "******************************************"
+echoinfo ""
 
 if [ "$YESTOALL" -eq 1 ]; then
     echoinfo "You supplied the -y option, this script will not exit for any reason"
@@ -738,7 +789,7 @@ configure_ubuntu
 # Configure BitCurator VM (if selected)
 if [ "$SKIN" -eq 1 ]; then
     configure_ubuntu_bitcurator_vm
-    configure_ubuntu_${VER}_sift_vm
+    configure_ubuntu_${VER}_bitcurator_vm
 fi
 
 complete_message
