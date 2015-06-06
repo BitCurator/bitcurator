@@ -454,7 +454,7 @@ install_source_packages() {
 	tar -zxf thrift-0.9.2.tar.gz >> $HOME/bitcurator-install.log 2>&1
         cd thrift-0.9.2
         ./configure >> $HOME/bitcurator-install.log 2>&1
-        make >> $HOME/bitcurator-install.log 2>&1
+        make -s >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
         ldconfig >> $HOME/bitcurator-install.log 2>&1
 	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
@@ -463,8 +463,10 @@ install_source_packages() {
 	CDIR=$(pwd)
 	git clone --recursive https://github.com/libyal/libewf /tmp/libewf >> $HOME/bitcurator-install.log 2>&1
 	cd /tmp/libewf
+        ./synclibs.sh >> $HOME/bitcurator-install.log 2>&1
+        ./autogen.sh >> $HOME/bitcurator-install.log 2>&1
         ./configure --enable-v1-api >> $HOME/bitcurator-install.log 2>&1
-        make >> $HOME/bitcurator-install.log 2>&1
+        make -s >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
         ldconfig >> $HOME/bitcurator-install.log 2>&1
 	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
@@ -473,8 +475,9 @@ install_source_packages() {
 	CDIR=$(pwd)
 	git clone --recursive https://github.com/simsong/AFFLIBv3 /tmp/AFFLIBv3 >> $HOME/bitcurator-install.log 2>&1
 	cd /tmp/AFFLIBv3
+        ./bootstrap >> $HOME/bitcurator-install.log 1>&1
         ./configure >> $HOME/bitcurator-install.log 2>&1
-        make >> $HOME/bitcurator-install.log 2>&1
+        make -s >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
         ldconfig >> $HOME/bitcurator-install.log 2>&1
 	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
