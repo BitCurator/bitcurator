@@ -157,224 +157,148 @@ usage() {
 
 install_ubuntu_14.04_deps() {
     echoinfo "Updating your APT Repositories ... "
-    apt-get update >> $HOME/sift-install.log 2>&1 || return 1
+    apt-get update >> $HOME/bitcurator-install.log 2>&1 || return 1
 
     echoinfo "Installing Python Software Properies ... "
-    __apt_get_install_noinput software-properties-common >> $HOME/sift-install.log 2>&1  || return 1
+    __apt_get_install_noinput software-properties-common >> $HOME/bitcurator-install.log 2>&1  || return 1
 
     echoinfo "Enabling Universal Repository ... "
-    __enable_universe_repository >> $HOME/sift-install.log 2>&1 || return 1
+    __enable_universe_repository >> $HOME/bitcurator-install.log 2>&1 || return 1
 
-    echoinfo "Enabling Elastic Repository ... "
-    wget -qO - "https://packages.elasticsearch.org/GPG-KEY-elasticsearch" | apt-key add - >> $HOME/sift-install.log 2>&1 || return 1
-    add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/1.5/debian stable main" >> $HOME/sift-install.log 2>&1 || return 1
+    #echoinfo "Enabling Elastic Repository ... "
+    #wget -qO - "https://packages.elasticsearch.org/GPG-KEY-elasticsearch" | apt-key add - >> $HOME/sift-install.log 2>&1 || return 1
+    #add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/1.5/debian stable main" >> $HOME/sift-install.log 2>&1 || return 1
 
     echoinfo "Adding Ubuntu Tweak Repository"
-    add-apt-repository -y ppa:tualatrix/ppa  >> $HOME/sift-install.log 2>&1 || return 1
+    add-apt-repository -y ppa:tualatrix/ppa  >> $HOME/bitcurator-install.log 2>&1 || return 1
 
-    echoinfo "Adding SIFT Repository: $@"
-    add-apt-repository -y ppa:sift/$@  >> $HOME/sift-install.log 2>&1 || return 1
+    echoinfo "Adding BitCurator Repository: $@"
+    #add-apt-repository -y ppa:sift/$@  >> $HOME/sift-install.log 2>&1 || return 1
 
     echoinfo "Updating Repository Package List ..."
-    apt-get update >> $HOME/sift-install.log 2>&1 || return 1
+    apt-get update >> $HOME/bitcurator-install.log 2>&1 || return 1
 
     echoinfo "Upgrading all packages to latest version ..."
-    __apt_get_upgrade_noinput >> $HOME/sift-install.log 2>&1 || return 1
+    __apt_get_upgrade_noinput >> $HOME/bitcurator-install.log 2>&1 || return 1
 
     return 0
 }
 
 install_ubuntu_14.04_packages() {
-    packages="aeskeyfind
-afflib-tools
-afterglow
-aircrack-ng
-arp-scan
-autopsy
-apache2
-binplist
-bitpim
-bitpim-lib
-bless
-blt
-build-essential
-bulk-extractor
-cabextract
-clamav
-cryptsetup
-dc3dd
-dconf-tools
-dumbpig
-e2fslibs-dev
-ent
-epic5
-etherape
-exif
-extundelete
-f-spot
-fdupes
-flare
-flasm
-flex
-foremost
-g++
-gcc
-gdb
-ghex
-gthumb
-graphviz
-hexedit
-htop
-hydra
-hydra-gtk
-ipython
-kdiff3
-kpartx
-libafflib0
-libafflib-dev
-libbde
-libbde-tools
-libesedb
-libesedb-tools
-libevt
-libevt-tools
-libevtx
-libevtx-tools
-libewf
-libewf-dev
-libewf-python
-libewf-tools
-libfuse-dev
-libfvde
-libfvde-tools
-liblightgrep
-libmsiecf
-libnet1
-libolecf
-libparse-win32registry-perl
-libregf
-libregf-dev
-libregf-python
-libregf-tools
-libssl-dev
-libtext-csv-perl
-libvshadow
-libvshadow-dev
-libvshadow-python
-libvshadow-tools
-libxml2-dev
-maltegoce
-md5deep
-nbd-client
-netcat
-netpbm
-nfdump
-ngrep
-ntopng
-okular
-openjdk-6-jdk
-p7zip-full
-phonon
-pv
-pyew
-python
-python-dev
-python-pip
-python-flowgrep
-python-nids
-python-ntdsxtract
-python-pefile
-python-plaso
-python-qt4
-python-tk
-python-volatility
-pytsk3
-rsakeyfind
-safecopy
-sleuthkit
-ssdeep
-ssldump
-stunnel4
-tcl
-tcpflow
-tcpstat
-tcptrace
-tofrodos
-transmission
-unity-control-center
-unrar
-upx-ucl
-vbindiff
-virtuoso-minimal
-winbind
-wine
-wireshark
-xmount
-zenity
-regripper
-cmospwd
-ophcrack
-ophcrack-cli
-bkhive
-samdump2
-cryptcat
-outguess
-bcrypt
-ccrypt
-readpst
-ettercap-graphical
-driftnet
-tcpreplay
-tcpxtract
-tcptrack
-p0f
-netwox
-lft
-netsed
-socat
-knocker
-nikto
-nbtscan
-radare-gtk
-python-yara
-gzrt
-testdisk
-scalpel
-qemu
-qemu-utils
-gddrescue
-dcfldd
-vmfs-tools
-mantaray
-python-fuse
-samba
-open-iscsi
-curl
-git
-system-config-samba
-libpff
-libpff-dev
-libpff-tools
-libpff-python
-xfsprogs
-gawk
-exfat-fuse
-exfat-utils
-xpdf
-feh
-pyew
-radare
-radare2
-pev
-tcpick
-pdftk
-sslsniff
-dsniff
-rar
-xdot
-ubuntu-tweak
-vim
-elasticsearch"
+    packages="dkms 
+g++ 
+ant 
+libcrypto++9 
+libssl-dev 
+expat 
+libexpat1-dev 
+libfuse-dev 
+libncurses5-dev 
+libcurl4-openssl-dev 
+libreadline-dev 
+libmagic-dev 
+flex 
+gawk 
+libpthread-stubs0-dev 
+libcppunit-1.13-0 
+libcppunit-dev 
+libtool 
+automake 
+openjdk-7-jdk 
+expect 
+ghex 
+gnome-system-tools 
+gnome-panel 
+gnome-search-tool 
+hfsutils 
+hfsutils-tcltk 
+hfsplus 
+hfsprogs 
+dconf-tools 
+libgtk2.0-dev 
+xmount 
+mercurial-common 
+python-sphinx 
+vim 
+git 
+equivs 
+python2.7-dev 
+python3 
+python3-setuptools 
+python3-dev 
+python3-numpy 
+uuid-dev 
+libncursesw5-dev 
+libbz2-dev 
+clamav 
+clamav-daemon 
+clamtk 
+sharutils 
+smartmontools 
+hdparm 
+fdutils 
+cifs-utils 
+winbind 
+subversion 
+libarchive-dev 
+nautilus-actions 
+libxml2-dev 
+libboost-dev 
+libboost-test-dev 
+libboost-program-options-dev 
+libboost-system-dev 
+libboost-filesystem-dev 
+bison python3-pyqt4 
+python3-sip-dev 
+mysql-client 
+libmyodbc 
+unixodbc 
+unixodbc-dev 
+libmysqlclient-dev 
+libexif-dev 
+readpst 
+recoll 
+cdrdao 
+dcfldd 
+bchunk 
+libimage-exiftool-perl 
+python-tk 
+python3-tk 
+python-pyside 
+python-compizconfig 
+udisks 
+libappindicator1 
+unity-tweak-tool 
+gnome-tweak-tool 
+compizconfig-settings-manager 
+gtkhash 
+nautilus-scripts-manager 
+fslint 
+libgnomeui-0 
+libgnomeui-dev 
+cmake 
+swig 
+python-magic 
+libtre-dev 
+libtre5 
+libudev-dev 
+gddrescue 
+gnome-sushi 
+vlc 
+autopoint 
+libevent-dev 
+python-pip 
+python3-pip 
+antiword 
+openssh-server 
+mediainfo 
+libav-tools 
+plymouth-theme-script 
+mplayer 
+tree"
+
+#ubuntu-restricted-extras 
+#gstreamer0.10-plugins-ugly libxine1-ffmpeg gxine mencoder libdvdread4 totem-mozilla icedax tagtool easytag id3tool lame nautilus-script-audio-convert libmad0 mpg321 libavcodec-extra
 
     if [ "$@" = "dev" ]; then
         packages="$packages"
@@ -383,7 +307,7 @@ elasticsearch"
     fi
 
     for PACKAGE in $packages; do
-        __apt_get_install_noinput $PACKAGE >> $HOME/sift-install.log 2>&1
+        __apt_get_install_noinput $PACKAGE >> $HOME/bitcurator-install.log 2>&1
         ERROR=$?
         if [ $ERROR -ne 0 ]; then
             echoerror "Install Failure: $PACKAGE (Error Code: $ERROR)"
@@ -409,7 +333,7 @@ install_ubuntu_14.04_pip_packages() {
     for PACKAGE in $pip_pre_packages; do
         CURRENT_ERROR=0
         echoinfo "Installed Python (pre) Package: $PACKAGE"
-        __pip_pre_install_noinput $PACKAGE >> $HOME/sift-install.log 2>&1 || (let ERROR=ERROR+1 && let CURRENT_ERROR=1)
+        __pip_pre_install_noinput $PACKAGE >> $HOME/bitcurator-install.log 2>&1 || (let ERROR=ERROR+1 && let CURRENT_ERROR=1)
         if [ $CURRENT_ERROR -eq 1 ]; then
             echoerror "Python Package Install Failure: $PACKAGE"
         fi
@@ -418,7 +342,7 @@ install_ubuntu_14.04_pip_packages() {
     for PACKAGE in $pip_packages; do
         CURRENT_ERROR=0
         echoinfo "Installed Python Package: $PACKAGE"
-        __pip_install_noinput $PACKAGE >> $HOME/sift-install.log 2>&1 || (let ERROR=ERROR+1 && let CURRENT_ERROR=1)
+        __pip_install_noinput $PACKAGE >> $HOME/bitcurator-install.log 2>&1 || (let ERROR=ERROR+1 && let CURRENT_ERROR=1)
         if [ $CURRENT_ERROR -eq 1 ]; then
             echoerror "Python Package Install Failure: $PACKAGE"
         fi
@@ -435,43 +359,22 @@ install_ubuntu_14.04_pip_packages() {
 # Global: Works on 12.04 and 14.04
 install_perl_modules() {
 	# Required by macl.pl script
-	perl -MCPAN -e "install Net::Wigle" >> $HOME/sift-install.log 2>&1
+	perl -MCPAN -e "install Net::Wigle" >> $HOME/bitcurator-install.log 2>&1
 }
 
-#install_kibana() {
-#  CDIR=$(pwd)
-#  cd /tmp
-#  wget "https://download.elasticsearch.org/kibana/kibana/kibana-3.1.0.tar.gz"  >> $HOME/sift-install.log 2>&1
-#  tar -zxf kibana-3.1.0.tar.gz  >> $HOME/sift-install.log 2>&1
-#  cd /tmp/kibana-3.1.0/ >> $HOME/sift-install.log 2>&1
-#  mkdir -p /var/www/html/kibana
-#  cp -r . /var/www/html/kibana >> $HOME/sift-install.log 2>&1
-#  cd $CDIR
+#install_bitcurator_files() {
+#  # Checkout code from bitcurator and put these files into place
+#  echoinfo "SIFT VM: Installing SIFT Files"
+#	CDIR=$(pwd)
+#	git clone --recursive https://github.com/kamwoods/bitcurator /tmp/bitcurator >> $HOME/bitcurator-install.log 2>&1
+#	cd /tmp/bitcurator
+#	bash install.sh >> $HOME/bitcurator-install.log 2>&1
+#	cd $CDIR
+#	rm -r -f /tmp/bitcurator
 #}
-
-#configure_elasticsearch() {
-#	if ! grep -i "http.cors.enabled" /etc/elasticsearch/elasticsearch.yml > /dev/null 2>&1
-#	then
-#		echo "http.cors.enabled: true" >> /etc/elasticsearch/elasticsearch.yml
-#	fi
-#
-#  update-rc.d elasticsearch defaults 95 10 >> $HOME/sift-install.log 2>&1
-#  service elasticsearch start  >> $HOME/sift-install.log 2>&1
-#}
-
-install_sift_files() {
-  # Checkout code from sift-files and put these files into place
-  echoinfo "SIFT VM: Installing SIFT Files"
-	CDIR=$(pwd)
-	git clone --recursive https://github.com/sans-dfir/sift-files /tmp/sift-files >> $HOME/sift-install.log 2>&1
-	cd /tmp/sift-files
-	bash install.sh >> $HOME/sift-install.log 2>&1
-	cd $CDIR
-	rm -r -f /tmp/sift-files
-}
 
 configure_ubuntu() {
-  echoinfo "SIFT VM: Creating Cases Folder"
+  echoinfo "BitCurator VM: Creating Cases Folder"
 	if [ ! -d /cases ]; then
 		mkdir -p /cases
 		chown $SUDO_USER:$SUDO_USER /cases
@@ -479,7 +382,7 @@ configure_ubuntu() {
 		chmod g+s /cases
 	fi
 
-  echoinfo "SIFT VM: Creating Mount Folders"
+  echoinfo "BitCurator VM: Creating Mount Folders"
 	for dir in usb vss shadow windows_mount e01 aff ewf bde iscsi
 	do
 		if [ ! -d /mnt/$dir ]; then
@@ -507,7 +410,7 @@ configure_ubuntu() {
 		fi
 	done
 
-  echoinfo "SIFT VM: Setting up symlinks to useful scripts"
+  echoinfo "BitCurator VM: Setting up symlinks to useful scripts"
   if [ ! -L /usr/bin/vol.py ] && [ ! -e /usr/bin/vol.py ]; then
     ln -s /usr/bin/vol.py /usr/bin/vol
 	fi
@@ -521,65 +424,65 @@ configure_ubuntu() {
 		ln -s /usr/bin/ewfmount /usr/bin/mount_ewf.py
 	fi
 
-  # Fix for https://github.com/sans-dfir/sift/issues/10
-  if [ ! -L /usr/bin/icat-sleuthkit ] && [ ! -e /usr/bin/icat-sleuthkit ]; then
-    ln -s /usr/bin/icat /usr/bin/icat-sleuthkit 
-  fi
-
-  # Fix for https://github.com/sans-dfir/sift/issues/23
-  if [ ! -L /usr/local/bin/l2t_process ] && [ ! -e /usr/local/bin/l2t_process ]; then
-    ln -s /usr/bin/l2t_process_old.pl /usr/local/bin/l2t_process
-  fi
-
-  if [ ! -L /usr/local/etc/foremost.conf ]; then
-    ln -s /etc/foremost.conf /usr/local/etc/foremost.conf
-  fi
-
-  # Fix for https://github.com/sans-dfir/sift/issues/41
-  if [ ! -L /usr/local/bin/mactime-sleuthkit ] && [ ! -e /usr/local/bin/mactime-sleuthkit ]; then
-    ln -s /usr/bin/mactime /usr/local/bin/mactime-sleuthkit
-  fi
-
-  sed -i "s/APT::Periodic::Update-Package-Lists \"1\"/APT::Periodic::Update-Package-Lists \"0\"/g" /etc/apt/apt.conf.d/10periodic
+#  # Fix for https://github.com/sans-dfir/sift/issues/10
+#  if [ ! -L /usr/bin/icat-sleuthkit ] && [ ! -e /usr/bin/icat-sleuthkit ]; then
+#    ln -s /usr/bin/icat /usr/bin/icat-sleuthkit 
+#  fi
+#
+#  # Fix for https://github.com/sans-dfir/sift/issues/23
+#  if [ ! -L /usr/local/bin/l2t_process ] && [ ! -e /usr/local/bin/l2t_process ]; then
+#    ln -s /usr/bin/l2t_process_old.pl /usr/local/bin/l2t_process
+#  fi
+#
+#  if [ ! -L /usr/local/etc/foremost.conf ]; then
+#    ln -s /etc/foremost.conf /usr/local/etc/foremost.conf
+#  fi
+#
+#  # Fix for https://github.com/sans-dfir/sift/issues/41
+#  if [ ! -L /usr/local/bin/mactime-sleuthkit ] && [ ! -e /usr/local/bin/mactime-sleuthkit ]; then
+#    ln -s /usr/bin/mactime /usr/local/bin/mactime-sleuthkit
+#  fi
+#
+#  sed -i "s/APT::Periodic::Update-Package-Lists \"1\"/APT::Periodic::Update-Package-Lists \"0\"/g" /etc/apt/apt.conf.d/10periodic
 }
 
-# Global: Ubuntu SIFT VM Configuration Function
+# Global: Ubuntu BitCurator VM Configuration Function
 # Works with 12.04 and 14.04 Versions
 configure_ubuntu_sift_vm() {
-  echoinfo "SIFT VM: Setting Hostname: siftworkstation"
+  echoinfo "BitCurator VM: Setting Hostname: siftworkstation"
 	OLD_HOSTNAME=$(hostname)
-	sed -i "s/$OLD_HOSTNAME/siftworkstation/g" /etc/hosts
-	echo "siftworkstation" > /etc/hostname
-	hostname siftworkstation
+	sed -i "s/$OLD_HOSTNAME/bitcurator/g" /etc/hosts
+	echo "bitcurator" > /etc/hostname
+	hostname bitcurator
 
-  echoinfo "SIFT VM: Fixing Samba User"
-	# Make sure we replace the SIFT_USER template with our actual
+  echoinfo "BitCurator VM: Fixing Samba User"
+	# Make sure we replace the BITCURATOR_USER template with our actual
 	# user so there is write permissions to samba.
-	sed -i "s/SIFT_USER/$SUDO_USER/g" /etc/samba/smb.conf
+	sed -i "s/BITCURTOR_USER/$SUDO_USER/g" /etc/samba/smb.conf
 
-  echoinfo "SIFT VM: Restarting Samba"
+  echoinfo "BITCURATOR VM: Restarting Samba"
 	# Restart samba services 
 	service smbd restart >> $HOME/sift-install.log 2>&1
 	service nmbd restart >> $HOME/sift-install.log 2>&1
 
-  echoinfo "SIFT VM: Setting Timezone to UTC" >> $HOME/sift-install.log 2>&1
+  echoinfo "BITCURATOR VM: Setting Timezone to UTC" >> $HOME/sift-install.log 2>&1
   echo "Etc/UTC" > /etc/timezone >> $HOME/sift-install.log 2>&1
     
-  echoinfo "SIFT VM: Fixing Regripper Files"
-	# Make sure to remove all ^M from regripper plugins
-	# Not sure why they are there in the first place ...
-	dos2unix -ascii /usr/share/regripper/* >> $HOME/sift-install.log 2>&1
+  #echoinfo "SIFT VM: Fixing Regripper Files"
+#	# Make sure to remove all ^M from regripper plugins
+#	# Not sure why they are there in the first place ...
+#	dos2unix -ascii /usr/share/regripper/* >> $HOME/sift-install.log 2>&1
 
-  if [ -f /usr/share/regripper/plugins/usrclass-all ]; then
-    mv /usr/share/regripper/plugins/usrclass-all /usr/share/regripper/plugins/usrclass
-  fi
-
-  if [ -f /usr/share/regripper/plugins/ntuser-all ]; then
-    mv /usr/share/regripper/plugins/ntuser-all /usr/share/regripper/plugins/ntuser
-  fi
-
-  chmod 775 /usr/share/regripper/rip.pl
-  chmod -R 755 /usr/share/regripper/plugins
+#  if [ -f /usr/share/regripper/plugins/usrclass-all ]; then
+#    mv /usr/share/regripper/plugins/usrclass-all /usr/share/regripper/plugins/usrclass
+#  fi
+#
+#  if [ -f /usr/share/regripper/plugins/ntuser-all ]; then
+#    mv /usr/share/regripper/plugins/ntuser-all /usr/share/regripper/plugins/ntuser
+#  fi
+#
+#  chmod 775 /usr/share/regripper/rip.pl
+#  chmod -R 755 /usr/share/regripper/plugins
     
   echoinfo "SIFT VM: Setting noclobber for $SUDO_USER"
 	if ! grep -i "set -o noclobber" $HOME/.bashrc > /dev/null 2>&1
@@ -640,9 +543,9 @@ configure_ubuntu_sift_vm() {
   fi
 }
 
-# 14.04 SIFT VM Configuration Function
-configure_ubuntu_14.04_sift_vm() {
-  sudo -u $SUDO_USER gsettings set com.canonical.Unity.Launcher favorites "['application://nautilus.desktop', 'application://gnome-terminal.desktop', 'application://firefox.desktop', 'application://gnome-screenshot.desktop', 'application://gcalctool.desktop', 'application://bless.desktop', 'application://autopsy.desktop', 'application://wireshark.desktop']" >> $HOME/sift-install.log 2>&1
+# 14.04 BitCurator VM Configuration Function
+configure_ubuntu_14.04_bitcurator_vm() {
+  sudo -u $SUDO_USER gsettings set com.canonical.Unity.Launcher favorites "['application://nautilus.desktop', 'application://gnome-terminal.desktop', 'application://firefox.desktop', 'application://gnome-screenshot.desktop', 'application://gcalctool.desktop', 'application://bless.desktop', 'application://autopsy.desktop', 'application://wireshark.desktop']" >> $HOME/bitcurator-install.log 2>&1
 
   # Works in 12.04 and 14.04
   sudo -u $SUDO_USER gsettings set org.gnome.desktop.background picture-uri file:///usr/share/sift/images/forensics_blue.jpg >> $HOME/sift-install.log 2>&1
@@ -664,10 +567,10 @@ configure_ubuntu_14.04_sift_vm() {
 	fi
 
   # Setup user favorites (only for 12.04)
-  sudo -u $SUDO_USER dconf write /desktop/unity/launcher/favorites "['nautilus.desktop', 'gnome-terminal.desktop', 'firefox.desktop', 'gnome-screenshot.desktop', 'gcalctool.desktop', 'bless.desktop', 'autopsy.desktop', 'wireshark.desktop']" >> $HOME/sift-install.log 2>&1
+  #sudo -u $SUDO_USER dconf write /desktop/unity/launcher/favorites "['nautilus.desktop', 'gnome-terminal.desktop', 'firefox.desktop', 'gnome-screenshot.desktop', 'gcalctool.desktop', 'bless.desktop', 'autopsy.desktop', 'wireshark.desktop']" >> $HOME/sift-install.log 2>&1
 
   # Setup the login background image
-  cp /usr/share/sift/images/forensics_blue.jpg /usr/share/backgrounds/warty-final-ubuntu.png
+  #cp /usr/share/sift/images/forensics_blue.jpg /usr/share/backgrounds/warty-final-ubuntu.png
   
   chown -R $SUDO_USER:$SUDO_USER /home/$SUDO_USER
 }
@@ -676,10 +579,9 @@ complete_message() {
     echo
     echo "Installation Complete!"
     echo 
-    echo "The documentation is always a work in progress, feel free to contribute!"
-    echo "Fork the sift-docs project and start sending your pull requests today."
+    echo "Related docs are works in progress, feel free to contribute!"
     echo 
-    echo "Documentation: http://sift.readthedocs.org"
+    echo "Documentation: http://wiki.bitcurator.net"
     echo
 }
 
@@ -701,22 +603,22 @@ ARCH=$(uname -m | sed 's/x86_//;s/i[3-6]86/32/')
 VER=$(lsb_release -sr)
 
 if [ $OS != "Ubuntu" ]; then
-    echo "SIFT is only installable on Ubuntu operating systems at this time."
+    echo "BitCurator is only installable on Ubuntu operating systems at this time."
     exit 1
 fi
 
 if [ $ARCH != "64" ]; then
-    echo "SIFT is only installable on a 64 bit architecture at this time."
+    echo "BitCurator is only installable on a 64 bit architecture at this time."
     exit 2
 fi
 
 if [ $VER != "12.04" ] && [ $VER != "14.04" ]; then
-    echo "SIFT is only installable on Ubuntu 12.04 or 14.04 at this time."
+    echo "BitCurator is only installable on Ubuntu 12.04 or 14.04 at this time."
     exit 3
 fi
 
 if [ `whoami` != "root" ]; then
-    echoerror "The SIFT Bootstrap script must run as root."
+    echoerror "The BitCurator Bootstrap script must run as root."
     echoinfo "Preferred Usage: sudo bootstrap.sh (options)"
     echo ""
     exit 3
@@ -773,10 +675,10 @@ if [ "$UPGRADE_ONLY" -eq 1 ]; then
   install_ubuntu_${VER}_pip_packages $ITYPE || echoerror "Updating Python Packages Failed"
   install_perl_modules || echoerror "Updating Perl Packages Failed"
 #  install_kibana || echoerror "Installing/Updating Kibana Failed"
-  install_sift_files || echoerror "Installing/Updating SIFT Files Failed"
+  install_bitcurator_files || echoerror "Installing/Updating BitCurator Files Failed"
 
   echo ""
-  echoinfo "SIFT Upgrade Complete"
+  echoinfo "BitCurator Upgrade Complete"
   exit 0
 fi
 
@@ -786,7 +688,7 @@ if [ "$(echo $ITYPE | egrep '(dev|stable)')x" = "x" ]; then
     exit 1
 fi
 
-echoinfo "Welcome to the SIFT Bootstrap"
+echoinfo "Welcome to the BitCurator Bootstrap"
 echoinfo "This script will now proceed to configure your system."
 
 if [ "$YESTOALL" -eq 1 ]; then
@@ -799,7 +701,7 @@ echoinfo "Version: $VER"
 
 if [ "$SKIN" -eq 1 ] && [ "$YESTOALL" -eq 0 ]; then
     echo
-    echo "You have chosen to apply the SIFT skin to your ubuntu system."
+    echo "You have chosen to apply the BitCurator skin to your ubuntu system."
     echo 
     echo "You did not choose to say YES to all, so we are going to exit."
     echo
@@ -817,18 +719,18 @@ if [ "$INSTALL" -eq 1 ] && [ "$CONFIGURE_ONLY" -eq 0 ]; then
     install_ubuntu_${VER}_pip_packages $ITYPE
     configure_cpan
     install_perl_modules
-    install_kibana
-    install_sift_files
+    #install_kibana
+    install_bitcurator_files
 fi
 
-configure_elasticsearch
+#configure_elasticsearch
 
-# Configure for SIFT
+# Configure for BitCurator
 configure_ubuntu
 
-# Configure SIFT VM (if selected)
+# Configure BitCurator VM (if selected)
 if [ "$SKIN" -eq 1 ]; then
-    configure_ubuntu_sift_vm
+    configure_ubuntu_bitcurator_vm
     configure_ubuntu_${VER}_sift_vm
 fi
 
