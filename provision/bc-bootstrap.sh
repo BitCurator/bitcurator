@@ -428,7 +428,7 @@ install_bitcurator_files() {
         mkdir /usr/share/bitcurator/resources
         cp -r /tmp/bitcurator/env/desktop-folders /usr/share/bitcurator/resources
  
-  echoinfo "BitCurator environment: Moving desktop support files to /usr/share/bitcurator/resources"
+  echoinfo "BitCurator environment: Moving image files to /usr/share/bitcurator/resources"
         cp -r /tmp/bitcurator/env/images /usr/share/bitcurator/resources
 
   echoinfo "BitCurator environment: Cleaning up..."
@@ -624,6 +624,10 @@ configure_ubuntu_bitcurator_vm() {
 
   echoinfo "BitCurator VM: Setting Desktop background image"
         #cd /usr/share/bitcurator/resources/images
+        gsettings set org.gnome.desktop.background primary-color '#3464A2'
+        gsettings set org.gnome.desktop.background secondary-color '#3464A2'
+        gsettings set org.gnome.desktop.background color-shading-type 'solid'
+
         gsettings set org.gnome.desktop.background draw-background false && gsettings set org.gnome.desktop.background picture-uri file:///usr/share/bitcurator/resources/images/bc400px-1280full.png && gsettings set org.gnome.desktop.background draw-background true
 
   if [ ! -L /sbin/iscsiadm ]; then
@@ -786,10 +790,10 @@ if [ "$(echo $ITYPE | egrep '(dev|stable)')x" = "x" ]; then
     exit 1
 fi
 
-echoinfo "******************************************"
-echoinfo "Welcome to the BitCurator Bootstrap Scrtip"
+echoinfo "*******************************************************"
+echoinfo "Welcome to the BitCurator Bootstrap Script"
 echoinfo "This script will now proceed to configure your system."
-echoinfo "******************************************"
+echoinfo "*******************************************************"
 echoinfo ""
 
 if [ "$YESTOALL" -eq 1 ]; then
