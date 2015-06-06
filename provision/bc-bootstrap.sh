@@ -327,7 +327,8 @@ tree"
 }
 
 install_ubuntu_14.04_pip_packages() {
-    pip_packages="rekall docopt python-evtx python-registry six construct pyv8 pefile analyzeMFT python-magic argparse unicodecsv"
+    #pip_packages="rekall docopt python-evtx python-registry six construct pyv8 pefile analyzeMFT python-magic argparse unicodecsv"
+    pip_packages="docopt python-evtx python-registry six configobj construct pyv8 pefile analyzeMFT python-magic argparse unicodecsv"
     pip_pre_packages="bitstring"
 
     if [ "$@" = "dev" ]; then
@@ -421,7 +422,12 @@ install_bitcurator_files() {
         cp -r bitcurator /usr/share/icons
         cd /tmp/bitcurator/env/usr/share/pixmaps
         cp -r * /usr/share/pixmaps
-  
+ 
+  echoinfo "BitCurator environment: Moving desktop support files to /usr/share/bitcurator/resources"
+        mkdir /usr/share/bitcurator
+        mkdir /usr/share/bitcurator/resources
+        cp -r /tmp/bitcurator/env/desktop-folders /usr/share/bitcurator/resources
+ 
   echoinfo "BitCurator environment: Cleaning up..."
 	cd $CDIR
 	rm -r -f /tmp/bitcurator
@@ -517,11 +523,11 @@ configure_ubuntu_bitcurator_vm() {
 
   echoinfo "BitCurator VM: Restarting Samba"
 	# Restart samba services 
-	service smbd restart >> $HOME/sift-install.log 2>&1
-	service nmbd restart >> $HOME/sift-install.log 2>&1
+	service smbd restart >> $HOME/bitcurator-install.log 2>&1
+	service nmbd restart >> $HOME/bitcurator-install.log 2>&1
 
-  echoinfo "BitCurator VM: Setting Timezone to UTC" >> $HOME/sift-install.log 2>&1
-  echo "Etc/UTC" > /etc/timezone >> $HOME/sift-install.log 2>&1
+  echoinfo "BitCurator VM: Setting Timezone to UTC" >> $HOME/bitcurator-install.log 2>&1
+  echo "Etc/UTC" > /etc/timezone >> $HOME/bitcurator-install.log 2>&1
     
   #echoinfo "SIFT VM: Fixing Regripper Files"
 #	# Make sure to remove all ^M from regripper plugins
@@ -562,26 +568,60 @@ configure_ubuntu_bitcurator_vm() {
 	fi
 
   echoinfo "BitCurator VM: Setting up useful links on $SUDO_USER Desktop"
-	if [ ! -L /home/$SUDO_USER/Desktop/cases ]; then
-		sudo -u $SUDO_USER ln -s /cases /home/$SUDO_USER/Desktop/cases
-	fi
+	#if [ ! -L /home/$SUDO_USER/Desktop/cases ]; then
+	#	sudo -u $SUDO_USER ln -s /cases /home/$SUDO_USER/Desktop/cases
+	#fi
   
-	if [ ! -L /home/$SUDO_USER/Desktop/mount_points ]; then
-		sudo -u $SUDO_USER ln -s /mnt /home/$SUDO_USER/Desktop/mount_points
-	fi
+	#if [ ! -L /home/$SUDO_USER/Desktop/mount_points ]; then
+	#	sudo -u $SUDO_USER ln -s /mnt /home/$SUDO_USER/Desktop/mount_points
+	#fi
 
   echoinfo "BitCurator VM: Cleaning up broken symlinks on $SUDO_USER Desktop"
 	# Clean up broken symlinks
 	find -L /home/$SUDO_USER/Desktop -type l -delete
 
-  echoinfo "BitCurator VM: Adding all SIFT Resources to $SUDO_USER Desktop"
-	for file in /usr/share/sift/resources/*.pdf
-	do
-		base=`basename $file`
-		if [ ! -L /home/$SUDO_USER/Desktop/$base ]; then
-			sudo -u $SUDO_USER ln -s $file /home/$SUDO_USER/Desktop/$base
-		fi
-	done
+  echoinfo "BitCurator VM: Adding all BitCurator resources to $SUDO_USER Desktop"
+
+        files="$(find -L "/usr/share/bitcurator/resources/desktop-folders" -type f)"
+        directories="$(find -L "/usr/share/bitcurator/resources/desktop-folders" -type d)"
+
+        # Process desktop directories - FINISH ME!
+        echo "$directories" | while read LINK_OR_DIR; do
+            echo "$LINK_OR_DIR"
+
+            # Create desktop dirs if they don't already exist
+            if [ -d "$LINK_OR_DIR" ]; then 
+              if [ -L "$LINK_OR_DIR" ]; then
+                # It is a symlink!
+                # Symbolic link specific commands go here.
+                #rm "$LINK_OR_DIR"
+                echo "$LINK_OR_DIR"
+              else
+                # It's a directory!
+                # Directory command goes here.
+                #rmdir "$LINK_OR_DIR"
+                echo "$LINK_OR_DIR"
+              fi
+            fi
+        done
+
+        # Process desktop files - FINISH ME!
+        echo "Count: $(echo -n "$files" | wc -l)"
+        echo "$files" | while read file; do
+            echo "$file"
+        done
+
+#	for file in /usr/share/bitcurator/resources/*.pdf
+#	do
+#		base=`basename $file`
+#		if [ ! -L /home/$SUDO_USER/Desktop/$base ]; then
+#			sudo -u $SUDO_USER ln -s $file /home/$SUDO_USER/Desktop/$base
+#		fi
+#	done
+
+  echoinfo "BitCurator VM: Setting Desktop background image"
+        cd /usr/share/bitcurator/resources/images
+        gsettings set org.gnome.desktop.background draw-background false && gsettings set org.gnome.desktop.background picture-uri file:///home/$SUDO_USER/Tools/bitcurator/env/images/bitcurator-grub-new.png && gsettings set org.gnome.desktop.background draw-background true
 
   if [ ! -L /sbin/iscsiadm ]; then
     ln -s /usr/bin/iscsiadm /sbin/iscsiadm
@@ -603,7 +643,7 @@ configure_ubuntu_14.04_bitcurator_vm() {
   sudo -u $SUDO_USER gsettings set com.canonical.Unity.Launcher favorites "['application://nautilus.desktop', 'application://gnome-terminal.desktop', 'application://firefox.desktop', 'application://gnome-screenshot.desktop', 'application://gcalctool.desktop', 'application://bless.desktop', 'application://autopsy.desktop', 'application://wireshark.desktop']" >> $HOME/bitcurator-install.log 2>&1
 
   # Works in 12.04 and 14.04
-  sudo -u $SUDO_USER gsettings set org.gnome.desktop.background picture-uri file:///usr/share/sift/images/forensics_blue.jpg >> $HOME/sift-install.log 2>&1
+  sudo -u $SUDO_USER gsettings set org.gnome.desktop.background picture-uri file:///usr/share/sift/images/forensics_blue.jpg >> $HOME/bitcurator-install.log 2>&1
 
   # Works in 14.04 
 	if [ ! -d /home/$SUDO_USER/.config/autostart ]; then
