@@ -79,19 +79,20 @@ echo "Skipping: ${seq}"
 echo ""
 fi
 
-seq="add the YaD PPA repository and install YaD"
-echo -n " -- Would you like to ${seq}? -- (y/N) "
-read a
-if [[ $a == "Y" || $a == "y" ]]; then
-        sudo apt-get install python-software-properties -y
-        sudo apt-add-repository ppa:webupd8team/y-ppa-manager
-        sudo apt-get update
-        sudo apt-get install yad
-	echo ""
-else
-echo "Skipping: ${seq}"
-echo ""
-fi
+# DEPRECATED
+#seq="add the YaD PPA repository and install YaD"
+#echo -n " -- Would you like to ${seq}? -- (y/N) "
+#read a
+#if [[ $a == "Y" || $a == "y" ]]; then
+#        sudo apt-get install python-software-properties -y
+#        sudo apt-add-repository ppa:webupd8team/y-ppa-manager
+#        sudo apt-get update
+#        sudo apt-get install yad
+#	echo ""
+#else
+#echo "Skipping: ${seq}"
+#echo ""
+#fi
 
 # -------------------------
 # ENVIRONMENT CUSTOMIZATION
@@ -240,21 +241,21 @@ echo "Skipping: ${seq}"
 echo ""
 fi
 
-seq="install py3fpdf"
-echo -n " -- Would you like to ${seq}? -- (y/N) "
-read a
-if [[ $a == "Y" || $a == "y" ]]; then
-	git clone --recursive https://github.com/kamwoods/py3fpdf /tmp/py3fpdf
-	# UPDATE FOR FINAL INSTALL
-	cd /tmp/py3fpdf
-	python3 setup.py build
-	sudo python3 setup.py install
-	sudo ldconfig
-	echo ""
-else
-echo "Skipping: ${seq}"
-echo ""
-fi
+#seq="install py3fpdf"
+#echo -n " -- Would you like to ${seq}? -- (y/N) "
+#read a
+#if [[ $a == "Y" || $a == "y" ]]; then
+#	git clone --recursive https://github.com/kamwoods/py3fpdf /tmp/py3fpdf
+#	# UPDATE FOR FINAL INSTALL
+#	cd /tmp/py3fpdf
+#	python3 setup.py build
+#	sudo python3 setup.py install
+#	sudo ldconfig
+#	echo ""
+#else
+#echo "Skipping: ${seq}"
+#echo ""
+#fi
 
 # ----------------------
 # MORE ENVIRONMENT SETUP

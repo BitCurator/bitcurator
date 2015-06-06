@@ -172,6 +172,12 @@ install_ubuntu_14.04_deps() {
     echoinfo "Adding Ubuntu Tweak Repository"
     add-apt-repository -y ppa:tualatrix/ppa  >> $HOME/bitcurator-install.log 2>&1 || return 1
 
+    echoinfo "Adding Guymager Repository"
+    wget -nH -rP /etc/apt/sources.list.d/ http://deb.pinguin.lu/pinguin.lu.list     
+    wget -q http://deb.pinguin.lu/debsign_public.key -O- | sudo apt-key add -
+    apt-get update
+    #apt-get install guymager-beta
+
     echoinfo "Adding BitCurator Repository: $@"
     #add-apt-repository -y ppa:sift/$@  >> $HOME/sift-install.log 2>&1 || return 1
 
@@ -188,6 +194,7 @@ install_ubuntu_14.04_packages() {
     packages="dkms 
 g++ 
 ant 
+guymager-beta
 libcrypto++9 
 libssl-dev 
 expat 
@@ -448,7 +455,7 @@ configure_ubuntu() {
 
 # Global: Ubuntu BitCurator VM Configuration Function
 # Works with 12.04 and 14.04 Versions
-configure_ubuntu_sift_vm() {
+configure_ubuntu_bitcurator_vm() {
   echoinfo "BitCurator VM: Setting Hostname: siftworkstation"
 	OLD_HOSTNAME=$(hostname)
 	sed -i "s/$OLD_HOSTNAME/bitcurator/g" /etc/hosts
@@ -484,7 +491,7 @@ configure_ubuntu_sift_vm() {
 #  chmod 775 /usr/share/regripper/rip.pl
 #  chmod -R 755 /usr/share/regripper/plugins
     
-  echoinfo "SIFT VM: Setting noclobber for $SUDO_USER"
+  echoinfo "BitCurator VM: Setting noclobber for $SUDO_USER"
 	if ! grep -i "set -o noclobber" $HOME/.bashrc > /dev/null 2>&1
 	then
 		echo "set -o noclobber" >> $HOME/.bashrc
@@ -494,19 +501,19 @@ configure_ubuntu_sift_vm() {
 		echo "set -o noclobber" >> /root/.bashrc
 	fi
 
-  echoinfo "SIFT VM: Configuring Aliases for $SUDO_USER and root"
+  echoinfo "BitCurator VM: Configuring Aliases for $SUDO_USER and root"
 	if ! grep -i "alias mountwin" $HOME/.bash_aliases > /dev/null 2>&1
 	then
 		echo "alias mountwin='mount -o ro,loop,show_sys_files,streams_interface=windows'" >> $HOME/.bash_aliases
 	fi
 	
-	# For SIFT VM, root is used frequently, set the alias there too.
+	# For BitCurator VM, root is used frequently, set the alias there too.
 	if ! grep -i "alias mountwin" /root/.bash_aliases > /dev/null 2>&1
 	then
 		echo "alias mountwin='mount -o ro,loop,show_sys_files,streams_interface=windows'" >> /root/.bash_aliases
 	fi
 
-  echoinfo "SIFT VM: Setting up useful links on $SUDO_USER Desktop"
+  echoinfo "BitCurator VM: Setting up useful links on $SUDO_USER Desktop"
 	if [ ! -L /home/$SUDO_USER/Desktop/cases ]; then
 		sudo -u $SUDO_USER ln -s /cases /home/$SUDO_USER/Desktop/cases
 	fi
@@ -515,11 +522,11 @@ configure_ubuntu_sift_vm() {
 		sudo -u $SUDO_USER ln -s /mnt /home/$SUDO_USER/Desktop/mount_points
 	fi
 
-  echoinfo "SIFT VM: Cleaning up broken symlinks on $SUDO_USER Desktop"
+  echoinfo "BitCurator VM: Cleaning up broken symlinks on $SUDO_USER Desktop"
 	# Clean up broken symlinks
 	find -L /home/$SUDO_USER/Desktop -type l -delete
 
-  echoinfo "SIFT VM: Adding all SIFT Resources to $SUDO_USER Desktop"
+  echoinfo "BitCurator VM: Adding all SIFT Resources to $SUDO_USER Desktop"
 	for file in /usr/share/sift/resources/*.pdf
 	do
 		base=`basename $file`
@@ -561,10 +568,10 @@ configure_ubuntu_14.04_bitcurator_vm() {
 	fi
     
   # Works in 14.04 too
-	if [ ! -e /usr/share/unity-greeter/logo.png.ubuntu ]; then
-		sudo cp /usr/share/unity-greeter/logo.png /usr/share/unity-greeter/logo.png.ubuntu
-		sudo cp /usr/share/sift/images/login_logo.png /usr/share/unity-greeter/logo.png
-	fi
+	#if [ ! -e /usr/share/unity-greeter/logo.png.ubuntu ]; then
+	#	sudo cp /usr/share/unity-greeter/logo.png /usr/share/unity-greeter/logo.png.ubuntu
+	#	sudo cp /usr/share/sift/images/login_logo.png /usr/share/unity-greeter/logo.png
+	#fi
 
   # Setup user favorites (only for 12.04)
   #sudo -u $SUDO_USER dconf write /desktop/unity/launcher/favorites "['nautilus.desktop', 'gnome-terminal.desktop', 'firefox.desktop', 'gnome-screenshot.desktop', 'gcalctool.desktop', 'bless.desktop', 'autopsy.desktop', 'wireshark.desktop']" >> $HOME/sift-install.log 2>&1
@@ -613,7 +620,7 @@ if [ $ARCH != "64" ]; then
 fi
 
 if [ $VER != "12.04" ] && [ $VER != "14.04" ]; then
-    echo "BitCurator is only installable on Ubuntu 12.04 or 14.04 at this time."
+    echo "BitCurator is only installable on Ubuntu 14.04 at this time."
     exit 3
 fi
 
