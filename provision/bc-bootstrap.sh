@@ -437,6 +437,51 @@ install_bitcurator_files() {
 
 }
 
+install_source_packages() {
+
+#  wget "https://download.elasticsearch.org/kibana/kibana/kibana-3.1.0.tar.gz"  >> $HOME/sift-install.log 2>&1
+#  tar -zxf kibana-3.1.0.tar.gz  >> $HOME/sift-install.log 2>&1
+#  cd /tmp/kibana-3.1.0/ >> $HOME/sift-install.log 2>&1
+#  mkdir -p /var/www/html/kibana
+#  cp -r . /var/www/html/kibana >> $HOME/sift-install.log 2>&1
+#  cd $CDIR
+#}
+
+  echoinfo "BitCurator environment: Building and installing Apache Thrift"
+	CDIR=$(pwd)
+        cd /tmp
+        wget -q mirror.cogentco.com/pub/apache/thrift/0.9.2/thrift-0.9.2.tar.gz
+	tar -zxf thrift-0.9.2.tar.gz >> $HOME/bitcurator-install.log 2>&1
+        cd thrift-0.9.2
+        ./configure >> $HOME/bitcurator-install.log 2>&1
+        make >> $HOME/bitcurator-install.log 2>&1
+        make install >> $HOME/bitcurator-install.log 2>&1
+        ldconfig >> $HOME/bitcurator-install.log 2>&1
+	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+
+  echoinfo "BitCurator environment: Building and installing libewf"
+	CDIR=$(pwd)
+	git clone --recursive https://github.com/libyal/libewf /tmp/libewf >> $HOME/bitcurator-install.log 2>&1
+	cd /tmp/libewf
+        ./configure --enable-v1-api >> $HOME/bitcurator-install.log 2>&1
+        make >> $HOME/bitcurator-install.log 2>&1
+        make install >> $HOME/bitcurator-install.log 2>&1
+        ldconfig >> $HOME/bitcurator-install.log 2>&1
+	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+
+  echoinfo "BitCurator environment: Building and installing AFFLIBv3"
+	CDIR=$(pwd)
+	git clone --recursive https://github.com/simsong/AFFLIBv3 /tmp/AFFLIBv3 >> $HOME/bitcurator-install.log 2>&1
+	cd /tmp/AFFLIBv3
+        ./configure >> $HOME/bitcurator-install.log 2>&1
+        make >> $HOME/bitcurator-install.log 2>&1
+        make install >> $HOME/bitcurator-install.log 2>&1
+        ldconfig >> $HOME/bitcurator-install.log 2>&1
+	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+
+
+}
+
 configure_ubuntu() {
   #echoinfo "BitCurator VM: Creating Cases Folder"
   #	if [ ! -d /cases ]; then
@@ -778,6 +823,7 @@ if [ "$UPGRADE_ONLY" -eq 1 ]; then
   install_perl_modules || echoerror "Updating Perl Packages Failed"
 #  install_kibana || echoerror "Installing/Updating Kibana Failed"
   install_bitcurator_files || echoerror "Installing/Updating BitCurator Files Failed"
+  install_source_packages || echoerror "Installing/Updating BitCurator Source Packages Failed"
 
   echo ""
   echoinfo "BitCurator Upgrade Complete"
@@ -826,6 +872,7 @@ if [ "$INSTALL" -eq 1 ] && [ "$CONFIGURE_ONLY" -eq 0 ]; then
     install_perl_modules
     #install_kibana
     install_bitcurator_files
+    install_source_packages
 fi
 
 #configure_elasticsearch
