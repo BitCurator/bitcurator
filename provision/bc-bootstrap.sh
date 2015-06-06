@@ -377,14 +377,14 @@ install_bitcurator_files() {
 	CDIR=$(pwd)
 	git clone --recursive https://github.com/kamwoods/bitcurator /tmp/bitcurator >> $HOME/bitcurator-install.log 2>&1
 	cd /tmp/bitcurator/bctools
-        python3 setup.py build
-        python3 setup.py install
+        python3 setup.py build >> $HOME/bitcurator-install.log 2>&1
+        python3 setup.py install >> $HOME/bitcurator-install.log 2>&1
 	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
 
   echoinfo "BitCurator environment: Installing py3fpdf"
         cd /tmp/bitcurator/externals/py3fpdf
-        python3 setup.py build
-        sudo python3 setup.py install
+        python3 setup.py build >> $HOME/bitcurator-install.log 2>&1
+        sudo python3 setup.py install >> $HOME/bitcurator-install.log 2>&1
   
   echoinfo "BitCurator environment: Installing BitCurator mount policy app and mounter"
         cd /tmp/bitcurator/mounter
@@ -428,6 +428,9 @@ install_bitcurator_files() {
         mkdir /usr/share/bitcurator/resources
         cp -r /tmp/bitcurator/env/desktop-folders /usr/share/bitcurator/resources
  
+  echoinfo "BitCurator environment: Moving desktop support files to /usr/share/bitcurator/resources"
+        cp -r /tmp/bitcurator/env/images /usr/share/bitcurator/resources
+
   echoinfo "BitCurator environment: Cleaning up..."
 	cd $CDIR
 	rm -r -f /tmp/bitcurator
@@ -611,17 +614,17 @@ configure_ubuntu_bitcurator_vm() {
             echo "$file"
         done
 
-#	for file in /usr/share/bitcurator/resources/*.pdf
-#	do
-#		base=`basename $file`
-#		if [ ! -L /home/$SUDO_USER/Desktop/$base ]; then
-#			sudo -u $SUDO_USER ln -s $file /home/$SUDO_USER/Desktop/$base
-#		fi
-#	done
+        #	for file in /usr/share/bitcurator/resources/*.pdf
+        #	do
+        #		base=`basename $file`
+        #		if [ ! -L /home/$SUDO_USER/Desktop/$base ]; then
+        #			sudo -u $SUDO_USER ln -s $file /home/$SUDO_USER/Desktop/$base
+        #		fi
+        #	done
 
   echoinfo "BitCurator VM: Setting Desktop background image"
-        cd /usr/share/bitcurator/resources/images
-        gsettings set org.gnome.desktop.background draw-background false && gsettings set org.gnome.desktop.background picture-uri file:///home/$SUDO_USER/Tools/bitcurator/env/images/bitcurator-grub-new.png && gsettings set org.gnome.desktop.background draw-background true
+        #cd /usr/share/bitcurator/resources/images
+        gsettings set org.gnome.desktop.background draw-background false && gsettings set org.gnome.desktop.background picture-uri file:///usr/share/bitcurator/resources/images/bc400px-1280full.png && gsettings set org.gnome.desktop.background draw-background true
 
   if [ ! -L /sbin/iscsiadm ]; then
     ln -s /usr/bin/iscsiadm /sbin/iscsiadm
