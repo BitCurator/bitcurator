@@ -485,7 +485,7 @@ install_source_packages() {
 	CDIR=$(pwd)
 	git clone --recursive https://github.com/simsong/AFFLIBv3 /tmp/AFFLIBv3 >> $HOME/bitcurator-install.log 2>&1
 	cd /tmp/AFFLIBv3
-        ./bootstrap >> $HOME/bitcurator-install.log 1>&1
+        ./bootstrap.sh >> $HOME/bitcurator-install.log 1>&1
         ./configure >> $HOME/bitcurator-install.log 2>&1
         make -s >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
@@ -498,7 +498,7 @@ install_source_packages() {
 	CDIR=$(pwd)
         cd /tmp
         wget -q pocoproject.org/releases/poco-1.6.0/poco-1.6.0.tar.gz
-	tar -zxf thrift-0.9.2.tar.gz >> $HOME/bitcurator-install.log 2>&1
+	tar -zxf poco-1.6.0.tar.gz >> $HOME/bitcurator-install.log 2>&1
         cd poco-1.6.0
         ./configure >> $HOME/bitcurator-install.log 2>&1
         make -s >> $HOME/bitcurator-install.log 2>&1
