@@ -447,7 +447,9 @@ install_source_packages() {
 #  cd $CDIR
 #}
 
+  # Install Apache Thrift - packaged version too old in 14.04LTS
   echoinfo "BitCurator environment: Building and installing Apache Thrift"
+  echoinfo " -- Please be patient. This may take several minutes..."
 	CDIR=$(pwd)
         cd /tmp
         wget -q mirror.cogentco.com/pub/apache/thrift/0.9.2/thrift-0.9.2.tar.gz
@@ -459,6 +461,7 @@ install_source_packages() {
         ldconfig >> $HOME/bitcurator-install.log 2>&1
 	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
 
+  # Install libewf from current sources
   echoinfo "BitCurator environment: Building and installing libewf"
 	CDIR=$(pwd)
 	git clone --recursive https://github.com/libyal/libewf /tmp/libewf >> $HOME/bitcurator-install.log 2>&1
@@ -471,12 +474,107 @@ install_source_packages() {
         ldconfig >> $HOME/bitcurator-install.log 2>&1
 	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
 
+  # Install AFFLIBv3 (may remove this in future - deprecated)
   echoinfo "BitCurator environment: Building and installing AFFLIBv3"
 	CDIR=$(pwd)
 	git clone --recursive https://github.com/simsong/AFFLIBv3 /tmp/AFFLIBv3 >> $HOME/bitcurator-install.log 2>&1
 	cd /tmp/AFFLIBv3
         ./bootstrap >> $HOME/bitcurator-install.log 1>&1
         ./configure >> $HOME/bitcurator-install.log 2>&1
+        make -s >> $HOME/bitcurator-install.log 2>&1
+        make install >> $HOME/bitcurator-install.log 2>&1
+        ldconfig >> $HOME/bitcurator-install.log 2>&1
+	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+
+  # Install POCO
+  echoinfo "BitCurator environment: Building and installing POCO C++ libraries"
+  echoinfo " -- Please be patient. This may take several minutes..."
+	CDIR=$(pwd)
+        cd /tmp
+        wget -q pocoproject.org/releases/poco-1.6.0/poco-1.6.0.tar.gz
+	tar -zxf thrift-0.9.2.tar.gz >> $HOME/bitcurator-install.log 2>&1
+        cd poco-1.6.0
+        ./configure >> $HOME/bitcurator-install.log 2>&1
+        make -s >> $HOME/bitcurator-install.log 2>&1
+        make install >> $HOME/bitcurator-install.log 2>&1
+        ldconfig >> $HOME/bitcurator-install.log 2>&1
+	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+
+  # Install The Sleuth Kit (TSK) from current sources
+  echoinfo "BitCurator environment: Building and installing The Sleuth Kit"
+	CDIR=$(pwd)
+	git clone --recursive https://github.com/sleuthkit/sleuthkit /tmp/sleuthkit >> $HOME/bitcurator-install.log 2>&1
+	cd /tmp/sleuthkit
+        ./configure >> $HOME/bitcurator-install.log 2>&1
+        make -s >> $HOME/bitcurator-install.log 2>&1
+        make install >> $HOME/bitcurator-install.log 2>&1
+        ldconfig >> $HOME/bitcurator-install.log 2>&1
+	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+  echoinfo "BitCurator environment: Building and installing The Sleuth Kit framework"
+        echoinfo "DON'T FORGET TO FIX THIS"
+
+  # Install PyTSK
+  echoinfo "BitCurator environment: Building and installing PyTSK (Python bindings for TSK)"
+  echoinfo " -- Please be patient. This may take several minutes..."
+	CDIR=$(pwd)
+        cd /tmp
+        wget -q https://github.com/py4n6/pytsk/releases/download/20150406/pytsk-20150406.tgz
+	tar -zxf pytsk-20150406.tgz >> $HOME/bitcurator-install.log 2>&1
+        cd pytsk
+        python3 setup.py build >> $HOME/bitcurator-install.log 2>&1
+        python3 setup.py install >> $HOME/bitcurator-install.log 2>&1
+	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+  
+  # Install libsodium (not packaged version in 14.04LTS, needed for ZeroMQ)
+  echoinfo "BitCurator environment: Building and installing libsodium"
+  echoinfo " -- Please be patient. This may take several minutes..."
+	CDIR=$(pwd)
+        cd /tmp
+        wget -q https://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz
+	tar -zxf libsodium-1.0.3.tar.gz >> $HOME/bitcurator-install.log 2>&1
+        cd libsodium-1.0.3
+        ./configure >> $HOME/bitcurator-install.log 2>&1
+        make >> $HOME/bitcurator-install.log 2>&1
+        make install >> $HOME/bitcurator-install.log 2>&1
+        ldconfig >> $HOME/bitcurator-install.log 2>&1
+	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+
+  # Install ZeroMQ (packaged version in 14.04LTS out of date)
+  echoinfo "BitCurator environment: Building and installing ZeroMQ"
+  echoinfo " -- Please be patient. This may take several minutes..."
+	CDIR=$(pwd)
+        cd /tmp
+        wget -q download.zeromq.org/zeromq-4.1.1.tar.gz
+	tar -zxf zeromq-4.1.1.tar.gz >> $HOME/bitcurator-install.log 2>&1
+        cd zeromq-4.1.1
+        ./configure >> $HOME/bitcurator-install.log 2>&1
+        make >> $HOME/bitcurator-install.log 2>&1
+        make install >> $HOME/bitcurator-install.log 2>&1
+        ldconfig >> $HOME/bitcurator-install.log 2>&1
+	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+  
+  # Install hashdb (optional dependency for bulk_extractor)
+  echoinfo "BitCurator environment: Building and installing hashdb"
+	CDIR=$(pwd)
+	git clone --recursive https://github.com/simsong/hashdb /tmp/hashdb >> $HOME/bitcurator-install.log 2>&1
+	cd /tmp/hashdb
+        chmod 755 bootstrap.sh
+        ./bootstrap >> $HOME/bitcurator-install.log 1>&1
+        ./configure --with-boost-libdir=/usr/lib/x86_64-linux-gnu >> $HOME/bitcurator-install.log 2>&1
+        make -s >> $HOME/bitcurator-install.log 2>&1
+        make install >> $HOME/bitcurator-install.log 2>&1
+        ldconfig >> $HOME/bitcurator-install.log 2>&1
+	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+
+  # Install bulk_extractor
+  echoinfo "BitCurator environment: Building and installing bulk_extractor"
+  echoinfo " -- Please be patient. This may take several minutes..."
+	CDIR=$(pwd)
+	git clone --recursive https://github.com/simsong/bulk_extractor /tmp/bulk_extracotr >> $HOME/bitcurator-install.log 2>&1
+	cd /tmp/bulk_extractor
+        chmod 755 bootstrap.sh
+        ./bootstrap >> $HOME/bitcurator-install.log 1>&1
+        ./configure --with-boost-libdir=/usr/lib/x86_64-linux-gnu >> $HOME/bitcurator-install.log 2>&1
         make -s >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
         ldconfig >> $HOME/bitcurator-install.log 2>&1
