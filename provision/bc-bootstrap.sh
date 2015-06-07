@@ -838,26 +838,29 @@ configure_ubuntu_bitcurator_vm() {
 
 # 14.04 BitCurator VM Configuration Function
 configure_ubuntu_14.04_bitcurator_vm() {
-  sudo -u $SUDO_USER gsettings set com.canonical.Unity.Launcher favorites "['application://nautilus.desktop', 'application://gnome-terminal.desktop', 'application://firefox.desktop', 'application://gnome-screenshot.desktop', 'application://gcalctool.desktop', 'application://bless.desktop', 'application://autopsy.desktop', 'application://wireshark.desktop']" >> $HOME/bitcurator-install.log 2>&1
 
-  # Works in 12.04 and 14.04
-  sudo -u $SUDO_USER gsettings set org.gnome.desktop.background picture-uri file:///usr/share/sift/images/forensics_blue.jpg >> $HOME/bitcurator-install.log 2>&1
+  echoinfo "More config needed here..."
 
-  # Works in 14.04 
-	if [ ! -d /home/$SUDO_USER/.config/autostart ]; then
-		sudo -u $SUDO_USER mkdir -p /home/$SUDO_USER/.config/autostart
-	fi
+#  sudo -u $SUDO_USER gsettings set com.canonical.Unity.Launcher favorites "['application://nautilus.desktop', 'application://gnome-terminal.desktop', 'application://firefox.desktop', 'application://gnome-screenshot.desktop', 'application://gcalctool.desktop', 'application://bless.desktop', 'application://autopsy.desktop', 'application://wireshark.desktop']" >> $HOME/bitcurator-install.log 2>&1
 
-  # Works in 14.04 too.
-	if [ ! -L /home/$SUDO_USER/.config/autostart ]; then
-		sudo -u $SUDO_USER cp /usr/share/sift/other/gnome-terminal.desktop /home/$SUDO_USER/.config/autostart
-	fi
+#  # Works in 12.04 and 14.04
+#  sudo -u $SUDO_USER gsettings set org.gnome.desktop.background picture-uri file:///usr/share/sift/images/forensics_blue.jpg >> $HOME/bitcurator-install.log 2>&1
+
+#  # Works in 14.04 
+#	if [ ! -d /home/$SUDO_USER/.config/autostart ]; then
+#		sudo -u $SUDO_USER mkdir -p /home/$SUDO_USER/.config/autostart
+#	fi
+
+#  # Works in 14.04 too.
+#	if [ ! -L /home/$SUDO_USER/.config/autostart ]; then
+#		sudo -u $SUDO_USER cp /usr/share/sift/other/gnome-terminal.desktop /home/$SUDO_USER/.config/autostart
+#	fi
     
-  # Works in 14.04 too
-	#if [ ! -e /usr/share/unity-greeter/logo.png.ubuntu ]; then
-	#	sudo cp /usr/share/unity-greeter/logo.png /usr/share/unity-greeter/logo.png.ubuntu
-	#	sudo cp /usr/share/sift/images/login_logo.png /usr/share/unity-greeter/logo.png
-	#fi
+#  # Works in 14.04 too
+#	#if [ ! -e /usr/share/unity-greeter/logo.png.ubuntu ]; then
+#	#	sudo cp /usr/share/unity-greeter/logo.png /usr/share/unity-greeter/logo.png.ubuntu
+#	#	sudo cp /usr/share/sift/images/login_logo.png /usr/share/unity-greeter/logo.png
+#	#fi
 
   # Setup user favorites (only for 12.04)
   #sudo -u $SUDO_USER dconf write /desktop/unity/launcher/favorites "['nautilus.desktop', 'gnome-terminal.desktop', 'firefox.desktop', 'gnome-screenshot.desktop', 'gcalctool.desktop', 'bless.desktop', 'autopsy.desktop', 'wireshark.desktop']" >> $HOME/sift-install.log 2>&1
