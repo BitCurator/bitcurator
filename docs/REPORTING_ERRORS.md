@@ -1,6 +1,6 @@
 BitCurator Bug / Issue Reporting Form
 
-BitCurator issues can be reported to the bitcurator users's group.
+BitCurator issues can be reported to the bitcurator-users Google Group.
 
 The more details we have, the better we can help. Please include the following information when sending a report:
 
