@@ -465,7 +465,10 @@ install_source_packages() {
         make -s >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
         ldconfig >> $HOME/bitcurator-install.log 2>&1
-	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+	# Now clean up
+        cd /tmp
+        rm thrift-0.9.2.tar.gz
+        rm -rf thrift-0.9.2
 
   # Install libewf from current sources
   echoinfo "BitCurator environment: Building and installing libewf"
@@ -478,7 +481,9 @@ install_source_packages() {
         make -s >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
         ldconfig >> $HOME/bitcurator-install.log 2>&1
-	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+        # Now clean up
+        cd /tmp
+        rm -rf libewf	
 
   # Install AFFLIBv3 (may remove this in future - deprecated)
   echoinfo "BitCurator environment: Building and installing AFFLIBv3"
@@ -490,7 +495,9 @@ install_source_packages() {
         make -s >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
         ldconfig >> $HOME/bitcurator-install.log 2>&1
-	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+	# Now clean up
+        cd /tmp
+        rm -rf AFFLIBv3
 
   # Install POCO
   echoinfo "BitCurator environment: Building and installing POCO C++ libraries"
@@ -504,7 +511,10 @@ install_source_packages() {
         make -s >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
         ldconfig >> $HOME/bitcurator-install.log 2>&1
-	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+	# Now clean up
+        cd /tmp
+        rm poco-1.6.0.tar.gz
+        rm -rf poco-1.6.0
 
   # Install The Sleuth Kit (TSK) from current sources
   echoinfo "BitCurator environment: Building and installing The Sleuth Kit"
@@ -518,6 +528,9 @@ install_source_packages() {
 	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
   echoinfo "BitCurator environment: Building and installing The Sleuth Kit framework"
         echoinfo "DON'T FORGET TO FIX THIS"
+        # Now clean up
+        cd /tmp
+        rm -rf sleuthkit
 
   # Install PyTSK
   echoinfo "BitCurator environment: Building and installing PyTSK (Python bindings for TSK)"
@@ -529,7 +542,9 @@ install_source_packages() {
         cd pytsk
         python3 setup.py build >> $HOME/bitcurator-install.log 2>&1
         python3 setup.py install >> $HOME/bitcurator-install.log 2>&1
-	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+        # Now clean up
+        cd /tmp
+        rm -rf pytsk	
   
   # Install libsodium (not packaged version in 14.04LTS, needed for ZeroMQ)
   echoinfo "BitCurator environment: Building and installing libsodium"
@@ -543,7 +558,10 @@ install_source_packages() {
         make >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
         ldconfig >> $HOME/bitcurator-install.log 2>&1
-	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+        # Now clean up
+        cd /tmp
+        rm libsodium-1.0.3.tar.gz
+        rm -rf libsodium-1.0.3	
 
   # Install ZeroMQ (packaged version in 14.04LTS out of date)
   echoinfo "BitCurator environment: Building and installing ZeroMQ"
@@ -557,7 +575,10 @@ install_source_packages() {
         make >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
         ldconfig >> $HOME/bitcurator-install.log 2>&1
-	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+	# Now clean up
+        cd /tmp
+        rm zeromq-4.1.1.tar.gz
+        rm -rf zeromq-4.1.1
   
   # Install hashdb (optional dependency for bulk_extractor)
   echoinfo "BitCurator environment: Building and installing hashdb"
@@ -565,12 +586,14 @@ install_source_packages() {
 	git clone --recursive https://github.com/simsong/hashdb /tmp/hashdb >> $HOME/bitcurator-install.log 2>&1
 	cd /tmp/hashdb
         chmod 755 bootstrap.sh
-        ./bootstrap >> $HOME/bitcurator-install.log 1>&1
+        ./bootstrap.sh >> $HOME/bitcurator-install.log 1>&1
         ./configure --with-boost-libdir=/usr/lib/x86_64-linux-gnu >> $HOME/bitcurator-install.log 2>&1
         make -s >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
         ldconfig >> $HOME/bitcurator-install.log 2>&1
-	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+	# Now clean up
+        cd /tmp
+        rm -rf hashdb
 
   # Install bulk_extractor
   echoinfo "BitCurator environment: Building and installing bulk_extractor"
@@ -579,12 +602,13 @@ install_source_packages() {
 	git clone --recursive https://github.com/simsong/bulk_extractor /tmp/bulk_extractor >> $HOME/bitcurator-install.log 2>&1
 	cd /tmp/bulk_extractor
         chmod 755 bootstrap.sh
-        ./bootstrap >> $HOME/bitcurator-install.log 1>&1
+        ./bootstrap.sh >> $HOME/bitcurator-install.log 1>&1
         ./configure --with-boost-libdir=/usr/lib/x86_64-linux-gnu >> $HOME/bitcurator-install.log 2>&1
         make -s >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
         ldconfig >> $HOME/bitcurator-install.log 2>&1
-	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+        # Now clean up
+        # KEEP FOR TIME BEING	
 
   # Install HFSUtils (not packaged for 14.04LTS)
   echoinfo "BitCurator environment: Building and installing hfsutils"
@@ -597,7 +621,10 @@ install_source_packages() {
         make >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
         ldconfig >> $HOME/bitcurator-install.log 2>&1
-	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
+	# Now clean up
+        cd /tmp
+        rm hfsutils-3.2.6.tar.gz
+        rm -rf hfsutils-3.2.6
 
 }
 
