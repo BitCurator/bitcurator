@@ -424,8 +424,14 @@ install_bitcurator_files() {
         cp -r * /usr/share/pixmaps
  
   echoinfo "BitCurator environment: Moving desktop support files to /usr/share/bitcurator/resources"
-        mkdir /usr/share/bitcurator
-        mkdir /usr/share/bitcurator/resources
+        if [! -d /usr/share/bitcurator]
+        if [ ! -d /usr/share/bitcurator]; then
+		mkdir -p /usr/share/bitcurator
+	fi
+        if [ ! -d /usr/share/bitcurator/resources]; then
+		mkdir -p /usr/share/bitcurator/resources
+	fi
+        # We'll be transfering desktop-folders contents later...
         cp -r /tmp/bitcurator/env/desktop-folders /usr/share/bitcurator/resources
  
   echoinfo "BitCurator environment: Moving image files to /usr/share/bitcurator/resources"
@@ -570,7 +576,7 @@ install_source_packages() {
   echoinfo "BitCurator environment: Building and installing bulk_extractor"
   echoinfo " -- Please be patient. This may take several minutes..."
 	CDIR=$(pwd)
-	git clone --recursive https://github.com/simsong/bulk_extractor /tmp/bulk_extracotr >> $HOME/bitcurator-install.log 2>&1
+	git clone --recursive https://github.com/simsong/bulk_extractor /tmp/bulk_extractor >> $HOME/bitcurator-install.log 2>&1
 	cd /tmp/bulk_extractor
         chmod 755 bootstrap.sh
         ./bootstrap >> $HOME/bitcurator-install.log 1>&1
@@ -580,6 +586,18 @@ install_source_packages() {
         ldconfig >> $HOME/bitcurator-install.log 2>&1
 	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
 
+  # Install HFSUtils (not packaged for 14.04LTS)
+  echoinfo "BitCurator environment: Building and installing hfsutils"
+	CDIR=$(pwd)
+        cd /tmp
+        wget -q ftp://ftp.mars.org/pub/hfs/hfsutils-3.2.6.tar.gz
+	tar -zxf hfsutils-3.2.6.tar.gz >> $HOME/bitcurator-install.log 2>&1
+        cd hfsutils-3.2.6
+        ./configure >> $HOME/bitcurator-install.log 2>&1
+        make >> $HOME/bitcurator-install.log 2>&1
+        make install >> $HOME/bitcurator-install.log 2>&1
+        ldconfig >> $HOME/bitcurator-install.log 2>&1
+	#bash install.sh >> $HOME/bitcurator-install.log 2>&1
 
 }
 
