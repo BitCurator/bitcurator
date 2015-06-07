@@ -485,7 +485,7 @@ install_source_packages() {
 	CDIR=$(pwd)
 	git clone --recursive https://github.com/simsong/AFFLIBv3 /tmp/AFFLIBv3 >> $HOME/bitcurator-install.log 2>&1
 	cd /tmp/AFFLIBv3
-        ./bootstrap.sh >> $HOME/bitcurator-install.log 1>&1
+        ./bootstrap.sh >> $HOME/bitcurator-install.log 2>&1
         ./configure >> $HOME/bitcurator-install.log 2>&1
         make -s >> $HOME/bitcurator-install.log 2>&1
         make install >> $HOME/bitcurator-install.log 2>&1
