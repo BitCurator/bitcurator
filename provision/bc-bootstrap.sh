@@ -47,7 +47,7 @@ echoerror() {
 # DESCRIPTION: Echo information to stdout.
 #-------------------------------------------------------------------------------
 echoinfo() {
-    printf "${GC} * INFO${EC}: %s\n" "$@";
+    printf "${GC} * STATUS${EC}: %s\n" "$@";
 }
 
 #--- FUNCTION ----------------------------------------------------------------
@@ -374,6 +374,7 @@ install_perl_modules() {
 install_bitcurator_files() {
   # Checkout code from bitcurator and put these files into place
   echoinfo "BitCurator environment: Installing BitCurator Tools"
+  echoinfo " -- Please be patient. This may take several minutes..."
 	CDIR=$(pwd)
 	git clone --recursive https://github.com/kamwoods/bitcurator /tmp/bitcurator >> $HOME/bitcurator-install.log 2>&1
 	cd /tmp/bitcurator/bctools
@@ -424,11 +425,10 @@ install_bitcurator_files() {
         cp -r * /usr/share/pixmaps
  
   echoinfo "BitCurator environment: Moving desktop support files to /usr/share/bitcurator/resources"
-        if [! -d /usr/share/bitcurator]
-        if [ ! -d /usr/share/bitcurator]; then
+        if [ ! -d /usr/share/bitcurator ]; then
 		mkdir -p /usr/share/bitcurator
 	fi
-        if [ ! -d /usr/share/bitcurator/resources]; then
+        if [ ! -d /usr/share/bitcurator/resources ]; then
 		mkdir -p /usr/share/bitcurator/resources
 	fi
         # We'll be transfering desktop-folders contents later...
