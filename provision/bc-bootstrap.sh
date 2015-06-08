@@ -151,7 +151,14 @@ configure_cpan() {
 }
 
 usage() {
-    echo "usage"
+    echo ""
+    echo "Usage:"
+    echo " -v   show version"
+    echo " -s   skin the environment with BitCurator elements"
+    echo " -i   install all software and scripts"
+    echo " -c   configure only (no software install)"
+    echo " -u   upgrade only"
+    echo " -y   yes to all"
     exit 1
 }
 
@@ -637,7 +644,7 @@ configure_ubuntu() {
   #		chmod g+s /cases
   #	fi
 
-  echoinfo "BitCurator VM: Creating Mount Folders"
+  echoinfo "BitCurator config: Creating Mount Folders"
 	for dir in usb vss shadow windows_mount e01 aff ewf bde iscsi
 	do
 		if [ ! -d /mnt/$dir ]; then
@@ -665,7 +672,7 @@ configure_ubuntu() {
 		fi
 	done
 
-  echoinfo "BitCurator VM: Setting up symlinks to useful scripts"
+  echoinfo "BitCurator config: Setting up symlinks to useful scripts"
   if [ ! -L /usr/bin/vol.py ] && [ ! -e /usr/bin/vol.py ]; then
     ln -s /usr/bin/vol.py /usr/bin/vol
 	fi
@@ -704,23 +711,23 @@ configure_ubuntu() {
 # Global: Ubuntu BitCurator VM Configuration Function
 # Works with 12.04 and 14.04 Versions
 configure_ubuntu_bitcurator_vm() {
-  echoinfo "BitCurator VM: Setting Hostname: bitcurator"
+  echoinfo "BitCurator config: Setting Hostname: bitcurator"
 	OLD_HOSTNAME=$(hostname)
 	sed -i "s/$OLD_HOSTNAME/bitcurator/g" /etc/hosts
 	echo "bitcurator" > /etc/hostname
 	hostname bitcurator
 
-  echoinfo "BitCurator VM: Fixing Samba User"
+  echoinfo "BitCurator config: Fixing Samba User"
 	# Make sure we replace the BITCURATOR_USER template with our actual
 	# user so there is write permissions to samba.
 	sed -i "s/BITCURTOR_USER/$SUDO_USER/g" /etc/samba/smb.conf
 
-  echoinfo "BitCurator VM: Restarting Samba"
+  echoinfo "BitCurator config: Restarting Samba"
 	# Restart samba services 
 	service smbd restart >> $HOME/bitcurator-install.log 2>&1
 	service nmbd restart >> $HOME/bitcurator-install.log 2>&1
 
-  echoinfo "BitCurator VM: Setting Timezone to UTC" >> $HOME/bitcurator-install.log 2>&1
+  echoinfo "BitCurator config: Setting Timezone to UTC" >> $HOME/bitcurator-install.log 2>&1
   echo "Etc/UTC" > /etc/timezone >> $HOME/bitcurator-install.log 2>&1
     
   #echoinfo "SIFT VM: Fixing Regripper Files"
@@ -739,7 +746,7 @@ configure_ubuntu_bitcurator_vm() {
 #  chmod 775 /usr/share/regripper/rip.pl
 #  chmod -R 755 /usr/share/regripper/plugins
     
-  echoinfo "BitCurator VM: Setting noclobber for $SUDO_USER"
+  echoinfo "BitCurator config: Setting noclobber for $SUDO_USER"
 	if ! grep -i "set -o noclobber" $HOME/.bashrc > /dev/null 2>&1
 	then
 		echo "set -o noclobber" >> $HOME/.bashrc
@@ -749,7 +756,7 @@ configure_ubuntu_bitcurator_vm() {
 		echo "set -o noclobber" >> /root/.bashrc
 	fi
 
-  echoinfo "BitCurator VM: Configuring Aliases for $SUDO_USER and root"
+  echoinfo "BitCurator config: Configuring Aliases for $SUDO_USER and root"
 	if ! grep -i "alias mountwin" $HOME/.bash_aliases > /dev/null 2>&1
 	then
 		echo "alias mountwin='mount -o ro,loop,show_sys_files,streams_interface=windows'" >> $HOME/.bash_aliases
@@ -761,7 +768,7 @@ configure_ubuntu_bitcurator_vm() {
 		echo "alias mountwin='mount -o ro,loop,show_sys_files,streams_interface=windows'" >> /root/.bash_aliases
 	fi
 
-  echoinfo "BitCurator VM: Setting up useful links on $SUDO_USER Desktop"
+  echoinfo "BitCurator config: Setting up useful links on $SUDO_USER Desktop"
 	#if [ ! -L /home/$SUDO_USER/Desktop/cases ]; then
 	#	sudo -u $SUDO_USER ln -s /cases /home/$SUDO_USER/Desktop/cases
 	#fi
@@ -770,11 +777,11 @@ configure_ubuntu_bitcurator_vm() {
 	#	sudo -u $SUDO_USER ln -s /mnt /home/$SUDO_USER/Desktop/mount_points
 	#fi
 
-  echoinfo "BitCurator VM: Cleaning up broken symlinks on $SUDO_USER Desktop"
+  echoinfo "BitCurator config: Cleaning up broken symlinks on $SUDO_USER Desktop"
 	# Clean up broken symlinks
 	find -L /home/$SUDO_USER/Desktop -type l -delete
 
-  echoinfo "BitCurator VM: Adding all BitCurator resources to $SUDO_USER Desktop"
+  echoinfo "BitCurator config: Adding all BitCurator resources to $SUDO_USER Desktop"
 
         files="$(find -L "/usr/share/bitcurator/resources/desktop-folders" -type f)"
         directories="$(find -L "/usr/share/bitcurator/resources/desktop-folders" -type d)"
@@ -813,7 +820,7 @@ configure_ubuntu_bitcurator_vm() {
         #		fi
         #	done
 
-  echoinfo "BitCurator VM: Setting Desktop background image"
+  echoinfo "BitCurator config: Setting Desktop background image"
         #cd /usr/share/bitcurator/resources/images
         sudo -u $SUDO_USER gsettings set org.gnome.desktop.background primary-color '#3464A2'
         sudo -u $SUDO_USER gsettings set org.gnome.desktop.background secondary-color '#3464A2'
@@ -875,16 +882,14 @@ complete_message() {
     echo
     echo "Installation Complete!"
     echo 
-    echo "Related docs are works in progress, feel free to contribute!"
-    echo 
+    echo "This script is a work in progress. Please contact us if you encounter an error."
     echo "Documentation: http://wiki.bitcurator.net"
     echo
 }
 
 complete_message_skin() {
     echo "The hostname was changed, you should relogin or reboot for it to take full effect."
-    echo
-    echo "sudo reboot"
+    echo "(Suggested: sudo reboot)"
     echo
 }
 
