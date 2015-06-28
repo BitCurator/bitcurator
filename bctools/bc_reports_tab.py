@@ -1522,11 +1522,8 @@ class Ui_MainWindow(object):
 
         # The direcotry that contains identify_filenames script is set
         # to default: 
-        self.allrepBcpyDir = "/home/bcadmin/Tools/bulk_extractor/python"
-        # FIXME-BEFORE COMMIT: For testing, I have set it to my path. Replace this
-        # line with the line above before committing.
-        # self.allrepBcpyDir = "/home/sunitha/Research/Tools/bulk_extractor/python"
-        # self.allrepBcpyDir = "/home/sunitha/Tools/bulk_extractor-1.4.4/python"
+        #self.allrepBcpyDir = "/home/bcadmin/Tools/bulk_extractor/python"
+        self.allrepBcpyDir = "/usr/share/dfxml/python"
         return (0)
 
     def bc_allrep_check_parameters_old(self):
