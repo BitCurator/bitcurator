@@ -2,7 +2,7 @@
 
 spawn -noecho bash
 expect "$ "
-send "cd /home/bcadmin/Tools/fits\n"
+send "cd $HOME/.fits/fits\n"
 send "./fits.sh -h\n"
 interact
 
