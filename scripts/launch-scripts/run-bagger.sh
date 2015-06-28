@@ -2,7 +2,7 @@
 
 spawn -noecho bash
 expect "$ "
-send "cd /home/bcadmin/Tools/bagger-2.1.3\n"
+send "cd $env(HOME)/.bagger/bagger-2.1.3\n"
 send "./bagger.sh -h\n"
 interact
 
