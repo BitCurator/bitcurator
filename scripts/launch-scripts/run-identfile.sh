@@ -3,6 +3,6 @@
 spawn -noecho bash
 expect "$ "
 send "cd ~/\n"
-send "python3 /home/bcadmin/Tools/bulk_extractor/python/identify_filenames.py -h\n"
+send "python3 /usr/share/dfxml/python/identify_filenames.py -h\n"
 interact
 
