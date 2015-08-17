@@ -10,5 +10,11 @@ The most current BitCurator virtual machine can be downloaded from
 
   http://wiki.bitcurator.net/
 
+Looking for help? Post to the BitCurator Users list at:
 
+  https://groups.google.com/d/forum/bitcurator-users
+
+Interested in supporting BitCurator? Visit the Consortium site at:
+  
+  http://www.bitcuratorconsortium.org/
 
