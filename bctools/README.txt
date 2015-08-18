@@ -11,8 +11,21 @@
 # See http://wiki.bitcurator.net/ for up-to-date project information.
 #
 
-Running generate_report.py
---------------------------
+Installing
+----------
+The included setup.py script will install the BitCurator tools in the appropriate locations. Note! If you're
+using this script outside of the full BitCurator environment, there are many dependencies that may not be met
+automatically. See https://github.com/bitcurator/bitcurator-boostrap for the full dependency stack.
+
+To install:
+
+  python3 setup.py build
+  sudo python3 setup.py install
+
+This will install the BitCurator Disk Image Access, BitCurator Mounter, and BitCurator Reporting tools.
+
+Running the reporting tool (generate_report.py) on the command line:
+--------------------------------------------------------------------
 File: generate_report.py
 A module for working with bulk_extractor
 
