@@ -137,8 +137,6 @@ def bc_make_dict(fi, FiwalkReport, fn):
     ## if (FiwalkReport.prevPartition != fi.partition()):
           ## Time for a new report
           ##print("Partition Change")
-
-    # 
     # FiwalkReport.prevPartition = fi.partition()
 
     for i in FiwalkReport.dict_array:

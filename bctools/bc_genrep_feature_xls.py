@@ -55,7 +55,7 @@ def bc_generate_feature_xlsx(PdfReport, data, feature_file):
 
         position = row[0]
 
-        # If it is a special file, check if the user wants it to
+        # If this is a special file, check if the user wants it to
         # be repoted. If not, exclude this from the table.
         if (PdfReport.bc_config_report_special_files == False) and \
                             (is_special_file(filename)):

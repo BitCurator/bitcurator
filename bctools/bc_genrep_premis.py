@@ -49,9 +49,9 @@ class BcPremisFile:
     # Extract the image_name from the dfxml line "command_line"
     def extractImageName(self, dfxml_command_line, dfxml_type):
         # Command_line text looks like this for fiwalk dfxml:
-        # <command_line>fiwalk -f -X <pathToXml> <pathToImage>.aff</command_line>
-        # it looks like the following for BE reports dfxml:
-        # <command_line>cmd/bulk_extractor <image>.aff -o <path_to_eDir></command_line>
+        #    <command_line>fiwalk -f -X <pathToXml> <pathToImage>.aff</command_line>
+        # It looks like the following for BE reports dfxml:
+        #    <command_line>cmd/bulk_extractor <image>.aff -o <path_to_eDir></command_line>
         templist = dfxml_command_line.split(" ")
         if (dfxml_type == "fw"):
             # print("D: command_line as list: ", templist[4])

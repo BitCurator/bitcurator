@@ -24,7 +24,7 @@ def bc_parse_config_file(PdfReport, FiwalkReport, config_file):
     config = ConfigObj(config_file)
     
     # Clone the static dictionary of file formats.
-    # The user can limit the number by setting S:MAX_FILE_FORMAT_FILES_TO_REPORT:20
+    # Limit the number by setting S:MAX_FILE_FORMAT_FILES_TO_REPORT:20
     PdfReport.bc_config_filefmt_files = FiwalkReport.dictFileFmtStatic.copy()
 
     # Initialize all the values to 0
@@ -202,7 +202,7 @@ def bc_write_config_file(config_file):
     # Write out the configuration file
     config.write()
 
-# UNCOMMENT THIS ONLY FOR TESTING
+# Uncomment for testing only
 # Main application
 #if __name__ == "__main__":
 #    bc_write_config_file("/home/bcadmin/Desktop/bc_report_config.txt")

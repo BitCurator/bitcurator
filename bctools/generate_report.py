@@ -236,9 +236,8 @@ class PDF_BE(FPDF):
                         break
         return data
 
-
     #
-    # make one table/xlsx-file per feature
+    # Make one table/xlsx-file per feature
     #
     def make_table_feat_xls(self, feature_file):
 
@@ -249,7 +248,7 @@ class PDF_BE(FPDF):
         bc_generate_feature_xlsx(PdfReport, data, feature_file)
 
     #
-    # make one table/pdf-file per feature
+    # Make one table/pdf-file per feature
     #
     def make_table_feat_pdf(self, feature_file, header):
         # Get the data from the input file

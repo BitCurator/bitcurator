@@ -76,6 +76,7 @@ def bc_generate_bar_graph(PdfReport, image_info, outfile, item_dict):
     canvas.print_figure(outfile)
     bc_addToReportFileList(outfile, PdfReport)
 
+    ## Testing only
     #pp.savefig(fig)
     #pp.close()
     #os.system("evince ./bc_format_bargraph.pdf")
