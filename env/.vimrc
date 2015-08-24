@@ -4,7 +4,7 @@ set nocompatible
 " Set background type"
 set background=dark
 " Set color scheme!¬
-colorscheme distinguished
+colorscheme candy
 set clipboard=unnamed
 " Enhance command-line completion
 set wildmenu
