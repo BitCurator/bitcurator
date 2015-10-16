@@ -1,0 +1,2 @@
+# Force fstab options for devices
+RUN+="/usr/sbin/rbfstab"
