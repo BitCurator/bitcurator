@@ -44,7 +44,7 @@ class MounterAppIndicator:
         self.ind.set_attention_icon("indicator-messages-new")
 
         # Set based on current policy (check if fstab entry exists)
-        if os.path.isfile("/etc/udev/rules.d/fstab.rules"):
+        if os.path.isfile("/etc/udev/rules.d/85-fstab.rules"):
             self.ind.set_icon("/usr/share/pixmaps/mounter/harddisk-readonly.png")
         else:
             self.ind.set_icon("/usr/share/pixmaps/mounter/harddisk-writeable.png")
@@ -99,7 +99,7 @@ class MounterAppIndicator:
 
     def ro_set(self, widget, data=None):
         #Call RO warning indicator here    
-        if not os.path.isfile("/etc/udev/rules.d/fstab.rules"):
+        if not os.path.isfile("/etc/udev/rules.d/85-fstab.rules"):
             win = PolicyDialog("You are about to set the system-wide mount policy to:" \
                            + "\n\n" + "READ-ONLY" + "\n\n" + \
                            "Currently mounted volumes will not be affected until remounted.")
@@ -113,7 +113,7 @@ class MounterAppIndicator:
         if response == gtk.ResponseType.OK:
             print("Got an OK")
             # Call rbfstab to set policy - READ-ONLY here
-            if not os.path.isfile("/etc/udev/rules.d/fstab.rules"):
+            if not os.path.isfile("/etc/udev/rules.d/85-fstab.rules"):
                 subprocess.call(["sudo", "rbfstab", "-i"])
             else:
                 print("No change required in current state")
@@ -123,7 +123,7 @@ class MounterAppIndicator:
 
     def rw_set(self, widget, data=None):
         #Call RW warning indicator here
-        if os.path.isfile("/etc/udev/rules.d/fstab.rules"):
+        if os.path.isfile("/etc/udev/rules.d/85-fstab.rules"):
             win = PolicyDialog("CAUTION! You are about to set the system-wide mount policy to:" \
                            + "\n\n" + "WRITEABLE" + "\n\n" + \
                            "Click CANCEL to remain in the READ-ONLY state. Currently " \
@@ -138,7 +138,7 @@ class MounterAppIndicator:
         if response == gtk.ResponseType.OK:
             print("Got an OK")
             # Call rbfstab to set policy - READ-WRITE here
-            if os.path.isfile("/etc/udev/rules.d/fstab.rules"):
+            if os.path.isfile("/etc/udev/rules.d/85-fstab.rules"):
                 subprocess.call(["sudo", "rbfstab", "-r"])
             else:
                 print("No change required in current state")
