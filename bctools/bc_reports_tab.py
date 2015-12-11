@@ -869,7 +869,7 @@ class Ui_MainWindow(object):
     def getImageFileName(self):
         # Navigation
         image_file = QtGui.QFileDialog.getOpenFileName(caption="Select an image file")
-        print(">> Image File Selected: ", image_file)
+        print(">> Image file selected: ", image_file)
 
         self.lineEdit_image.setText(image_file)
         
@@ -878,7 +878,7 @@ class Ui_MainWindow(object):
     def getFwImageFileName(self):
         # Navigation
         image_file = QtGui.QFileDialog.getOpenFileName(caption="Select an image file")
-        print(">> Image File Selected: ", image_file)
+        print(">> Image file selected: ", image_file)
 
         self.lineEdit_fw_image.setText(image_file)
         
@@ -887,7 +887,7 @@ class Ui_MainWindow(object):
     def getAllrepImageFileName(self):
         # Navigation
         image_file = QtGui.QFileDialog.getOpenFileName(caption="Select an image file")
-        print(">> Image File Selected: ", image_file)
+        print(">> Image file selected: ", image_file)
 
         self.lineEdit_allrep_image.setText(image_file)
         
@@ -896,7 +896,7 @@ class Ui_MainWindow(object):
     def getBeImageFileName(self):
         # Navigation
         image_file = QtGui.QFileDialog.getOpenFileName(caption="Select an image file")
-        print(">> Image File Selected: ", image_file)
+        print(">> Image file selected: ", image_file)
 
         self.lineEdit_be_image.setText(image_file)
         
@@ -905,7 +905,7 @@ class Ui_MainWindow(object):
     def getAnnImageFileName(self):
         # Navigation
         image_file = QtGui.QFileDialog.getOpenFileName(caption="Select an image file")
-        print(">> Image File Selected: ", image_file)
+        print(">> Image file selected: ", image_file)
 
         self.lineEdit_ann_image.setText(image_file)
         
@@ -967,7 +967,7 @@ class Ui_MainWindow(object):
 
     def getBeFeatDir(self):
         beFeatDir = QtGui.QFileDialog.getExistingDirectory(caption="Select the bulk extractor feature directory")
-        print(">> Annotate: BE Features Directory Selected: ", beFeatDir)
+        print(">> Annotate: bulk_extractor feature directory selected: ", beFeatDir)
 
         self.lineEdit_ann_beFeatDir.setText(beFeatDir)
         
@@ -975,7 +975,7 @@ class Ui_MainWindow(object):
 
     def getAllrepBeFeatDir(self):
         beFeatDir = QtGui.QFileDialog.getExistingDirectory(caption="Select the bulk extractor feature directory")
-        print(">> Annotate: BE Features Directory Selected: ", beFeatDir)
+        print(">> Annotate: bulk_extractor feature directory selected: ", beFeatDir)
 
         self.lineEdit_allrep_beFeatDir.setText(beFeatDir)
         
@@ -1128,6 +1128,7 @@ class Ui_MainWindow(object):
         a.bcGenPremisXmlDiskImage(self.allrepImageFileName, premis_img_info, premis_outfile)
 
         print(">> Generating XML File for the image ", self.allrepImageFileName)
+        print('')
 
         # Create the XML file in the given directory, if doesn't exist. 
         if not os.path.exists(self.allrepOutDir):
@@ -1264,19 +1265,19 @@ class Ui_MainWindow(object):
             print("D: Output Dir fir Bulk Extractor Selected from the box: ", self.beOutputDirName)
 
         cmd = ['bulk_extractor', self.beImageFileName, '-o', self.beOutputDirName]
-        print(">> Command Executed for Bulk Extractor = ", cmd)
+        print(">> Command executed for bulk_extractor = ", cmd)
 
         (data, err) = Popen(cmd, stdout=PIPE, stderr=PIPE).communicate()
 
         if len(err) > 0 :
            #sys.stderr.write("Debug: type(err) = %r.\n" % type(err))
            # Terminate the redirecting of the stdout to the in-memory buffer.
-           print(">> ERROR!!! Bulk_extractor terminated with error: \n", err)
+           print(">> Error! bulk_extractor terminated with error: \n", err)
            self.textEdit_becmdlineoutput.setText( sys.stdout.getvalue() )
            sys.stdout = self.oldstdout
            raise ValueError("bulk_extractor error (" + str(err).strip() + "): "+" ".join(cmd))
         else:
-           print("\n>> Success!!! Bulk_extractor created the feature files in the Directory: ", self.beOutputDirName)
+           print("\n>> Success. bulk_extractor created feature files in the directory: ", self.beOutputDirName)
            print("\n")
         
         # Terminate the redirecting of the stdout to the in-memory buffer.
@@ -1386,7 +1387,7 @@ class Ui_MainWindow(object):
         premis_img_info = bc_utils.bcGetImageInfo(imageName)
         premis_outfile = genRepOutDir +"/premis.xml"
 
-        print(">> REP: Generating Premis events for Diskimage")
+        print(">> REP: Generating PREMIS events for Diskimage")
         a.bcGenPremisXmlDiskImage(imageName, premis_img_info, premis_outfile)
 
         print(">> REP: Generating FW Premis : ", self.repFwXmlFileName)
@@ -1741,7 +1742,10 @@ class bcThread_allrep_all(threading.Thread):
       # While loop for handling "cancel" signal outside Popen calls
       while not self.stoprequest.isSet():
         # Run fiwalk first
-        print(">> Command Executed for Fiwalk: ", self.fwcmd)
+        print(">> Running fiwalk with the following flags: ", self.fwcmd)
+        print('')
+        print("Please be patient; fiwalk may take some time to run.")
+        print('')
 
         p = self.process = Popen(self.fwcmd, stdout=PIPE, stderr=PIPE)
         (data, err) = p.communicate()
@@ -1768,13 +1772,13 @@ class bcThread_allrep_all(threading.Thread):
             if self.stoprequest.isSet():
                 ## print("D: Breaking out of the loop - 3")
                 break
-            print("\n>> Success!!! Fiwalk created the following file: ")
+            print("\n>> Success. fiwalk created the following file: ")
 
             global g_allrepXmlFileName
             print(" o ", g_allrepXmlFileName) 
 
             # Generate the premis file in the reports directory: self.allrepOutDir
-            print(">> Generating Premis event for Fiwalk in:", self.genrepOutDir)
+            print(">> Generating PREMIS event for fiwalk in:", self.genrepOutDir)
             
             if not os.path.exists(self.genrepOutDir):
                 os.mkdir(self.genrepOutDir)
@@ -1788,7 +1792,7 @@ class bcThread_allrep_all(threading.Thread):
             ## print("D: BE reports XML FIle: ", beReportsXmlFile)
             a.bcGenPremisXmlBulkExtractor(beReportsXmlFile, premis_outfile, False)
 
-            print("\n>> Creating annotated Features \n")
+            print("\n>> Creating annotated features ")
 
             # Dump the text in stdout to textEdit screen.
             # Note: setText for some reason, wouldn't work when used with
@@ -1821,7 +1825,7 @@ class bcThread_allrep_all(threading.Thread):
                 if self.stoprequest.isSet():
                     ## print("D: Breaking out of the loop - 2")
                     break
-                print(">> Success!!! Annotated feature files created in the directory: \n o ", self.annoutdir)
+                print(">> Success. Annotated feature files created in the directory: \n o ", self.annoutdir)
 
                 # Now run the reports generation routine
                 # Generate the reports now.
@@ -1860,7 +1864,7 @@ class bcThread_allrep_all(threading.Thread):
                     ## print("D: Breaking out of the loop - 3")
                     break
                 #print("\n>> Success!!! BitCurator Reports generated in the directory: \n o ", self.allrepOutDir)
-                print("\n>> Success!!! BitCurator Reports generated in the directory: \n o ", self.genrepOutDir)
+                print("\n>> Success. BitCurator reports generated in the directory: \n o ", self.genrepOutDir)
 
                 # Set the progressbar maximum to > minimum so the spinning will stop
                 global_allrep.progressbar.setRange(0,1)

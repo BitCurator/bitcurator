@@ -59,8 +59,8 @@ def bc_generate_bar_graph(PdfReport, image_info, outfile, item_dict):
     ax.bar(ind,y,width=0.1,facecolor = '#888888',ecolor = 'black')
     ax.set_ylabel('Counts')
     imgname = 'image_filename: ' + str(image_info['image_filename'])
-    imgname='Disk Image: '+filename_from_path(imgname)
-    ax.set_title(imgname + ' File counts (by format)')
+    imgname='Disk image: '+filename_from_path(imgname)
+    ax.set_title(imgname + '- file counts by format')
     rects = ax.bar(ind,y,width=0.3,facecolor = '#888888',ecolor = 'black')
 
     # Write the frequency on top of each bar

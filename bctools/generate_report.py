@@ -296,12 +296,12 @@ class PDF_BE(FPDF):
             if len(row) > 3:
                 filename = row[3]
             else:
-                filename = "Unkown"
+                filename = "Unknown"
 
             if len(row) > 1:
                 feature = row[1]
             else:
-                feature = "Unkown"
+                feature = "Unknown"
 
             position = row[0]
 
@@ -382,7 +382,7 @@ class PDF(FPDF):
     # This tabe will have the translation of the long and short forms
     # of the format name and the number of files for each format. This
     # has the supplemental information for the bar chart and combines
-    # the information fron from dictFileFmtVal and bcFmtDict.
+    # the information from from dictFileFmtVal and bcFmtDict.
     #
     def bc_make_table_fileformat(self, header, dictFileFmtVal, bcFmtDict):
         # Header
@@ -707,7 +707,7 @@ class PDF(FPDF):
         self.cell(sum(w),0,'','T')
 
 #
-# This function creates a report file for the feature specified
+# This function creates a report file for the features specified
 # by the annotated_file.
 #
 def be_create_pdf_report_file(input_file, annotated_file):
@@ -740,7 +740,9 @@ def be_create_xlsx_report_file(input_file, annotated_file):
 #
 class PdfReport:
     reportFiles = 0
-    #logo = "/usr/share/pixmaps/bitcurator/FinalBitCuratorLogo-NoText.png" # Default
+
+    # Logo is disabled by default
+    # logo = "/usr/share/pixmaps/bitcurator/FinalBitCuratorLogo-NoText.png"
  
     default_config = False
     bc_config_feature = {}
@@ -801,8 +803,9 @@ class PdfReport:
                 os.mkdir(out_dir)
 
         # Open the Configuration File: If it doesn't exist, default
-        ####if use_config_file == 'Y' or use_config_file == 'y':
-        #### NOTE: We no longer ask the user to provide or not the config file
+        # if use_config_file == 'Y' or use_config_file == 'y':
+        # NOTE: We no longer ask the user to provide the config file
+
         if (os.path.exists(config_file) == False):
             print("Info: Config file %s does not exist. Using Default parameters" %config_file)
             default_config = True
@@ -838,7 +841,6 @@ class PdfReport:
             self.bc_config_report_files['fiwalk_report'] = 1
             self.bc_config_report_files['fiwalk_deleted_files'] = 1
             self.bc_config_report_files['bulk_extractor_report'] = 1
-                    
 
         ## print("D: Reporting the following files: ")
         ## print(self.bc_config_feature)
@@ -1041,19 +1043,35 @@ class FiwalkReport:
     # "value" part of the bcfmtDict structure, which has the "full name"
     # the dictionary key.
     def bcGetShortNameForFmt(self, fmt_str):
+
+        fmt_str = fmt_str.strip()
+        fmt_arr = fmt_str.split(' ')
+        if len(fmt_arr) > 1:
+           newstr = fmt_arr[0].strip() + ' ' + fmt_arr[1].strip()
+           #newstr = fmt_str[0:5]+'_'+fmt_str[len(fmt_str) - 5:]
+        else:
+           newstr = fmt_arr[0]
+
+        # Replace any special character by a '-'
+        newstr = re.sub('[^0-9a-zA-Z_]+', '-', newstr)
+
+        return (newstr)
+
+        '''
         for x in self.dictFileFmtStatic:
             if fmt_str == x:
                 return(self.dictFileFmtStatic[fmt_str])
         else:
             # Not found in the static array. So make up one
-            # Trim the ttrailing space and replace special chars with "-"
+            # Trim the trailing space and replace special chars with "-"
             fmt_str = fmt_str.strip()
             newstr = fmt_str[0:3]+'_'+fmt_str[len(fmt_str) - 3:]
-            
+
             # Replace any special character by a '-'
             newstr = re.sub('[^0-9a-zA-Z_]+', '-', newstr)
 
             return (newstr)
+        '''
 
     # The File-format list is maintained dynamically and is populated as
     # a new file-format is read from the main dictionary.

@@ -198,7 +198,7 @@ class BcPremisFile:
         else:
             of_premis = "null"
 
-        print(">>> Generating bulk_extractor Premis Event")
+        print(">>> Generating bulk_extractor PREMIS event")
 
         eventIdType = 0  # If this is 0, we will generate UUID
         eventDetail = beReportXml_command_line
