@@ -1667,7 +1667,7 @@ class Ui_MainWindow(object):
         self.lineEdit_ann_image.setPlaceholderText(QtGui.QApplication.translate("MainWindow", "/Path/To/File", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEdit_ann_beFeatDir.setPlaceholderText(QtGui.QApplication.translate("MainWindow", "/Path/To/Directory", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEdit_ann_annDir.setPlaceholderText(QtGui.QApplication.translate("MainWindow", "/Path/To/Directory", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEdit_ann_bcpyDir.setPlaceholderText(QtGui.QApplication.translate("MainWindow", "/usr/share/dfxml//python", None, QtGui.QApplication.UnicodeUTF8))
+        self.lineEdit_ann_bcpyDir.setPlaceholderText(QtGui.QApplication.translate("MainWindow", "/usr/share/dfxml/python", None, QtGui.QApplication.UnicodeUTF8))
 
         self.toolButton_ann_image.setText(QtGui.QApplication.translate("MainWindow", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.toolButton_ann_beFeatDir.setText(QtGui.QApplication.translate("MainWindow", "...", None, QtGui.QApplication.UnicodeUTF8))
