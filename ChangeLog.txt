@@ -5,7 +5,13 @@ Real-World Collecting Institutions
 ----------------------------------------------------
 
 BitCurator documentation is licensed under Creative Commons (CC 2.0 BY)
-2011 - 2015
+2011 - 2016
+
+* '''1.5.18 (December 24, 2015)'''
+** Maintenance updates 
+
+* '''1.5.16 (December 12, 2015)'''
+** Maintenance updates 
 
 * '''1.5.14 (November 23, 2015)'''
 ** Maintenance updates 
