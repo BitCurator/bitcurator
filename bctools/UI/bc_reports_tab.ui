@@ -589,7 +589,7 @@ class Ui_MainWindow(object):
         self.pb_ann_cancel.setText(QtGui.QApplication.translate("MainWindow", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.pb_ann_run.setText(QtGui.QApplication.translate("MainWindow", "Run", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEdit_ann_image.setPlaceholderText(QtGui.QApplication.translate("MainWindow", "/Path/To/File", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEdit_ann_bcpyDir.setPlaceholderText(QtGui.QApplication.translate("MainWindow", "/home/bcadmin/Tools/bulk_extractor/python", None, QtGui.QApplication.UnicodeUTF8))
+        self.lineEdit_ann_bcpyDir.setPlaceholderText(QtGui.QApplication.translate("MainWindow", "/usr/share/dfxml/python", None, QtGui.QApplication.UnicodeUTF8))
         self.toolButton_ann_beFeatDir.setText(QtGui.QApplication.translate("MainWindow", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_ann_bcpyDir.setText(QtGui.QApplication.translate("MainWindow", "Bulk Extractor Python Directory (optional)", None, QtGui.QApplication.UnicodeUTF8))
         self.label_annhdr.setText(QtGui.QApplication.translate("MainWindow", "Produces reports that identify which Bulk Extractor features are contained within files in a disk image", None, QtGui.QApplication.UnicodeUTF8))

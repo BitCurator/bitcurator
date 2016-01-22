@@ -1,7 +1,7 @@
 "BitCurator report and GUI tools"
 # Placeholder for future packaging
 __license__ = "GPL 3.0"
-__version__ = "1.3.7"
+__version__ = "1.6.0"
 #__all__ = ['bctools']
 
 #from .bc_config import *

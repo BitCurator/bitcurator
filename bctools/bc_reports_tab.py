@@ -1315,11 +1315,11 @@ class Ui_MainWindow(object):
             # print("D: Ann Bcpy Dir Selected from the box: ", self.annBcpyDir)
 
         # If bcpyDir doesn't exist, default it to
-        # /home/bcadmin/Tools/bulk_extractor/python
+        # /usr/share/dfxml/python
 
         if not os.path.exists(self.annBcpyDir):
             # print("D: Setting default directory for BC python directory")
-            self.annBcpyDir = "/home/bcadmin/Tools/bulk_extractor/python"
+            self.annBcpyDir = "/usr/share/dfxml/python"
 
         identify_cmd = self.annBcpyDir + '/' + 'identify_filenames.py'
         #print("D: annBcpyDir: ", self.annBcpyDir)
@@ -1333,7 +1333,6 @@ class Ui_MainWindow(object):
 
         self.oldstdout = sys.stdout
         sys.stdout = StringIO()
-
 
         # Start two threads - one for executing the above command and
         # a second one to start a progress bar on the gui which keeps
@@ -1426,8 +1425,7 @@ class Ui_MainWindow(object):
         return config_file
 
     def bc_rep_check_parameters(self):
-        # If XML file not selected through menu, see if it is typed in the box:
-
+        # If XML file not selected using menu, check if it is typed in the box:
         if ui.lineEdit_rep_fwxmlfile.text() != self.repFwXmlFileName:
             self.repFwXmlFileName = ui.lineEdit_rep_fwxmlfile.text()
             # print("D:Fiwalk XML FIle Selected from the box: ", self.repFwXmlFileName)
@@ -1435,8 +1433,7 @@ class Ui_MainWindow(object):
             print("XML File %s does not exist. Aborting" %self.repFwXmlFileName)
             return (-1)
 
-        # If Annotated file is not selected through menu, see if it is
-        # typed in the text box:
+        # If Annotated file is not selected using menu, check if it is typed in the box:
         if ui.lineEdit_rep_annDir.text() != self.repAnnDir:
             self.repAnnDir = ui.lineEdit_rep_annDir.text()
             # print("D: Annotated Directory Selected from the box: ", self.repAnnDir)
@@ -1445,8 +1442,7 @@ class Ui_MainWindow(object):
             print("BE Annotated Directory %s does not exist. Aborting" %self.repAnnDir)
             return (-1)
 
-        # If Outdir is not selected through menu, see if it is typed
-        # in the text box:
+        # If Outdir is not selected using menu, check if it is typed in the text box:
         if ui.lineEdit_rep_outdir.text() != self.repOutDir:
             self.repOutDir = ui.lineEdit_rep_outdir.text()
             # print("D: Output Directory selected from the box: ", self.repOutDir)
@@ -1463,7 +1459,7 @@ class Ui_MainWindow(object):
 
         # If config file is not provided by the user, user the default one
         if not os.path.exists(self.repConfile):
-            print(">> Using the default config file: /etc/bitcurator/bc_report_config.txt")
+            print(">> Using default configuration file: /etc/bitcurator/bc_report_config.txt")
             self.configFileName = "/etc/bitcurator/bc_report_config.txt"
 
         return (0)
@@ -1521,9 +1517,7 @@ class Ui_MainWindow(object):
             self.configFileName = "/etc/bitcurator/bc_report_config.txt"
             self.allrepConfile = "/etc/bitcurator/bc_report_config.txt"
 
-        # The direcotry that contains identify_filenames script is set
-        # to default: 
-        #self.allrepBcpyDir = "/home/bcadmin/Tools/bulk_extractor/python"
+        # The directory that contains identify_filenames script is set to default: 
         self.allrepBcpyDir = "/usr/share/dfxml/python"
         return (0)
 
@@ -1569,9 +1563,7 @@ class Ui_MainWindow(object):
     # BE Viewer launching routine
     def on_pushButton_bev_clicked(self):
         
-        #cmdstr = '/usr/bin/java -Xmx1g -jar /home/bcadmin/Tools/bulk_extractor/java_gui/BEViewer.jar'
         cmdstr = '/usr/local/bin/BEViewer'
-
         print(">> Launching BEViewer >> ")
         
         # Note: We can't use Popen here as the call to Popen blocks, which
@@ -1675,7 +1667,7 @@ class Ui_MainWindow(object):
         self.lineEdit_ann_image.setPlaceholderText(QtGui.QApplication.translate("MainWindow", "/Path/To/File", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEdit_ann_beFeatDir.setPlaceholderText(QtGui.QApplication.translate("MainWindow", "/Path/To/Directory", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEdit_ann_annDir.setPlaceholderText(QtGui.QApplication.translate("MainWindow", "/Path/To/Directory", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEdit_ann_bcpyDir.setPlaceholderText(QtGui.QApplication.translate("MainWindow", "/home/bcadmin/Tools/bulk_extractor/python", None, QtGui.QApplication.UnicodeUTF8))
+        self.lineEdit_ann_bcpyDir.setPlaceholderText(QtGui.QApplication.translate("MainWindow", "/usr/share/dfxml//python", None, QtGui.QApplication.UnicodeUTF8))
 
         self.toolButton_ann_image.setText(QtGui.QApplication.translate("MainWindow", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.toolButton_ann_beFeatDir.setText(QtGui.QApplication.translate("MainWindow", "...", None, QtGui.QApplication.UnicodeUTF8))
@@ -1768,7 +1760,7 @@ class bcThread_allrep_all(threading.Thread):
         else:
        
             # If cancel button was pressed after Popen finished, check here.
-            # FIXME: Test this part more.
+            # FIXME: Additional testing needed
             if self.stoprequest.isSet():
                 ## print("D: Breaking out of the loop - 3")
                 break
@@ -1840,13 +1832,6 @@ class bcThread_allrep_all(threading.Thread):
                 ## print("D: bcThread_allrep_rep: AnnDir: ", self.allrepAnnDir)
                 ## print("D: bcThreadprevails_allrep_rep: Outdir: ", self.allrepOutDir)
                 ## print("D: bcThread_allrep_rep: Confile: ", self.allrepConfile)
-                '''
-                bc_get_reports(self.PdfReport, self.FiwalkReport, \
-                                 self.allrepXmlFileName, \
-                                 self.allrepAnnDir, \
-                                 self.allrepOutDir, \
-                                 self.allrepConfile)
-                '''
 
                 bc_get_reports(self.PdfReport, self.FiwalkReport, \
                                  self.allrepXmlFileName, \
@@ -1859,7 +1844,7 @@ class bcThread_allrep_all(threading.Thread):
                 ProgressBar._active = False
 
                 # If cancel button was pressed after Popen finished, check here.
-                # FIXME: Test this part more.
+                # FIXME: Additional testing needed
                 if self.stoprequest.isSet():
                     ## print("D: Breaking out of the loop - 3")
                     break
@@ -1880,7 +1865,7 @@ class bcThread_allrep_all(threading.Thread):
 
     def stop(self):
         if self.process is not None:
-            print(">> Terminating the Thread for \"Run All\"")
+            print(">> Terminating the thread for \"Run All\"")
             self.process.terminate()
         else:
             Popen.terminate(self.process)
@@ -2054,7 +2039,7 @@ class bcThread_rep(threading.Thread):
         # get out of the while loop.
         ProgressBar._active = False
 
-        print("\n>> Success!!! Reports generated in the directory: ", self.repOutDir)
+        print("\n>> Success! Reports generated in the directory: ", self.repOutDir)
 
         # Set the progressbar maximum to > minimum so the spinning will stop
         global global_rep
@@ -2069,7 +2054,7 @@ class bcThread_rep(threading.Thread):
 
     def stop(self):
         if self.process is not None:
-            print(">> Terminating the Thread for \"Reports\"")
+            print(">> Terminating the thread for \"Reports\"")
             self.process.terminate()
         else:
             Popen.terminate(self.process)
