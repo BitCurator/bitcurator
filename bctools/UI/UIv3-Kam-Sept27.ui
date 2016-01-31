@@ -1,0 +1,1104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>611</width>
+    <height>699</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Run All</string>
+       </attribute>
+       <widget class="QLabel" name="label_rep_fwxmlfile_5">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>100</y>
+          <width>269</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Image File</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_rep_confile_9">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>300</y>
+          <width>542</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>/Path/To/File</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="toolButton_rep_fwxmlfile_5">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>120</y>
+          <width>23</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pb_rep_run_5">
+        <property name="geometry">
+         <rect>
+          <x>457</x>
+          <y>556</y>
+          <width>85</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Run</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_rep_outdir_5">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>240</y>
+          <width>542</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>/Path/To/Directory</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="toolButton_rep_confile_5">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>300</y>
+          <width>23</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_rep_fwxmlfile_5">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>120</y>
+          <width>542</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>/Path/To/File</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="toolButton_rep_outdir_5">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>240</y>
+          <width>23</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_rep_confile_9">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>280</y>
+          <width>269</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Config File (Optional)</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_rep_outdir_5">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>220</y>
+          <width>551</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Output Directory (fiwalk output, annotated features, and reports will appear in here)</string>
+        </property>
+       </widget>
+       <widget class="QProgressBar" name="progressBar_rep_5">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>557</y>
+          <width>269</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="value">
+         <number>1</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_rephdr_5">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>10</y>
+          <width>571</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <italic>true</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Run fiwalk, annotate the bulk_extractor output, and generate Office / PDF reports.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pb_rep_close_5">
+        <property name="geometry">
+         <rect>
+          <x>275</x>
+          <y>556</y>
+          <width>85</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Close</string>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="textEdit_rep_5">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>359</y>
+          <width>541</width>
+          <height>191</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_rep_cmdlineoutput_5">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>340</y>
+          <width>269</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Command Line Output</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pb_rep_cancel_5">
+        <property name="geometry">
+         <rect>
+          <x>366</x>
+          <y>556</y>
+          <width>85</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_bev_2">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>50</y>
+          <width>135</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Launch BEViewer</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_rephdr_6">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>50</y>
+          <width>441</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <italic>true</italic>
+         </font>
+        </property>
+        <property name="text">
+         <string>If you haven't run bulk_extractor yet, use the button to the right to launch and run it first.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="toolButton_rep_outdir_6">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>180</y>
+          <width>23</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_rep_outdir_6">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>160</y>
+          <width>391</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Bulk Extractor Feature Directory</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_rep_outdir_6">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>180</y>
+          <width>542</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>/Path/To/Directory</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_fw">
+       <attribute name="title">
+        <string>Fiwalk</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_rep_confile_2">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Config File (Optional)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_fw_xmlFile">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Output directory (New - must not exist)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="4">
+         <widget class="QToolButton" name="toolButton_fw_xmlFile">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="4">
+         <widget class="QLineEdit" name="lineEdit_fw_image">
+          <property name="placeholderText">
+           <string>/Path/To/File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="4">
+         <widget class="QToolButton" name="toolButton_fw_image">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="0">
+         <widget class="QProgressBar" name="progressBar_fw">
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_fw_image">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Image File&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0" colspan="4">
+         <widget class="QTextEdit" name="textEdit_fwcmdlineoutput">
+          <property name="textInteractionFlags">
+           <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0" colspan="4">
+         <widget class="QLineEdit" name="lineEdit_rep_confile_2">
+          <property name="placeholderText">
+           <string>/Path/To/File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="2">
+         <widget class="QPushButton" name="pb_fw_cancel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="4">
+         <widget class="QLineEdit" name="lineEdit_fw_xmlFile">
+          <property name="placeholderText">
+           <string>/Path/To/File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0">
+         <widget class="QLabel" name="label_fwcmdlineoutput">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Command line output:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="4">
+         <widget class="QToolButton" name="toolButton_ann_beFeatDir_2">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="1">
+         <widget class="QPushButton" name="pb_fw_close">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Close</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="3">
+         <widget class="QPushButton" name="pb_fw_run">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Run</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="5">
+         <widget class="QLabel" name="label_fwhdr">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <italic>true</italic>
+           </font>
+          </property>
+          <property name="text">
+           <string>Fiwalk produces a DFXML file showing the volumes, directories, and files contained within a disk image</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_ann">
+       <attribute name="title">
+        <string>Annotated Files</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="5" column="0" colspan="4">
+         <widget class="QLabel" name="label_ann_annDir">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Annotated Feature Files Directory (new)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="2">
+         <widget class="QPushButton" name="pb_ann_close">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Close</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="5">
+         <widget class="QToolButton" name="toolButton_ann_annDir">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0">
+         <widget class="QLabel" name="label_anncmdlineoutput">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Command Line Output</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="5">
+         <widget class="QToolButton" name="toolButton_ann_image">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_ann_image">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Image File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="4">
+         <widget class="QLabel" name="label_ann_beFeatDir">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Bulk Extractor Feature Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="3">
+         <widget class="QPushButton" name="pb_ann_cancel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="4">
+         <widget class="QPushButton" name="pb_ann_run">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Run</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="5">
+         <widget class="QLineEdit" name="lineEdit_ann_image">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>/Path/To/File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" colspan="5">
+         <widget class="QLineEdit" name="lineEdit_ann_bcpyDir">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>/home/bcadmin/Tools/bulk_extractor/python</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="5">
+         <widget class="QToolButton" name="toolButton_ann_beFeatDir">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="4">
+         <widget class="QLabel" name="label_ann_bcpyDir">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Bulk Extractor Python Directory (optional)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="6">
+         <widget class="QLabel" name="label_annhdr">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <italic>true</italic>
+           </font>
+          </property>
+          <property name="text">
+           <string>Produces reports that identify which Bulk Extractor features are contained within files in a disk image</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0" colspan="5">
+         <widget class="QLineEdit" name="lineEdit_ann_annDir">
+          <property name="placeholderText">
+           <string>/Path/To/Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="5">
+         <widget class="QLineEdit" name="lineEdit_ann_BeFeatDir">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>/Path/To/Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="5">
+         <widget class="QToolButton" name="toolButton_ann_bcpyDir">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0">
+         <widget class="QProgressBar" name="progressBar_ann">
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0" colspan="5">
+         <widget class="QTextEdit" name="textEdit_ann">
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_rep">
+       <attribute name="title">
+        <string>Reports</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="6" column="0" colspan="4">
+         <widget class="QLineEdit" name="lineEdit_rep_outdir">
+          <property name="placeholderText">
+           <string>/Path/To/Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="5">
+         <widget class="QLabel" name="label_rephdr">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <italic>true</italic>
+           </font>
+          </property>
+          <property name="text">
+           <string>Produces Office Open XML and PDF Reports to assist in Image Analysis</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_rep_fwxmlfile">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Fiwalk XML File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="4">
+         <widget class="QLineEdit" name="lineEdit_rep_fwxmlfile">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>/Path/To/File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="4">
+         <widget class="QToolButton" name="toolButton_rep_fwxmlfile">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_rep_annDir">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Annotated Feature Files Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="4">
+         <widget class="QLineEdit" name="lineEdit_rep_annDir">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>/Path/To/Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="4">
+         <widget class="QToolButton" name="toolButton_rep_annDir">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_rep_outdir">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Output Directory for Reports</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="4">
+         <widget class="QToolButton" name="toolButton_rep_outdir">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_rep_confile">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Config File (Optional)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" colspan="4">
+         <widget class="QLineEdit" name="lineEdit_rep_confile">
+          <property name="placeholderText">
+           <string>/Path/To/File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="4">
+         <widget class="QToolButton" name="toolButton_rep_confile">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0">
+         <widget class="QLabel" name="label_rep_cmdlineoutput">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Command Line Output</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="3">
+         <widget class="QPushButton" name="pb_rep_run">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Run</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="2">
+         <widget class="QPushButton" name="pb_rep_cancel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="1">
+         <widget class="QPushButton" name="pb_rep_close">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Close</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0">
+         <widget class="QProgressBar" name="progressBar_rep">
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0" colspan="4">
+         <widget class="QTextEdit" name="textEdit_rep">
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>611</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>file</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionCopy"/>
+    <addaction name="actionCut"/>
+    <addaction name="actionPaste"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionShow_Help"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionCopy">
+   <property name="text">
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="text">
+    <string>Cut</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="text">
+    <string>Paste</string>
+   </property>
+  </action>
+  <action name="actionShow_Help">
+   <property name="text">
+    <string>Show Help</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>pushButton_bev_2</tabstop>
+  <tabstop>lineEdit_rep_fwxmlfile_5</tabstop>
+  <tabstop>toolButton_rep_fwxmlfile_5</tabstop>
+  <tabstop>lineEdit_rep_outdir_6</tabstop>
+  <tabstop>toolButton_rep_outdir_6</tabstop>
+  <tabstop>lineEdit_rep_outdir_5</tabstop>
+  <tabstop>toolButton_rep_outdir_5</tabstop>
+  <tabstop>lineEdit_rep_confile_9</tabstop>
+  <tabstop>toolButton_rep_confile_5</tabstop>
+  <tabstop>pb_rep_close_5</tabstop>
+  <tabstop>pb_rep_cancel_5</tabstop>
+  <tabstop>pb_rep_run_5</tabstop>
+  <tabstop>textEdit_rep_5</tabstop>
+  <tabstop>lineEdit_fw_image</tabstop>
+  <tabstop>toolButton_fw_image</tabstop>
+  <tabstop>lineEdit_fw_xmlFile</tabstop>
+  <tabstop>toolButton_fw_xmlFile</tabstop>
+  <tabstop>lineEdit_rep_confile_2</tabstop>
+  <tabstop>toolButton_ann_beFeatDir_2</tabstop>
+  <tabstop>textEdit_fwcmdlineoutput</tabstop>
+  <tabstop>pb_fw_close</tabstop>
+  <tabstop>pb_fw_cancel</tabstop>
+  <tabstop>pb_fw_run</tabstop>
+  <tabstop>lineEdit_ann_image</tabstop>
+  <tabstop>toolButton_ann_image</tabstop>
+  <tabstop>lineEdit_ann_BeFeatDir</tabstop>
+  <tabstop>toolButton_ann_beFeatDir</tabstop>
+  <tabstop>lineEdit_ann_annDir</tabstop>
+  <tabstop>toolButton_ann_annDir</tabstop>
+  <tabstop>lineEdit_ann_bcpyDir</tabstop>
+  <tabstop>toolButton_ann_bcpyDir</tabstop>
+  <tabstop>textEdit_ann</tabstop>
+  <tabstop>pb_ann_close</tabstop>
+  <tabstop>pb_ann_cancel</tabstop>
+  <tabstop>pb_ann_run</tabstop>
+  <tabstop>lineEdit_rep_fwxmlfile</tabstop>
+  <tabstop>toolButton_rep_fwxmlfile</tabstop>
+  <tabstop>lineEdit_rep_annDir</tabstop>
+  <tabstop>toolButton_rep_annDir</tabstop>
+  <tabstop>lineEdit_rep_outdir</tabstop>
+  <tabstop>toolButton_rep_outdir</tabstop>
+  <tabstop>lineEdit_rep_confile</tabstop>
+  <tabstop>toolButton_rep_confile</tabstop>
+  <tabstop>textEdit_rep</tabstop>
+  <tabstop>pb_rep_close</tabstop>
+  <tabstop>pb_rep_cancel</tabstop>
+  <tabstop>pb_rep_run</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
