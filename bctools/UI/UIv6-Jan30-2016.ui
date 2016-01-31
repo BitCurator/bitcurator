@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>688</width>
-    <height>699</height>
+    <height>753</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,15 +21,132 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="runAllTab">
        <attribute name="title">
         <string>Run All</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_10">
+        <item row="9" column="0" colspan="5">
+         <widget class="QLineEdit" name="runAllConfigLineEdit">
+          <property name="placeholderText">
+           <string>/Path/To/File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="runaAllBEDescriptorLabel">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <italic>true</italic>
+           </font>
+          </property>
+          <property name="text">
+           <string>If you haven't run bulk_extractor yet, use the button to the right to launch and run it first.</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="13" column="0">
+         <widget class="QLabel" name="runAllTextEditLabel">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Command Line Output</string>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="0">
+         <widget class="QProgressBar" name="runAllProgressBar">
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="1">
+         <widget class="QPushButton" name="runAllCloseButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Close</string>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="2" colspan="2">
+         <widget class="QPushButton" name="runAllCancelButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="4">
+         <widget class="QPushButton" name="runAllRunButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Run</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="5">
+         <widget class="QLineEdit" name="runAllBEDirectoryLineEdit">
+          <property name="placeholderText">
+           <string>/Path/To/Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="5">
+         <widget class="QLineEdit" name="runAllImageFileLineEdit">
+          <property name="maxLength">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="5">
+         <widget class="QLineEdit" name="runAllLineEditLabel">
+          <property name="placeholderText">
+           <string>/Path/To/Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3" colspan="2">
+         <widget class="QPushButton" name="runAllBEViewerButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Launch BEViewer</string>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0" colspan="6">
-         <widget class="QLabel" name="label_rephdr_7">
+         <widget class="QLabel" name="runAllHeaderLabel">
           <property name="font">
            <font>
             <pointsize>10</pointsize>
@@ -46,37 +163,8 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0" colspan="3">
-         <widget class="QLabel" name="label_rephdr_8">
-          <property name="font">
-           <font>
-            <pointsize>10</pointsize>
-            <italic>true</italic>
-           </font>
-          </property>
-          <property name="text">
-           <string>If you haven't run bulk_extractor yet, use the button to the right to launch and run it first.</string>
-          </property>
-          <property name="wordWrap">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="3" colspan="2">
-         <widget class="QPushButton" name="pushButton_bev_3">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Launch BEViewer</string>
-          </property>
-         </widget>
-        </item>
         <item row="2" column="0">
-         <widget class="QLabel" name="label_rep_fwxmlfile_6">
+         <widget class="QLabel" name="runAllImageFileLabel">
           <property name="font">
            <font>
             <pointsize>10</pointsize>
@@ -89,22 +177,15 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0" colspan="5">
-         <widget class="QLineEdit" name="lineEdit_2">
-          <property name="maxLength">
-           <number>0</number>
-          </property>
-         </widget>
-        </item>
         <item row="3" column="5">
-         <widget class="QToolButton" name="toolButton_rep_fwxmlfile_6">
+         <widget class="QToolButton" name="runAllImageFileToolButton">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="0" colspan="3">
-         <widget class="QLabel" name="label_rep_outdir_7">
+        <item row="4" column="0">
+         <widget class="QLabel" name="runAllBEDirectoryLabel">
           <property name="font">
            <font>
             <pointsize>10</pointsize>
@@ -117,22 +198,15 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0" colspan="5">
-         <widget class="QLineEdit" name="lineEdit_rep_outdir_7">
-          <property name="placeholderText">
-           <string>/Path/To/Directory</string>
-          </property>
-         </widget>
-        </item>
         <item row="5" column="5">
-         <widget class="QToolButton" name="toolButton_rep_outdir_7">
+         <widget class="QToolButton" name="runAllBEDirectoryToolButton">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
         <item row="6" column="0" colspan="5">
-         <widget class="QLabel" name="label_rep_outdir_11">
+         <widget class="QLabel" name="runAllOutputDirLabel">
           <property name="font">
            <font>
             <pointsize>10</pointsize>
@@ -145,22 +219,15 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="0" colspan="5">
-         <widget class="QLineEdit" name="lineEdit_rep_outdir_11">
-          <property name="placeholderText">
-           <string>/Path/To/Directory</string>
-          </property>
-         </widget>
-        </item>
         <item row="7" column="5">
-         <widget class="QToolButton" name="toolButton_rep_outdir_11">
+         <widget class="QToolButton" name="runAllOutputDirToolButton">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
         <item row="8" column="0">
-         <widget class="QLabel" name="label_rep_confile_11">
+         <widget class="QLabel" name="runAllConfigLabel">
           <property name="font">
            <font>
             <pointsize>10</pointsize>
@@ -173,22 +240,157 @@
           </property>
          </widget>
         </item>
-        <item row="9" column="0" colspan="5">
-         <widget class="QLineEdit" name="lineEdit_rep_confile_11">
-          <property name="placeholderText">
-           <string>/Path/To/File</string>
-          </property>
-         </widget>
-        </item>
         <item row="9" column="5">
-         <widget class="QToolButton" name="toolButton_rep_confile_7">
+         <widget class="QToolButton" name="runAllConfigToolButton">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
+        <item row="11" column="0" colspan="3">
+         <widget class="QCheckBox" name="runAllDisableAnnotatedXLSXCheck">
+          <property name="text">
+           <string>Disable annotated features XLSX reports (reduces runtime)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="0" colspan="3">
+         <widget class="QCheckBox" name="runAllDisablePDFCheck">
+          <property name="text">
+           <string>Disable PDF reports (reduces runtime)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="0" colspan="5">
+         <widget class="QTextEdit" name="runAllTextEdit">
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0" colspan="4">
+         <widget class="QCheckBox" name="runAllDisableFiwalkXLSXCheck">
+          <property name="text">
+           <string>Disable fiwalk XLSX report (reduces runtime; DFXML will still be created)</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="runAllAutoTab">
+       <attribute name="title">
+        <string>Run All (Auto)</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="0" colspan="5">
+         <widget class="QLabel" name="runAllAutoHeaderLabel">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Run fiwalk, annotate the bulk_extractor output, and generate Office / PDF reports.</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="4">
+         <widget class="QLabel" name="runAllAutoDescriptorLabel">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <italic>true</italic>
+           </font>
+          </property>
+          <property name="text">
+           <string>All tools, including bulk_extractor, will be run automatically with their default settings. By default, all reports will be placed in a new directory named [IMAGE_NAME]-reports in the directory in which the image is located. You may choose a different output directory using the option below.</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="runAllAutoImageFileLabel">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Image File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="4">
+         <widget class="QToolButton" name="runAllAutoImageFileToolButton">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QCheckBox" name="runAllAutoCustomDirectoryCheckBox">
+          <property name="text">
+           <string>Use Custom Output Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="2">
+         <widget class="QLabel" name="runAllAutoCustomDirectoryLabel">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Custom Output Directory (ignored unless checkbox is selected!)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="4">
+         <widget class="QToolButton" name="runAllAutoOutputDirectoryToolButton">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="2">
+         <widget class="QCheckBox" name="runAllAutoDisableFiwalkXLSXCheck">
+          <property name="text">
+           <string>Disable fiwalk XLSX report (DFXML will still be created)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" colspan="2">
+         <widget class="QCheckBox" name="runAllAutoDisableAnnotatedXLSXCheck">
+          <property name="text">
+           <string>Disable annotated features XLSX reports</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0" colspan="2">
+         <widget class="QCheckBox" name="runAllAutoDisablePDFCheck">
+          <property name="text">
+           <string>Disable PDF reports</string>
+          </property>
+         </widget>
+        </item>
         <item row="10" column="0">
-         <widget class="QLabel" name="label_rep_cmdlineoutput_7">
+         <widget class="QLabel" name="runAllAutoTextEditLabel">
           <property name="font">
            <font>
             <pointsize>10</pointsize>
@@ -201,8 +403,68 @@
           </property>
          </widget>
         </item>
-        <item row="11" column="0" colspan="5">
-         <widget class="QTextEdit" name="textEdit_rep_7">
+        <item row="12" column="0">
+         <widget class="QProgressBar" name="runAllAutoProgressBar">
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="1">
+         <widget class="QPushButton" name="runAllAutoCloseButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Close</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="2">
+         <widget class="QPushButton" name="runAllAutoCancelButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="3">
+         <widget class="QPushButton" name="runAllAutoRunButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Run</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="4">
+         <widget class="QLineEdit" name="runAllAutoImageFileLineEdit">
+          <property name="maxLength">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0" colspan="4">
+         <widget class="QLineEdit" name="runAllAutoOutputDirectoryLineEdit">
+          <property name="placeholderText">
+           <string>/Path/To/Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0" colspan="4">
+         <widget class="QTextEdit" name="runAllAutoTextEdit">
           <property name="autoFillBackground">
            <bool>true</bool>
           </property>
@@ -211,446 +473,15 @@
           </property>
          </widget>
         </item>
-        <item row="12" column="0">
-         <widget class="QProgressBar" name="progressBar_rep_7">
-          <property name="value">
-           <number>1</number>
-          </property>
-         </widget>
-        </item>
-        <item row="12" column="1">
-         <widget class="QPushButton" name="pb_rep_close_7">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Close</string>
-          </property>
-         </widget>
-        </item>
-        <item row="12" column="2" colspan="2">
-         <widget class="QPushButton" name="pb_rep_cancel_7">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Cancel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="12" column="4">
-         <widget class="QPushButton" name="pb_rep_run_7">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Run</string>
-          </property>
-         </widget>
-        </item>
        </layout>
-      </widget>
-      <widget class="QWidget" name="runAllAutoTab">
-       <attribute name="title">
-        <string>Run All (Auto)</string>
-       </attribute>
-       <widget class="QLabel" name="label_rephdr_6">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>31</y>
-          <width>619</width>
-          <height>46</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-          <italic>true</italic>
-         </font>
-        </property>
-        <property name="text">
-         <string>All tools, including bulk_extractor, will be run automatically with their default settings. By default, all reports will be placed in a new directory named [IMAGE_NAME]-reports in the directory in which the image is located. You may choose a different output directory using the option below.</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_rep_cmdlineoutput_5">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>280</y>
-          <width>144</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Command Line Output</string>
-        </property>
-       </widget>
-       <widget class="QTextEdit" name="textEdit_rep_5">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>256</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="autoFillBackground">
-         <bool>true</bool>
-        </property>
-        <property name="textInteractionFlags">
-         <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_rep_run_5">
-        <property name="geometry">
-         <rect>
-          <x>543</x>
-          <y>565</y>
-          <width>85</width>
-          <height>27</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Run</string>
-        </property>
-       </widget>
-       <widget class="QProgressBar" name="progressBar_rep_5">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>566</y>
-          <width>95</width>
-          <height>25</height>
-         </rect>
-        </property>
-        <property name="value">
-         <number>1</number>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_rep_outdir_6">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>166</y>
-          <width>406</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Custom Output Directory (ignored unless checkbox is selected!)</string>
-        </property>
-       </widget>
-       <widget class="QToolButton" name="toolButton_rep_fwxmlfile_5">
-        <property name="geometry">
-         <rect>
-          <x>634</x>
-          <y>106</y>
-          <width>23</width>
-          <height>25</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>...</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_rep_outdir_6">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>188</y>
-          <width>129</width>
-          <height>27</height>
-         </rect>
-        </property>
-        <property name="placeholderText">
-         <string>/Path/To/Directory</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_rep_close_5">
-        <property name="geometry">
-         <rect>
-          <x>361</x>
-          <y>565</y>
-          <width>85</width>
-          <height>27</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Close</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_rep_cancel_5">
-        <property name="geometry">
-         <rect>
-          <x>452</x>
-          <y>565</y>
-          <width>85</width>
-          <height>27</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Cancel</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_rephdr_5">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>9</y>
-          <width>648</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-          <weight>75</weight>
-          <italic>true</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Run fiwalk, annotate the bulk_extractor output, and generate Office / PDF reports.</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_rep_fwxmlfile_5">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>83</y>
-          <width>67</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Image File</string>
-        </property>
-       </widget>
-       <widget class="QToolButton" name="toolButton_rep_outdir_6">
-        <property name="geometry">
-         <rect>
-          <x>634</x>
-          <y>189</y>
-          <width>23</width>
-          <height>25</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>...</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>105</y>
-          <width>129</width>
-          <height>27</height>
-         </rect>
-        </property>
-        <property name="maxLength">
-         <number>0</number>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="checkBox">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>138</y>
-          <width>230</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Use Custom Output Directory</string>
-        </property>
-       </widget>
       </widget>
       <widget class="QWidget" name="fiwalkXMLTab">
        <attribute name="title">
         <string>Fiwalk XML</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="10" column="3">
-         <widget class="QPushButton" name="pb_fw_run">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Run</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_fw_xmlFile">
-          <property name="font">
-           <font>
-            <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Output XML File</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="4">
-         <widget class="QToolButton" name="toolButton_fw_xmlFile">
-          <property name="text">
-           <string>...</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0" colspan="4">
-         <widget class="QLineEdit" name="lineEdit_fw_image">
-          <property name="placeholderText">
-           <string>/Path/To/File</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="4">
-         <widget class="QToolButton" name="toolButton_fw_image">
-          <property name="text">
-           <string>...</string>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="0" colspan="4">
-         <widget class="QTextEdit" name="textEdit_fwcmdlineoutput">
-          <property name="textInteractionFlags">
-           <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="0">
-         <widget class="QProgressBar" name="progressBar_fw">
-          <property name="value">
-           <number>1</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_fw_image">
-          <property name="font">
-           <font>
-            <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Image File&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="2">
-         <widget class="QPushButton" name="pb_fw_cancel">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Cancel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0" colspan="4">
-         <widget class="QLineEdit" name="lineEdit_fw_xmlFile">
-          <property name="placeholderText">
-           <string>/Path/To/File</string>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="1">
-         <widget class="QPushButton" name="pb_fw_close">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Close</string>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="0">
-         <widget class="QLabel" name="label_fwcmdlineoutput">
-          <property name="font">
-           <font>
-            <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Command line output:</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0" colspan="5">
-         <widget class="QLabel" name="label_fwhdr">
+         <widget class="QLabel" name="fiwalkHeaderLabel">
           <property name="font">
            <font>
             <pointsize>10</pointsize>
@@ -665,12 +496,330 @@
           </property>
          </widget>
         </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="fiwalkImageFileLabel">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Image File&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="4">
+         <widget class="QToolButton" name="fiwalkImageFileToolButton">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="fiwalkXMLLabel">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Output XML File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="4">
+         <widget class="QToolButton" name="fiwalkXMLToolButton">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="3">
+         <widget class="QCheckBox" name="checkBox_2">
+          <property name="text">
+           <string>Enable format identification using 'file' (increases runtime)</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0" colspan="2">
+         <widget class="QCheckBox" name="checkBox_11">
+          <property name="text">
+           <string>Enable MD5 checksums in output (increases runtime)</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="2">
+         <widget class="QCheckBox" name="checkBox_12">
+          <property name="text">
+           <string>Enable SHA256 checksums in output (increases runtime)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="fiwalkTextEditLabel">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Command line output:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0">
+         <widget class="QProgressBar" name="fiwalkProgressBar">
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="1">
+         <widget class="QPushButton" name="fiwalkCloseButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Close</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="2">
+         <widget class="QPushButton" name="fiwalkCancelButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="3">
+         <widget class="QPushButton" name="fiwalkRunButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Run</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="4">
+         <widget class="QLineEdit" name="fiwalkImageFileLineEdit">
+          <property name="placeholderText">
+           <string>/Path/To/File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="4">
+         <widget class="QLineEdit" name="fiwalkXMLLineEdit">
+          <property name="placeholderText">
+           <string>/Path/To/File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0" colspan="4">
+         <widget class="QTextEdit" name="fiwalkTextEdit">
+          <property name="textInteractionFlags">
+           <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="fiwalkBatchTab">
        <attribute name="title">
         <string>Fiwalk (Batch)</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_11">
+        <item row="0" column="0" colspan="5">
+         <widget class="QLabel" name="label_fwhdr_3">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <italic>true</italic>
+           </font>
+          </property>
+          <property name="text">
+           <string>Fiwalk produces a DFXML file showing the volumes, directories, and files contained within a disk image. In this tab, you can point fiwalk at a directory containing one or more E01, AFF, or raw disk images. Output files will be named as [IMAGE_NAME].xml</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_fw_image_3">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Directory Containing Image Files&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="4">
+         <widget class="QToolButton" name="toolButton_fw_image_3">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QCheckBox" name="checkBox_10">
+          <property name="text">
+           <string>Use Custom Output Directory</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="2">
+         <widget class="QLabel" name="label_rep_outdir_12">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Custom Output Directory (ignored unless checkbox is selected!)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0" colspan="3">
+         <widget class="QCheckBox" name="checkBox">
+          <property name="text">
+           <string>Enable format identification using 'file' (increases runtime)</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="2">
+         <widget class="QCheckBox" name="checkBox_8">
+          <property name="text">
+           <string>Enable MD5 checksums in output (increases runtime)</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" colspan="2">
+         <widget class="QCheckBox" name="checkBox_9">
+          <property name="text">
+           <string>Enable SHA256 checksums in output (increases runtime)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0">
+         <widget class="QLabel" name="label_fwcmdlineoutput_3">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Command line output:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0">
+         <widget class="QTextEdit" name="textEdit_fwcmdlineoutput_3">
+          <property name="textInteractionFlags">
+           <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0">
+         <widget class="QProgressBar" name="progressBar_fw_3">
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="1">
+         <widget class="QPushButton" name="pb_fw_close_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Close</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="2">
+         <widget class="QPushButton" name="pb_fw_cancel_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="3">
+         <widget class="QPushButton" name="pb_fw_run_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Run</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="4">
+         <widget class="QLineEdit" name="lineEdit_fw_image_3">
+          <property name="placeholderText">
+           <string>/Path/To/File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="4">
+         <widget class="QLineEdit" name="lineEdit_rep_outdir_12">
+          <property name="placeholderText">
+           <string>/Path/To/Directory</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tab_ann">
        <attribute name="title">
@@ -1162,14 +1311,14 @@
   </action>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_fw_image</tabstop>
-  <tabstop>toolButton_fw_image</tabstop>
-  <tabstop>lineEdit_fw_xmlFile</tabstop>
-  <tabstop>toolButton_fw_xmlFile</tabstop>
-  <tabstop>textEdit_fwcmdlineoutput</tabstop>
-  <tabstop>pb_fw_close</tabstop>
-  <tabstop>pb_fw_cancel</tabstop>
-  <tabstop>pb_fw_run</tabstop>
+  <tabstop>fiwalkImageFileLineEdit</tabstop>
+  <tabstop>fiwalkImageFileToolButton</tabstop>
+  <tabstop>fiwalkXMLLineEdit</tabstop>
+  <tabstop>fiwalkXMLToolButton</tabstop>
+  <tabstop>fiwalkTextEdit</tabstop>
+  <tabstop>fiwalkCloseButton</tabstop>
+  <tabstop>fiwalkCancelButton</tabstop>
+  <tabstop>fiwalkRunButton</tabstop>
   <tabstop>lineEdit_ann_image</tabstop>
   <tabstop>toolButton_ann_image</tabstop>
   <tabstop>lineEdit_ann_BeFeatDir</tabstop>
