@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>BitCurator Reporting Tool</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -21,7 +21,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="runAllTab">
        <attribute name="title">
@@ -120,8 +120,14 @@
         </item>
         <item row="3" column="0" colspan="5">
          <widget class="QLineEdit" name="runAllImageFileLineEdit">
+          <property name="text">
+           <string/>
+          </property>
           <property name="maxLength">
            <number>0</number>
+          </property>
+          <property name="placeholderText">
+           <string>/Path/To/File</string>
           </property>
          </widget>
         </item>
@@ -454,6 +460,9 @@
           <property name="maxLength">
            <number>0</number>
           </property>
+          <property name="placeholderText">
+           <string>/Path/To/File</string>
+          </property>
          </widget>
         </item>
         <item row="6" column="0" colspan="4">
@@ -662,7 +671,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Fiwalk produces a DFXML file showing the volumes, directories, and files contained within a disk image. In this tab, you can point fiwalk at a directory containing one or more E01, AFF, or raw disk images. Output files will be named as [IMAGE_NAME].xml</string>
+           <string>Fiwalk produces a DFXML file showing the volumes, directories, and files contained within a disk image. In this tab, you can point fiwalk at a directory containing one or more E01, AFF, or raw disk images. Output files will be named [IMAGE_NAME].xml</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -807,8 +816,11 @@
         </item>
         <item row="2" column="0" colspan="4">
          <widget class="QLineEdit" name="fiwalkBatchImageLineEdit">
+          <property name="text">
+           <string/>
+          </property>
           <property name="placeholderText">
-           <string>/Path/To/File</string>
+           <string>/Path/To/Directory</string>
           </property>
          </widget>
         </item>
