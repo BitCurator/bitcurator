@@ -889,3 +889,14 @@ class Ui_MainWindow(object):
         self.actionShow_Help.setText(_translate("MainWindow", "Show Help", None))
         self.actionExit.setText(_translate("MainWindow", "Exit", None))
 
+if __name__ == "__main__":
+    import sys
+    app = QtGui.QApplication(sys.argv)
+
+    MainWindow = QtGui.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
+
+
