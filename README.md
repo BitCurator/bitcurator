@@ -17,7 +17,7 @@ The default username and password for the virtual machine are as follows:
 
 # Installation and Dependencies
 
-The core BitCurator tools have been tested only in Ubuntu 14.04LTS. You should not clone this repository directly unless you wish to modify the included tools. The BitCurator environment (VM and Live CD) can be downloaded from the wiki noted above.
+The core BitCurator tools have been tested in Ubuntu 14.04.3LTS and Ubuntu 16.04LTS. You should not clone this repository directly unless you wish to modify the included tools. The BitCurator environment (VM and Live CD) can be downloaded from the wiki noted above.
 
 If you wish to install the BitCurator tools and dependencies in a clean Ubuntu 14.04LTS environment, you may do so using the bitcurator-bootstrap repository (instructions on how to do so are included in the README):
 
@@ -28,7 +28,7 @@ The bc-bootstrap.sh script will install required dependencies, the BitCurator Py
 # BitCurator Documentation, Help, and other Information
 
 The latest technical and user documentation is available at
-[http://wiki.bitcurator.net](http://wiki.bitcurator.net).
+[http://wiki.bitcurator.net/](http://wiki.bitcurator.net/).
 
 # License(s)
 
