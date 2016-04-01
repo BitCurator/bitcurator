@@ -176,11 +176,10 @@ show_sys_files,streams_interface=windows,allow_other" ;;
         swap) OPTIONS=ro,noauto ;;
     esac
 
-	[ "$FSTYPE" = "ext3" ] && FSTYPE="ext2"
-	
+    [ "$FSTYPE" = "ext3" ] && FSTYPE="ext2"
+
     ## Make partition with label $WRITE_LABEL writeable
-    if [ "$(blkid -s LABEL -o value "$DEVICE")" = "LABEL=\"$WRITE_LABEL\"" ]
-    then
+    if [ "$(blkid -s LABEL -o value "$DEVICE")" = "LABEL=\"$WRITE_LABEL\"" ]; then
         echo "\"$WRITE_LABEL\" save partition found at $DEVICE, write enabled."
         OPTIONS="default"
     fi
