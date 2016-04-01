@@ -22,7 +22,7 @@ TMP="/tmp/fstab.$$.tmp"
 ADDEDBY="# by rbfstab"
 WRITE_LABEL="RBFSTAB"
 SCRIPT=/usr/sbin/${0##*/}
-RULE=/etc/udev/rules.d/10-fstab.rules
+RULE=/etc/udev/rules.d/fstab.rules
 
 ## Functions
 install_script()
@@ -35,8 +35,12 @@ install_script()
 # Force fstab options for devices
 RUN+="/usr/sbin/rbfstab"
 EOF
-    echo "* Restarting udev service"
-    sudo service udev restart
+    ## echo "* Restarting udev service"
+    echo "* Reloading and triggering udev service rules"
+    ## sudo service udev restart
+    ## Modified to accommodate virtualbox extension loads
+    sudo udevadm control --reload-rules
+    sudo udevadm trigger
     echo "Installation of $0 complete."
     rbfstab
     exit 0
