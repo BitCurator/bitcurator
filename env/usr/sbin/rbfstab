@@ -5,7 +5,6 @@
 #: Version  : 0.1.2
 #: Desc     : rewrite fstab on hotplug for write protection
 #: Options  : -i install, -r remove
-
 #: 08/23/11 : v0.1.0, first release
 #: 09/09/11 : v0.1.1, implemented 'noload' option for ext3/4, no longer
 #:          : forced ext2, disabled all swap
@@ -120,7 +119,7 @@ fi
 [ $REMOVE = 1 ] && remove_script
 
 ## disable swap (remove for installed OS if desired)
-swapoff -a
+# swapoff -a
 
 ## Exit if script is already running
 if [ -e /var/run/rbfstab.pid ]; then
@@ -138,7 +137,7 @@ for DEVICE in $(blkid -o device)
 do
     ## skip loop, ram, and network boot devices
     case $DEVICE in
-        *loop*|*ram*|*nbd*) continue ;;
+        *loop*|*ram*|*nbd*|*vbox*) continue ;;
     esac
 
     ## skip fstab entry for devices present during OS install
