@@ -1,19 +1,23 @@
-#!/bin/bash
-#: Title    : rbfstab
-#: Author   : "John Lehr" <slo.sleuth@gmail.com>
-#: Date     : 10/31/2011
-#: Version  : 0.1.2
-#: Desc     : rewrite fstab on hotplug for write protection
-#: Options  : -i install, -r remove
-#: 08/23/11 : v0.1.0, first release
-#: 09/09/11 : v0.1.1, implemented 'noload' option for ext3/4, no longer
-#:          : forced ext2, disabled all swap
-#: 09/14/11 : v0.1.2, bug fixes in rm_unused_dirs, already running check
-#: 10/31/11 : v0.1.3, bug fix to keep mount points for plugged devices
-#:          : after rbfstab -r
-#: 12/15/11 : v0.1.2, bug fix for ext3: noload option not accepted by
-#:          : mount even though suggested in manual, forced ext2 instead
-#: 09/09/14 : v0.1.3, all devices loop-mounted to protect journals
+#: Title             : rbfstab
+#: Original Author   : "John Lehr" <slo.sleuth@gmail.com>
+#: This Version      : BitCurator Team
+#: Date              : 4/2/2016
+#: Version           : 0.1.4
+#:
+#: Desc              : rewrite fstab on hotplug for write protection
+#: Desc              : Modified for persistent BitCurator installs and VirtualBox use
+#:
+#: Options           : -i install, -r remove
+#: 08/23/11          : v0.1.0, first release
+#: 09/09/11          : v0.1.1, implemented 'noload' option for ext3/4, no longer
+#:                   : forced ext2, disabled all swap
+#: 09/14/11          : v0.1.2, bug fixes in rm_unused_dirs, already running check
+#: 10/31/11          : v0.1.3, bug fix to keep mount points for plugged devices
+#:                   : after rbfstab -r
+#: 12/15/11          : v0.1.2, bug fix for ext3: noload option not accepted by
+#:                   : mount even though suggested in manual, forced ext2 instead
+#: 09/09/14          : v0.1.3, all devices loop-mounted to protect journals
+#: 04/02/16          : v0.1.4, removed unnecessary shebang causing vbox add complaints
 
 ## Variables
 PATH="/bin:/sbin:/usr/bin:/usr/sbin"
@@ -118,8 +122,9 @@ fi
 [ $INSTALL = 1 ] && install_script
 [ $REMOVE = 1 ] && remove_script
 
-## disable swap (remove for installed OS if desired)
+## Enable swap (disable with "swapoff -a" for live OS if desired)
 # swapoff -a
+swapon -a
 
 ## Exit if script is already running
 if [ -e /var/run/rbfstab.pid ]; then
@@ -172,7 +177,7 @@ show_sys_files,streams_interface=windows,allow_other" ;;
         reiserfs) OPTIONS="nolog,${OPTIONS}" ;;
         hfs) FSTYPE="hfsplus"; OPTIONS="${OPTIONS}" ;;
         hfsplus) OPTIONS="${OPTIONS}" ;;
-        swap) OPTIONS=ro,noauto ;;
+        swap) OPTIONS=rw,auto ;;
     esac
 
     [ "$FSTYPE" = "ext3" ] && FSTYPE="ext2"
