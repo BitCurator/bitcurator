@@ -1,2 +1,2 @@
 # Force fstab options for devices
-RUN+="/usr/sbin/rbfstab"
+KERNEL=="sd*", RUN+="/usr/sbin/rbfstab"
