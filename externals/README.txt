@@ -16,3 +16,4 @@ The py3fpdf code is no longer actively maintained by its creator. The source is 
 python3 setup.py build
 sudo python3 setup.py install
 
+Libewf is in active development. Many projects (TSK, bulk_extractor, among others) depend on earlier versions. Acquiring earlier source trees is becoming more diffiucult, so libewf-20140608 has been included here for convenience.
