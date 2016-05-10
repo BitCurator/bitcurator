@@ -4,9 +4,9 @@ BitCurator: Tools for Digital Forensics Methods and Workflows in Real-World Coll
 
 # Getting started
 
-BitCurator is a research and development effort designed to bring digital forensics tools and techniques to archives, libraries, and other collecting institutions. The simplest way to get up and running with tools developed by the BitCurator team (and 3rd party tools packaged by us) is to download our virtual machine.
+BitCurator is a research and development effort designed to bring digital forensics tools and techniques to archives, libraries, and other collecting institutions. The simplest way to get up and running with tools developed by the BitCurator team (and 3rd party tools packaged by us) is to download either our virtual machine or our live-boot and installation ISO.
 
-The most current BitCurator virtual machine can be downloaded from
+The most current BitCurator virtual machine and ISO images can be downloaded from
 
   http://wiki.bitcurator.net/
 
@@ -32,7 +32,7 @@ The latest technical and user documentation is available at
 
 # License(s)
 
-The BitCurator logo, BitCurator project documentation, and other non-software products of the BitCurator team are subject to the the Creative Commons Attribution 2.0 Generic license (CC By 2.0).
+The BitCurator logo, BitCurator project documentation, and other non-software products of the BitCurator team are subject to the the Creative Commons Attribution 4.0 Generic license (CC By 4.0).
 
 Unless otherwise indicated, software items in this repository are distributed under the terms of the GNU General Public License, Version 3. See the text file "COPYING" for further details about the terms of this license.
 
