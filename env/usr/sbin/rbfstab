@@ -2,8 +2,8 @@
 #: Title             : rbfstab
 #: Original Author   : "John Lehr" <slo.sleuth@gmail.com>
 #: This Version      : BitCurator Team
-#: Date              : 4/3/2016
-#: Version           : 0.1.5
+#: Date              : 6/22/2016
+#: Version           : 0.1.6
 #:
 #: Desc              : rewrite fstab on hotplug for write protection
 #: Desc              : Modified for persistent BitCurator installs and VirtualBox use
@@ -21,6 +21,7 @@
 #: 04/03/16          : v0.1.5. Various udpates. KERNEL rule limits device scan to 
 #:                   : appropriate device list for BitCurator. Modified with udevadm to
 #:                   : reload and trigger rules instead of restarting service
+#: 06/22/16          : v0.1.6. Various udpates. Fixed a KERNEL rules issue.
 
 ## Variables
 PATH="/bin:/sbin:/usr/bin:/usr/sbin"
@@ -40,6 +41,8 @@ install_script()
     cat << EOF > $RULE
 # Force fstab options for devices
 KERNEL="sd*", RUN+="/usr/sbin/rbfstab"
+KERNEL="sg*", RUN+="/usr/sbin/rbfstab"
+KERNEL=="fd*", ENV{ID_DRIVE_FLOPPY}="1", RUN+="/usr/sbin/rbfstab"
 EOF
     ## echo "* Restarting udev service"
     echo "* Reloading and triggering udev service rules"
