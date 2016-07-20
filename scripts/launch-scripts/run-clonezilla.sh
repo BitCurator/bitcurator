@@ -13,6 +13,6 @@ set arg1 [lindex $argv 0]
 spawn -noecho bash
 expect "$ "
 send "cd ~/\n"
-send "clonezilla\n"
+send "sudo clonezilla\n"
 interact
 exit
