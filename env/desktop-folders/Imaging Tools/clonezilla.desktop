@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Type=Application
+Version=1.2.3
+Name=Clonezilla (command line)
+GenericName=ImagingTool
+Comment=Clonezilla command-line tool
+Terminal=true
+Icon=/usr/share/icons/Humanity/apps/128/terminal.svg
+Icon[en_US]=/
+Exec=run-clonezilla.sh
