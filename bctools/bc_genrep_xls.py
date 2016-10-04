@@ -16,7 +16,8 @@ from bc_utils import filename_from_path
 from openpyxl.workbook import Workbook
 from openpyxl.writer.excel import ExcelWriter
 
-from openpyxl.cell import get_column_letter
+#from openpyxl.cell import get_column_letter
+from openpyxl.utils import get_column_letter
 
 def build_local_wb(ws, fi, row_idx):
     ws.cell('%s%s'%('A', row_idx)).value = '%s' % fi.partition()
