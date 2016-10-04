@@ -18,3 +18,6 @@ this repository.
 An up-to-date list of dependencies is also provided in the bitcurator-bootstrap repository,
 which includes scripts to build and upgrade the BitCurator environment.
 
+For the time being, the ns-control has been moved to the "attic" directory, as it is out of date
+with respect to the dependencies found in bitcurator-bootstrap.
+
