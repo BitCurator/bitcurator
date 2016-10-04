@@ -4,7 +4,7 @@ Tools for Digital Forensics Methods and Workflows in
 Real-World Collecting Institutions
 ----------------------------------------------------
 
-BitCurator documentation is licensed under Creative Commons (CC 2.0 BY)
+BitCurator documentation is licensed under Creative Commons (CC 4.0 BY)
 2011 - 2016
 
 Project updates can be found on our wiki at:
