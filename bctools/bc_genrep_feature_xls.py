@@ -17,7 +17,8 @@ from bc_utils import is_special_file
 from openpyxl.workbook import Workbook
 from openpyxl.writer.excel import ExcelWriter
 
-from openpyxl.cell import get_column_letter
+#from openpyxl.cell import get_column_letter
+from openpyxl.utils import get_column_letter
 
 def bc_generate_feature_xlsx(PdfReport, data, feature_file):
 
