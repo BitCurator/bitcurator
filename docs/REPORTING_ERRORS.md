@@ -16,5 +16,5 @@ Can we get a copy of the input source (e.g., disk image, folder)? If so, please 
 
 Can you provide a screenshot of the VM running at the time of the crash? If so, please attach.
 
-This document can be found on the Internet at https://github.com/bitcurator/bitcurator/blob/master/doc/reporting_errors.txt
+This document can be found online at https://github.com/bitcurator/bitcurator/blob/master/doc/reporting_errors.txt
 
