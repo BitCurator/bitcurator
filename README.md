@@ -5,26 +5,30 @@ This repository contains scripts, tools and assets required to build the BitCura
 
 Looking for the latest release? You can find it packaged as live-boot and installation ISO and as a VirtualBox virtual machine at:
 
-  http://wiki.bitcurator.net
-
-# Getting started
-
-The most current BitCurator virtual machine and ISO images can be downloaded from
-
   http://wiki.bitcurator.net/
 
-The default username and password for the virtual machine are as follows:
+# Introduction to building the BitCurator distro (for developers)
 
-* Username: `bcadmin`
-* Password: `bcadmin`
+The BitCurator environment is a customized respin of Ubuntu 16.04. Aside from the initial Ubuntu install, a small number of manual tweaks, and executing the respin tool, the process is fully automated by a script found in the bitcurator-distro-bootstrap repository. To get started building and testing a new release, you will need the following:
 
-# Installation and Dependencies
+- The latest Ubuntu 16.04.1 ISO (https://www.ubuntu.com/download/desktop)
+- bitcurator-distro-bootstrap (https://github.com/bitcurator/bitcurator-distro-bootstrap)
 
-The core BitCurator tools have been tested in Ubuntu 14.04.3LTS and Ubuntu 16.04LTS. You should not clone this repository directly unless you wish to modify the included tools. The BitCurator environment (VM and Live CD) can be downloaded from the wiki noted above.
+The bootstrap script found in bitcurator-distro-bootstrap will (among other tasks) automatically clone out two support repositories, bitcurator-distro-main (the repo you're looking at right now) and bitcurator-distro-tools (which includes a small set of disk image management and analysis tools with their own Python installer). You do not need to clone these repositories unless you intend to patch, modify, or maintain them.
 
-If you wish to install the BitCurator tools and dependencies in a clean Ubuntu 14.04LTS or Ubuntu 16.04LTS environment, you may do so using the bitcurator-bootstrap repository (instructions on how to do so are included in the README):
+- bitcurator-distro-main (https://github.com/bitcurator/bitcurator-distro-main)
+- bitcurator-distro-tools (https://github.com/bitcurator/bitcurator-distro-tools)
 
-* git clone https://github.com/bitcurator/bitcurator-bootstrap
+# Installation and respin (for developers)
+
+The BitCurator environment is currently tested and maintained using Ubuntu 16.04.1LTS. Instructions on how the environment is currently prepared follow:
+
+- Download a copy of this Ubuntu ISO from http://releases.ubuntu.com/16.04.1/ubuntu-16.04.1-desktop-amd64.iso and install on a host machine or VirtualBox VM. Do not install guest additions if using a VM.
+- During the install, set the host name to "BitCurator", the user to "bcadmin", the password to "bcadmin", and enable auto-login.
+- In a terminal, install git and clone out the bootstrap repo:
+
+* sudo apt-get install git
+* git clone https://github.com/bitcurator/bitcurator-distro-bootstrap
 
 The bc-bootstrap.sh script will install required dependencies, the BitCurator Python tools, and other supporting software. 
 
