@@ -1,10 +1,13 @@
-BitCurator: Tools for Digital Forensics Methods and Workflows in Real-World Collecting Institutions
----------------------------------------------------------------------------------------------------
-<http://wiki.bitcurator.net>
+bitcurator-distro-main
+----------------------
+
+This repository contains scripts, tools and assets required to build the BitCurator ISO for distribution. It is intended solely for use by developers and maintainers working on the BitCurator environment. 
+
+Looking for the latest release? You can find it packaged as live-boot and installation ISO and as a VirtualBox virtual machine at:
+
+  http://wiki.bitcurator.net
 
 # Getting started
-
-BitCurator is a research and development effort designed to bring digital forensics tools and techniques to archives, libraries, and other collecting institutions. The simplest way to get up and running with tools developed by the BitCurator team (and 3rd party tools packaged by us) is to download either our virtual machine or our live-boot and installation ISO.
 
 The most current BitCurator virtual machine and ISO images can be downloaded from
 
@@ -49,13 +52,9 @@ See http://wiki.bitcurator.net/ for up-to-date project information.
 
 # Credits
 
-BitCurator is a product of the BitCurator team housed at the School of 
-Information and Library Science at the University of North Carolina at 
-Chapel Hill. Funding between 2011 and 2014 was provided by the Andrew
-W. Mellon Foundation.
+BitCurator is a product of the BitCurator team housed at the School of Information and Library Science at the University of North Carolina at Chapel Hill. Funding between 2011 and 2014 was provided by the Andrew W. Mellon Foundation.
 
-Ongoing support for the BitCurator environment and related tools is provided
-by the BitCurator Consortium. Find out more at:
+Ongoing support for the BitCurator environment and related tools is provided by the BitCurator Consortium. Find out more at:
 
 http://www.bitcuratorconsortium.net/
 
