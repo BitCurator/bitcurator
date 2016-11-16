@@ -32,10 +32,14 @@ The BitCurator environment is currently tested and maintained using Ubuntu 16.04
 
 The bc-bootstrap.sh script will install required dependencies, the BitCurator Python tools, and other supporting software. 
 
-# BitCurator Documentation, Help, and other Information
+# BitCurator documentation, help, and other information
 
-The latest technical and user documentation is available at
+User documentation and additional resources are available at
 [http://wiki.bitcurator.net/](http://wiki.bitcurator.net/).
+
+Questions and comments can also be directed to the bitcurator-users list.
+
+[https://groups.google.com/d/forum/bitcurator-users](https://groups.google.com/d/forum/bitcurator-users)
 
 # License(s)
 
