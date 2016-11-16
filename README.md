@@ -27,8 +27,10 @@ The BitCurator environment is currently tested and maintained using Ubuntu 16.04
 - During the install, set the host name to "BitCurator", the user to "bcadmin", the password to "bcadmin", and enable auto-login.
 - In a terminal, install git and clone out the bootstrap repo:
 
-* sudo apt-get install git
-* git clone https://github.com/bitcurator/bitcurator-distro-bootstrap
+```shell
+sudo apt-get install git
+git clone https://github.com/bitcurator/bitcurator-distro-bootstrap
+```
 
 The bc-bootstrap.sh script will install required dependencies, the BitCurator Python tools, and other supporting software. 
 
