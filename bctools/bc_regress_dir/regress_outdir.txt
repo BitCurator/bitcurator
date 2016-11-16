@@ -1,8 +1,0 @@
-annotated_rfc822.txt; 258; 39; 219; 110
-annotated_telephone.txt; 5; 4; 1; 2
-annotated_zip.txt; 127; 8; 119; 3
-annotated_windirs.txt; 466; 13; 453; 180
-annotated_exif.txt; 2; 2; 0; 0
-annotated_domain.txt; 653; 48; 605; 317
-annotated_winpe.txt; 1; 1; 0; 0
-annotated_email.txt; 500; 42; 458; 224
