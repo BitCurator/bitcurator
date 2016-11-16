@@ -51,7 +51,7 @@ Unless otherwise indicated, software items in this repository are distributed un
 
 In addition to software produced by the BitCurator team, BitCurator packages and modifies open source software produced by other developers. Licenses and attributions are retained here where applicable.
 
-Notes and acknowledgements:
+# Acknowledgements
 
 Files in "/scripts/bash_scripts" and "/scripts/nautilus_scripts" are based on original code developed by their respective authors and distributed under respective versions of the GNU General Public License.
 
@@ -60,9 +60,9 @@ The py3fpdf code is a local fork of J. Rivera's Python 3 port of the fpdf librar
 See http://wiki.bitcurator.net/ for up-to-date project information.
 
 
-# Credits
+# Development Team and Support
 
-BitCurator is a product of the BitCurator team housed at the School of Information and Library Science at the University of North Carolina at Chapel Hill. Funding between 2011 and 2014 was provided by the Andrew W. Mellon Foundation.
+The BitCurator environment is a product of the BitCurator team housed at the School of Information and Library Science at the University of North Carolina at Chapel Hill. Funding between 2011 and 2014 was provided by the Andrew W. Mellon Foundation.
 
 Ongoing support for the BitCurator environment and related tools is provided by the BitCurator Consortium. Find out more at:
 
