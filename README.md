@@ -48,7 +48,7 @@ sudo apt-get install git
 git clone https://github.com/bitcurator/bitcurator-distro-bootstrap
 ```
 
-The bc-bootstrap.sh script is used to install required dependencies, the BitCurator Python tools, and other supporting software. In the same terminal, run the following commands:
+- The bc-bootstrap.sh script is used to install required dependencies, the BitCurator Python tools, and other supporting software. In the same terminal, run the following commands:
 
 ```shell
 cd bitcurator-distro-bootstrap
