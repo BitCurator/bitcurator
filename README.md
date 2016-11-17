@@ -1,5 +1,4 @@
 # bitcurator-distro-main
-------------------------
 
 This repository contains scripts, tools and assets required to build the BitCurator ISO for distribution. It is intended solely for use by developers and maintainers working on the BitCurator environment. 
 
