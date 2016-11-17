@@ -86,7 +86,7 @@ Click "Select" next to "User, whose current settings will be used as default" an
 
 Click "Select" next to "Plymouth theme" and select "BitCurator Logo". Click "OK". The initramfs will update.
 
-In the main window, click "Backup", and then click "OK". The file "BitCurator-X.X.X.iso" (along wth MD5 and SHA256 sum files) will be created in /home/bodhibuilder/bodhibuilder).
+In the main window, click "Backup", and then click "OK". The file "BitCurator-X.X.X.iso" (along wth MD5 and SHA256 sum files) will be created in /home/bodhibuilder/bodhibuilder.
 
 ## BitCurator documentation, help, and other information
 
