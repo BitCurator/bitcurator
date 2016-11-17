@@ -24,7 +24,23 @@ The bootstrap script found in bitcurator-distro-bootstrap will (among other task
 The BitCurator environment is currently tested and maintained using Ubuntu 16.04.1LTS. Instructions on how the environment is currently prepared follow:
 
 - Download a copy of this Ubuntu ISO from http://releases.ubuntu.com/16.04.1/ubuntu-16.04.1-desktop-amd64.iso and install on a host machine or VirtualBox VM. Do not install guest additions if using a VM.
+- During the install, do not install updates or 3rd party extensions
 - During the install, set the host name to "BitCurator", the user to "bcadmin", the password to "bcadmin", and enable auto-login.
+- Reboot the system at the prompt
+- Once rebooted to the desktop, open a terminal and update the system:
+
+```shell
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+```
+
+- In a terminal, install dkms to ensure any kernel extensions installed in the remaining tasks are automatically transferred to new kernels:
+
+```shell
+sudo apt-get install dkms
+```
+
 - In a terminal, install git and clone out the bootstrap repo:
 
 ```shell
@@ -32,7 +48,12 @@ sudo apt-get install git
 git clone https://github.com/bitcurator/bitcurator-distro-bootstrap
 ```
 
-The bc-bootstrap.sh script will install required dependencies, the BitCurator Python tools, and other supporting software. 
+The bc-bootstrap.sh script is used to install required dependencies, the BitCurator Python tools, and other supporting software. In the same terminal, run the following commands:
+
+```shell
+cd bitcurator-distro-bootstrap
+./bc-bootstrap.sh -s -i -y
+```
 
 # BitCurator documentation, help, and other information
 
