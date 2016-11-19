@@ -86,7 +86,11 @@ Click "Select" next to "User, whose current settings will be used as default" an
 
 Click "Select" next to "Plymouth theme" and select "BitCurator Logo". Click "OK". The initramfs will update.
 
-In the main window, click "Backup", and then click "OK". The file "BitCurator-X.X.X.iso" (along wth MD5 and SHA256 sum files) will be created in /home/bodhibuilder/bodhibuilder.
+In the main window, click "Backup", and then click "OK". The file "BitCurator-X.X.X.iso" (along wth MD5 and SHA256 sum files) will be created in /home/bodhibuilder/bodhibuilder. This ISO can be used to prepare a VirtualBox virtual machine, or copied to a USB drive for installation on another host (see https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu for instructions on how to perform this transfer).
+
+## Preparation of the Virtual Machine
+
+Create a new VirtualBox VM with 2048MB RAM and 2 processors assigned. Set the video memory to 128MB, enable bidirectional transfer for copy/paste and file drag-and-drop, enable USB 3.0 (XHCI) support, and create a new USB device filter called "All USB Devices". Boot the VM and select the BitCurator ISO as the installation medium. Click through the default options and allow the installation to complete. Reboot. Make any final adjustments to the look and feel of the user desktop (as required) and shut down the VM. Delete the "Logs" and ".vbox-prev" files from the VM directory. Tar and gzip the directory for distribution.
 
 ## BitCurator documentation, help, and other information
 
