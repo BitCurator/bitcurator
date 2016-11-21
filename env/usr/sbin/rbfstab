@@ -22,6 +22,7 @@
 #:                   : appropriate device list for BitCurator. Modified with udevadm to
 #:                   : reload and trigger rules instead of restarting service
 #: 06/22/16          : v0.1.6. Various udpates. Fixed a KERNEL rules issue.
+#  11/21/16          : v0.1.7 Rolled back KERNEL rule limit due to Virtualbox issue
 
 ## Variables
 PATH="/bin:/sbin:/usr/bin:/usr/sbin"
@@ -40,9 +41,7 @@ install_script()
     echo "* Creating udev rule $RULE"
     cat << EOF > $RULE
 # Force fstab options for devices
-KERNEL="sd*", RUN+="/usr/sbin/rbfstab"
-KERNEL="sg*", RUN+="/usr/sbin/rbfstab"
-KERNEL=="fd*", ENV{ID_DRIVE_FLOPPY}="1", RUN+="/usr/sbin/rbfstab"
+RUN+="/usr/sbin/rbfstab"
 EOF
     ## echo "* Restarting udev service"
     echo "* Reloading and triggering udev service rules"
