@@ -1,2 +1,4 @@
 # Force fstab options for specific storage devices
-RUN+="/usr/sbin/rbfstab"
+KERNEL=="sd*", RUN+="/usr/sbin/rbfstab"
+KERNEL=="sg*", RUN+="/usr/sbin/rbfstab"
+KERNEL=="fd*", ENV{ID_DRIVE_FLOPPY}="1", RUN+="/usr/sbin/rbfstab"

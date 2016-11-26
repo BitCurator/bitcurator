@@ -41,7 +41,9 @@ install_script()
     echo "* Creating udev rule $RULE"
     cat << EOF > $RULE
 # Force fstab options for devices
-RUN+="/usr/sbin/rbfstab"
+KERNEL=="sd*", RUN+="/usr/sbin/rbfstab"
+KERNEL=="sg*", RUN+="/usr/sbin/rbfstab"
+KERNEL=="fd*", ENV{ID_DRIVE_FLOPPY}="1", RUN+="/usr/sbin/rbfstab"
 EOF
     ## echo "* Restarting udev service"
     echo "* Reloading and triggering udev service rules"
