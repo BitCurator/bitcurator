@@ -123,7 +123,7 @@ class MounterAppIndicator:
 
     def rw_set(self, widget, data=None):
         #Call RW warning indicator here
-        if os.path.isfile("/etc/udev/rules.d/fstab.rules"):
+        if os.path.isfile("/etc/udev/rules.d/10-fstab.rules"):
             win = PolicyDialog("CAUTION! You are about to set the system-wide mount policy to:" \
                            + "\n\n" + "WRITEABLE" + "\n\n" + \
                            "Click CANCEL to remain in the READ-ONLY state. Currently " \
