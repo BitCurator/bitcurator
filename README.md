@@ -24,11 +24,11 @@ The BitCurator environment is currently tested and maintained using Ubuntu 16.04
 
 Download a copy of this Ubuntu ISO from http://releases.ubuntu.com/16.04.1/ubuntu-16.04.1-desktop-amd64.iso and install on a host machine or VirtualBox VM. Do not install guest additions if using a VM.
 - During the install, do not install updates or 3rd party extensions
-- During the install, set the host name to "BitCurator", the user to "bcadmin", the password to "bcadmin", and enable auto-login.
+- During the install, set the host name to __BitCurator__, the user to __bcadmin__, the password to __bcadmin__, and __enable auto-login__ (using the appropriate checkbox).
 
 Reboot the system at the prompt.
 
-Once rebooted to the desktop, click on the Unity launcher and type "Terminal". Drag the terminal icon to the Unity bar on the left for convenient access. Open a terminal and update the system using the following commands:
+Once rebooted to the desktop, click on the Unity launcher and type __Terminal__. Drag the terminal icon to the Unity bar on the left for convenient access. Open a terminal and update the system using the following commands:
 
 ```shell
 sudo apt-get update
@@ -36,13 +36,15 @@ sudo apt-get upgrade
 sudo apt-get dist-upgrade
 ```
 
-'''This process may take 20-30 minutes'''. Once the upgrade has completed, close the terminal.
+__This process may take 20-30 minutes.__ Once the upgrade has completed, close the terminal.
 
-Open the Ubuntu "System Settings" dialog (by clicking on the gear icon in the top right menu bar), and click on "Displays". Set the resolution to 1024x768. 
+Open the Ubuntu "System Settings" dialog (by clicking on the gear icon in the top right menu bar), and click on "Displays". Set the resolution to __1024x768__. 
 
-Return to the main window by clicking on "All Settings", click on the "Theme" dropdown, and select "Radiance". Set the Launcher Icon Size to 44. Click on the "Behavior" tab and select "Enable Workspaces". Select "In the window's title bar" from "Show the menus for a window". 
+Return to the main window by clicking on __All Settings__, click on the __Theme__ dropdown, and select __Radiance__. Set the Launcher Icon Size to 44. Click on the __Behavior__ tab and select __Enable Workspaces__. Select __In the window's title bar__ from __Show the menus for a window__. 
 
-Return to the main window by clicking on "All Settings", click on "Brightness and Lock", and select "Never" for "Turn screen off when inactive for". Disable "Lock", and disable the password requirement for returning from lock.
+Return to the main window by clicking on __All Settings__, click on __Brightness and Lock__, and select __Never__ for __Turn screen off when inactive for__. Disable __Lock__, and disable the password requirement for returning from lock.
+
+Open __Firefox__ and set the homepage to __https://wiki.bitcurator.net/__.
 
 In a terminal, install dkms to ensure any kernel extensions installed in the remaining tasks are automatically transferred to new kernels:
 
@@ -50,7 +52,7 @@ In a terminal, install dkms to ensure any kernel extensions installed in the rem
 sudo apt-get install dkms
 ```
 
-In a terminal, install git and clone out the bootstrap repo:
+In a terminal, install __git__ and clone out the bootstrap repo:
 
 ```shell
 sudo apt-get install git
@@ -64,31 +66,37 @@ cd bitcurator-distro-bootstrap
 sudo ./bc-bootstrap.sh -s -i -y
 ```
 
-When the bootstrap script has completed, you will be prompted to reboot. Run the following commenad:
+__This process may take an hour or longer to complete__. When the bootstrap script has completed, you will be prompted to reboot. Run the following commenad:
 
 ```shell
 sudo reboot
 ```
 
-Move the icons on the Desktop into the appropriate locations. The standard BitCurator release places "home" in the top left, followed vertically by "Imaging Tools", "Forensics Tools", "Accession Tools", "Additional Tools", and "Shared Folders and Media". "Documentation and Help" and "Network Servers" are placed in the top right.
+The bootstrap script places installation log info in __/home/bcadmin/bitcurator-boostrap.log__. You may wish to scan this file manually, or refer to it if any of the installed tools fail in additional testing. (If you are building the BitCurator environment in a VM, this may be a good time to shut down, create a clone, and test each tool individually to verify operation. Some tools create additional user data that may be copied when generating the installation ISO - as the __bcadmin__ user is copied over verbatim - so this testing should not be performed in the release-preparation copy.
 
-Once the system has been rebooted, click on the Unity launch icon and type "Users and Groups". Click "Advanced Settings", and select the "User Privileges" tab. Select "Use floppy drives" and click "OK".
+Move the icons on the Desktop into the appropriate locations. The standard BitCurator release places __home__ in the top left, followed vertically by __Imaging Tools__, __Forensics Tools__, __Accession Tools__, __Additional Tools__, and __Shared Folders and Media__. __Documentation and Help__ and __Network Servers__ are placed in the top right.
+
+Once the system has been rebooted, click on the Unity launch icon and type __Users and Groups__. Click __Advanced Settings__, and select the __User Privileges__ tab. Select __Use floppy drives__ and click __OK__.
+
+If you are building the release in a VM, now is a good time to shut down, create a clone, and perform the __respin__ (next section) using that clone.
 
 ## Respin
 
-BitCurator uses Bodhibuilder (a fork and update of the Remastersys tool) to repin the environment as a Live / Installable CD. Bodhibuilder is installed automatically using the bitcurator-distro-bootstrap bootstrap script.
+BitCurator uses Bodhibuilder (a fork and update of the Remastersys tool) to repin the environment as a Live / Installable CD. Bodhibuilder is installed automatically by the __bitcurator-distro-bootstrap__ bootstrap script.
 
-Click the Unity launcher and type "Bodhibuilder". Click the Bodhibuilder icon and select the "Settings" tab. Enter "bcadmin" for Username, "BitCurator-X.X.X" (where X.X.X is the release number) for CD Label, "BitCurator-X.X.X.iso" for ISO Filename, "BitCurator-X-X-X" for GRUB Name, and "http://wiki.bitcurator.net/" for URL for ISO.
+Click the Unity launcher and type __Bodhibuilder__. Click the Bodhibuilder icon and select the __Settings__ tab. Enter __bcadmin__ for Username, __BitCurator-X.X.X__ (where X.X.X is the release number) for CD Label, __BitCurator-X.X.X.iso__ for ISO Filename, "BitCurator-X-X-X" for GRUB Name, and "http://wiki.bitcurator.net/" for URL for ISO.
 
-Click on the "Actions" tab and click "Select" next to "Boot menu picture for the Live CD". Select the image at "/usr/share/bitcurator/resources/images/BitCuratorEnv3Logo300px-invert.png". Click "Open". Click "OK" in the popup dialog.
+Click on the __Actions__ tab and click __Select__ next to __Boot menu picture for the Live CD__. Select the image at __/usr/share/bitcurator/resources/images/BitCuratorEnv3Logo300px-invert.png__. Click __Open__. Click __OK__ in the popup dialog.
 
-Click "Select" next to "Boot menu picture for the installed environment". Select the image at "/usr/share/bitcurator/resources/images/BitCuratorEnv3Logo300px-invert.png." Click "Open". Click "OK" in the popup dialog. GRUB setting will update.
+Click __Select__ next to __Boot menu picture for the installed environment__. Select the image at __/usr/share/bitcurator/resources/images/BitCuratorEnv3Logo300px-invert.png.__ Click __Open__. Click __OK__ in the popup dialog. GRUB setting will update.
 
-Click "Select" next to "User, whose current settings will be used as default" and select "bcadmin". Click "OK". Files will copy.
+Click __Select__ next to __User, whose current settings will be used as default__ and select __bcadmin__. Click __OK__. Files will copy.
 
-Click "Select" next to "Plymouth theme" and select "BitCurator Logo". Click "OK". The initramfs will update.
+Click __Select__ next to __Plymouth theme__ and select __BitCurator Logo__. Click __OK__. The initramfs will update.
 
-In the main window, click "Backup", and then click "OK". The file "BitCurator-X.X.X.iso" (along wth MD5 and SHA256 sum files) will be created in /home/bodhibuilder/bodhibuilder. This ISO can be used to prepare a VirtualBox virtual machine, or copied to a USB drive for installation on another host (see https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu for instructions on how to perform this transfer).
+In the main window, click __Backup__, and then click __OK__. The file __BitCurator-X.X.X.iso__ (along wth MD5 and SHA256 sum files) will be created in /home/bodhibuilder/bodhibuilder. __This process may take up to an hour to complete__.
+
+The resulting ISO can be used to prepare a VirtualBox virtual machine, or copied to a USB drive for installation on another host (see https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu for instructions on how to perform this transfer).
 
 ## Preparation of the Virtual Machine
 
