@@ -1,0 +1,218 @@
+#!/bin/bash
+#
+# rbfstab
+#
+# Modified version of John Lehr's original rbfstab, updated for
+# atomic operation when locking and reading/writing fstab.
+
+## Lockfile handling
+readonly PROGNAME=$(basename "$0")
+readonly LOCKFILE_DIR=/tmp
+readonly LOCK_FD=200
+
+## Operating variables
+PATH="/bin:/sbin:/usr/bin:/usr/sbin"
+TMP="/tmp/fstab.$$.tmp"
+ADDEDBY="# by rbfstab"
+WRITE_LABEL="RBFSTAB"
+SCRIPT=/usr/sbin/${0##*/}
+RULE=/etc/udev/rules.d/10-fstab.rules
+
+lock() {
+    local prefix=$1
+    local fd=${2:-$LOCK_FD}
+    local lock_file=$LOCKFILE_DIR/$prefix.lock
+
+    # create lock file
+    eval "exec $fd>$lock_file"
+
+    ## Acquire lock
+    flock -n $fd \
+        && return 0 \
+        || return 1
+}
+
+eexit() {
+    local error_str="$@"
+
+    echo $error_str
+    exit 1
+}
+
+## Activate script (called by "Set mount policy READ-ONLY" in BitCurator)
+install_script()
+{
+    echo "$0 first time run:"
+    echo "* Copying $0 to $SCRIPT"
+    cp $0 /usr/sbin/
+    echo "* Creating udev rule $RULE"
+    cat << EOF > $RULE
+# Force fstab options for devices
+KERNEL=="sd*", RUN+="/usr/sbin/rbfstab"
+KERNEL=="sg*", RUN+="/usr/sbin/rbfstab"
+KERNEL=="fd*", ENV{ID_DRIVE_FLOPPY}="1", RUN+="/usr/sbin/rbfstab"
+EOF
+    echo "* Reloading and triggering udev service rules"
+    ## Modified to accommodate virtualbox extension loads
+    udevadm control --reload-rules
+    udevadm trigger
+    echo "Installation of $0 complete."
+    rbfstab
+    exit 0
+}
+
+## Deactivate script (called by "Set mount policy WRITEABLE" in BitCurator)
+remove_script()
+{
+    rm -vf $RULE 
+    grep -v "$ADDEDBY" /etc/fstab > "$TMP"
+    mv "$TMP" /etc/fstab
+    echo "* Removed ${0##*/} rules from /etc/fstab"
+    remove_unused_dirs
+    exit 0
+}
+
+## Remove directories used for previously mounted media
+remove_unused_dirs()
+{
+    DEV=$(blkid -o device)
+    for DIR in $(ls /media/)
+    do
+        [[ $DIR =~ cdrom ]] && continue
+        echo "$DEV" | grep -q /dev/$DIR
+        [ $? = 0 ] || rmdir /media/$DIR
+    done
+}
+
+## Usage information
+usage()
+{
+    cat << EOF
+    Usage: ${0##*/} [-ihr]
+
+    Options:
+        -i install 
+        -r remove
+        -h this help
+
+    ${0##*/} installs a script activated by a udev rule that writes
+    read-only options to fstab to assist with forensic examinations.
+EOF
+}
+
+## Operations in main are locked. Only one instance of rbfstab may read/write fstab at a time.
+main() {
+    lock $PROGNAME \
+        || eexit "Only one instance of $PROGNAME can run at one time."
+
+    ## Run as root warning
+    [ $UID -ne 0 ] && echo "You must be root." && exit 1 
+
+    ## List of options program will accept;
+    ## options followed by a colon take arguments
+    optstring=ihr
+
+    INSTALL=0
+    REMOVE=0
+
+    ## The loop calls getops until there are no more options on the command 
+    ## line.  Each option is stored in $opt. Option arguments are stored
+    ## in OPTARG.
+    while getopts $optstring opt; do
+        case $opt in
+            i) INSTALL=1 ;;
+            h) USAGE >&2; exit 0 ;;
+            r) REMOVE=1 ;;
+            *) echo; usage >&2; exit 1 ;;
+        esac
+    done
+
+    ## Remove options from the command line
+    ## $OPTIND points to the next, unparsed argument
+    shift "$(( $OPTIND -1 ))"
+
+    ## Check for conflicting arguments
+    if [ $(($INSTALL+$REMOVE)) -gt 1 ]; then
+        echo "Error: only one argument may be used at a time" >&2
+        usage
+        exit 1
+    fi
+
+    ## Process options
+    [ $INSTALL = 1 ] && install_script
+    [ $REMOVE = 1 ] && remove_script
+
+    ## Remove existing rbfstab rules
+    grep -v "$ADDEDBY" /etc/fstab > $TMP
+    
+    ## Loop through attached block devices found in sysfs
+    for DEVICE in $(blkid -o device)
+        do
+        ## skip loop, ram, and network boot devices
+        case $DEVICE in
+            *loop*|*ram*|*nbd*|*vbox*) continue ;;
+        esac
+
+        ## skip fstab entry for devices present during OS install
+        grep -q $(blkid -s UUID -o value $DEVICE) /etc/fstab
+        [ $? = 0 ] && continue
+    
+        ## identify file system type for device
+        FSTYPE=$(blkid -s TYPE -o value "$DEVICE")
+
+        ## skip fstab entry if no file system detected
+        [ -z "$FSTYPE" ] && continue
+    
+        ## create a mountpoint for device if none exists
+        MOUNTPOINT="${DEVICE//dev/media}"
+        [ -d $MOUNTPOINT ] || mkdir -p $MOUNTPOINT 
+    
+        ## default read-only options
+        OPTIONS="ro,loop,noauto,noexec,nodev,noatime"
+
+        ## file system specific options
+        case "$FSTYPE" in
+            ntfs) FSTYPE="ntfs-3g"; OPTIONS="${OPTIONS},umask=000,\
+            show_sys_files,streams_interface=windows,allow_other" ;;
+            msdos) OPTIONS="${OPTIONS},umask=000,quiet" ;;
+            vfat) OPTIONS="${OPTIONS},umask=000,shortname=mixed,quiet" ;;
+            ext) OPTIONS="${OPTIONS}" ;;
+            ext2) OPTIONS="${OPTIONS}" ;;
+            ext3) OPTIONS="${OPTIONS}" ;;
+            ext4) OPTIONS="${OPTIONS},noload" ;;
+            xfs) OPTIONS="norecovery,${OPTIONS}" ;;
+            jfs) OPTIONS="nointegrity,${OPTIONS}" ;;
+            reiserfs) OPTIONS="nolog,${OPTIONS}" ;;
+            hfs) FSTYPE="hfsplus"; OPTIONS="${OPTIONS}" ;;
+            hfsplus) OPTIONS="${OPTIONS}" ;;
+            swap) OPTIONS=rw,auto ;;
+        esac
+
+        [ "$FSTYPE" = "ext3" ] && FSTYPE="ext2"
+
+        ## Make partition with label $WRITE_LABEL writeable
+        if [ "$(blkid -s LABEL -o value "$DEVICE")" = "LABEL=\"$WRITE_LABEL\"" ]; then
+            echo "\"$WRITE_LABEL\" save partition found at $DEVICE, write enabled."
+            OPTIONS="default"
+        fi
+
+        # Add modified mounting options to fstab
+        printf "%-15s %-15s %-8s %-20s %-s\n" "$DEVICE" "$MOUNTPOINT" "$FSTYPE" "$OPTIONS" "0 0 $ADDEDBY" >> $TMP
+    done
+
+    ## write new /ect/fstab
+    mv $TMP /etc/fstab
+
+    # Remove unused dirs in /media
+    remove_unused_dirs
+
+    ## Flush file system buffers
+    sync
+
+    exit 0
+
+}
+
+# Run the script
+main
+
