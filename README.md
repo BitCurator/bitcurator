@@ -36,6 +36,8 @@ sudo apt-get upgrade
 sudo apt-get dist-upgrade
 ```
 
+'''This process may take 20-30 minutes'''. Once the upgrade has completed, close the terminal.
+
 Open the Ubuntu "System Settings" dialog (by clicking on the gear icon in the top right menu bar), and click on "Displays". Set the resolution to 1024x768. 
 
 Return to the main window by clicking on "All Settings", click on the "Theme" dropdown, and select "Radiance". Set the Launcher Icon Size to 44. Click on the "Behavior" tab and select "Enable Workspaces". Select "In the window's title bar" from "Show the menus for a window". 
