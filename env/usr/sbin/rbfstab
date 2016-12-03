@@ -160,6 +160,9 @@ main() {
         ## identify file system type for device
         FSTYPE=$(blkid -s TYPE -o value "$DEVICE")
 
+        ## get UUID for device
+        UUIDREF=$(blkid -o value "$DEVICE" -s UUID)
+
         ## skip fstab entry if no file system detected
         [ -z "$FSTYPE" ] && continue
     
@@ -197,7 +200,8 @@ main() {
         fi
 
         # Add modified mounting options to fstab
-        printf "%-15s %-15s %-8s %-20s %-s\n" "$DEVICE" "$MOUNTPOINT" "$FSTYPE" "$OPTIONS" "0 0 $ADDEDBY" >> $TMP
+        printf "%-36s %-15s %-8s %-20s %-s\n" UUID="$UUIDREF" "$MOUNTPOINT" "$FSTYPE" "$OPTIONS" "0 0 $ADDEDBY" >> $TMP
+        #printf "%-15s %-15s %-8s %-20s %-s\n" "$DEVICE" "$MOUNTPOINT" "$FSTYPE" "$OPTIONS" "0 0 $ADDEDBY" >> $TMP
     done
 
     ## write new /ect/fstab
