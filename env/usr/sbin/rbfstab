@@ -1,16 +1,30 @@
 #!/bin/bash
-#
-# rbfstab
-#
-# Modified version of John Lehr's original rbfstab, updated for
-# atomic operation when locking and reading/writing fstab.
+#: Title             : rbfstab
+#: Original Author   : "John Lehr" <slo.sleuth@gmail.com>
+#: This Version      : BitCurator Team
+#: Date              : 6/22/2016
+#: Version           : 0.1.6
+#:
+#: Desc              : rewrite fstab on hotplug for write protection
+#: Desc              : Modified for persistent BitCurator installs and VirtualBox use
+#:
+#: Options           : -i install, -r remove
+#: 08/23/11          : v0.1.0, first release
+#: 09/09/11          : v0.1.1, implemented 'noload' option for ext3/4, no longer
+#:                   : forced ext2, disabled all swap
+#: 09/14/11          : v0.1.2, bug fixes in rm_unused_dirs, already running check
+#: 10/31/11          : v0.1.3, bug fix to keep mount points for plugged devices
+#:                   : after rbfstab -r
+#: 12/15/11          : v0.1.2, bug fix for ext3: noload option not accepted by
+#:                   : mount even though suggested in manual, forced ext2 instead
+#: 09/09/14          : v0.1.3, all devices loop-mounted to protect journals
+#: 04/03/16          : v0.1.5. Various udpates. KERNEL rule limits device scan to 
+#:                   : appropriate device list for BitCurator. Modified with udevadm to
+#:                   : reload and trigger rules instead of restarting service
+#: 06/22/16          : v0.1.6. Various udpates. Fixed a KERNEL rules issue.
+#  11/21/16          : v0.1.7 Rolled back KERNEL rule limit due to Virtualbox issue
 
-## Lockfile handling
-readonly PROGNAME=$(basename "$0")
-readonly LOCKFILE_DIR=/tmp
-readonly LOCK_FD=200
-
-## Operating variables
+## Variables
 PATH="/bin:/sbin:/usr/bin:/usr/sbin"
 TMP="/tmp/fstab.$$.tmp"
 ADDEDBY="# by rbfstab"
@@ -18,28 +32,7 @@ WRITE_LABEL="RBFSTAB"
 SCRIPT=/usr/sbin/${0##*/}
 RULE=/etc/udev/rules.d/10-fstab.rules
 
-lock() {
-    local prefix=$1
-    local fd=${2:-$LOCK_FD}
-    local lock_file=$LOCKFILE_DIR/$prefix.lock
-
-    # create lock file
-    eval "exec $fd>$lock_file"
-
-    ## Acquire lock
-    flock -n $fd \
-        && return 0 \
-        || return 1
-}
-
-eexit() {
-    local error_str="$@"
-
-    echo $error_str
-    exit 1
-}
-
-## Activate script (called by "Set mount policy READ-ONLY" in BitCurator)
+## Functions
 install_script()
 {
     echo "$0 first time run:"
@@ -52,7 +45,9 @@ KERNEL=="sd*", RUN+="/usr/sbin/rbfstab"
 KERNEL=="sg*", RUN+="/usr/sbin/rbfstab"
 KERNEL=="fd*", ENV{ID_DRIVE_FLOPPY}="1", RUN+="/usr/sbin/rbfstab"
 EOF
+    ## echo "* Restarting udev service"
     echo "* Reloading and triggering udev service rules"
+    ## sudo service udev restart
     ## Modified to accommodate virtualbox extension loads
     udevadm control --reload-rules
     udevadm trigger
@@ -61,7 +56,6 @@ EOF
     exit 0
 }
 
-## Deactivate script (called by "Set mount policy WRITEABLE" in BitCurator)
 remove_script()
 {
     rm -vf $RULE 
@@ -72,7 +66,6 @@ remove_script()
     exit 0
 }
 
-## Remove directories used for previously mounted media
 remove_unused_dirs()
 {
     DEV=$(blkid -o device)
@@ -84,139 +77,137 @@ remove_unused_dirs()
     done
 }
 
-## Usage information
 usage()
 {
     cat << EOF
-    Usage: ${0##*/} [-ihr]
+Usage: ${0##*/} [-ihr]
 
-    Options:
-        -i install 
-        -r remove
-        -h this help
+Options:
+    -i install 
+    -r remove
+    -h this help
 
-    ${0##*/} installs a script activated by a udev rule that writes
-    read-only options to fstab to assist with forensic examinations.
+${0##*/} installs a script activated by a udev rule that writes
+read-only options to fstab to assist with forensic examinations.
 EOF
 }
 
-## Operations in main are locked. Only one instance of rbfstab may read/write fstab at a time.
-main() {
-    lock $PROGNAME \
-        || eexit "Only one instance of $PROGNAME can run at one time."
+## Run as root warning
+[ $UID -ne 0 ] && echo "You must be root." && exit 1 
 
-    ## Run as root warning
-    [ $UID -ne 0 ] && echo "You must be root." && exit 1 
+## list of options program will accept;
+## options followed by a colon take arguments
+optstring=ihr
 
-    ## List of options program will accept;
-    ## options followed by a colon take arguments
-    optstring=ihr
+INSTALL=0
+REMOVE=0
 
-    INSTALL=0
-    REMOVE=0
+## The loop calls getops until there are no more options on the command 
+## line.  Each option is stored in $opt, any option arguments are stored
+## in OPTARG
+while getopts $optstring opt; do
+    case $opt in
+        i) INSTALL=1 ;;
+        h) USAGE >&2; exit 0 ;;
+        r) REMOVE=1 ;;
+        *) echo; usage >&2; exit 1 ;;
+	esac
+done
 
-    ## The loop calls getops until there are no more options on the command 
-    ## line.  Each option is stored in $opt. Option arguments are stored
-    ## in OPTARG.
-    while getopts $optstring opt; do
-        case $opt in
-            i) INSTALL=1 ;;
-            h) USAGE >&2; exit 0 ;;
-            r) REMOVE=1 ;;
-            *) echo; usage >&2; exit 1 ;;
-        esac
-    done
+## Remove options from the command line
+## $OPTIND points to the next, unparsed argument
+shift "$(( $OPTIND -1 ))"
 
-    ## Remove options from the command line
-    ## $OPTIND points to the next, unparsed argument
-    shift "$(( $OPTIND -1 ))"
+## Check for conflicting arguments
+if [ $(($INSTALL+$REMOVE)) -gt 1 ]; then
+	echo "Error: only one argument may be used at a time" >&2
+    usage
+	exit 1
+fi
 
-    ## Check for conflicting arguments
-    if [ $(($INSTALL+$REMOVE)) -gt 1 ]; then
-        echo "Error: only one argument may be used at a time" >&2
-        usage
-        exit 1
+## Process options
+[ $INSTALL = 1 ] && install_script
+[ $REMOVE = 1 ] && remove_script
+
+## Exit if script is already running
+if [ -e /var/run/rbfstab.pid ]; then
+   ps "$(</var/run/rbfstab.pid)" >/dev/null 2>&1 && exit 0
+   rm -f /var/run/rbfstab.pid
+fi
+
+#echo "$$" > /var/run/rbfstab.pid
+cat > /var/run/rbfstab.pid << EOF
+$$
+EOF
+
+## Remove existing rbfstab rules
+grep -v "$ADDEDBY" /etc/fstab > $TMP
+
+## Loop through attached block devices found in sysfs
+for DEVICE in $(blkid -o device)
+do
+    ## skip loop, ram, and network boot devices
+    case $DEVICE in
+        *loop*|*ram*|*nbd*|*vbox*) continue ;;
+    esac
+
+    ## skip fstab entry for devices present during OS install
+    grep -q $(blkid -s UUID -o value $DEVICE) /etc/fstab
+    [ $? = 0 ] && continue
+    
+    ## identify file system type for device
+    FSTYPE=$(blkid -s TYPE -o value "$DEVICE")
+
+    ## skip fstab entry if no file system detected
+    [ -z "$FSTYPE" ] && continue
+    
+    ## create a mountpoint for device if none exists
+    MOUNTPOINT="${DEVICE//dev/media}"
+    [ -d $MOUNTPOINT ] || mkdir -p $MOUNTPOINT 
+    
+    ## default read-only options
+    OPTIONS="ro,loop,noauto,noexec,nodev,noatime"
+
+    ## file system specific options
+    case "$FSTYPE" in
+        ntfs) FSTYPE="ntfs-3g"; OPTIONS="${OPTIONS},umask=000,\
+show_sys_files,streams_interface=windows,allow_other" ;;
+        msdos) OPTIONS="${OPTIONS},umask=000,quiet" ;;
+        vfat) OPTIONS="${OPTIONS},umask=000,shortname=mixed,quiet" ;;
+        ext) OPTIONS="${OPTIONS}" ;;
+        ext2) OPTIONS="${OPTIONS}" ;;
+        ext3) OPTIONS="${OPTIONS}" ;;
+        ext4) OPTIONS="${OPTIONS},noload" ;;
+        xfs) OPTIONS="norecovery,${OPTIONS}" ;;
+        jfs) OPTIONS="nointegrity,${OPTIONS}" ;;
+        reiserfs) OPTIONS="nolog,${OPTIONS}" ;;
+        hfs) FSTYPE="hfsplus"; OPTIONS="${OPTIONS}" ;;
+        hfsplus) OPTIONS="${OPTIONS}" ;;
+        swap) OPTIONS=rw,auto ;;
+    esac
+
+    [ "$FSTYPE" = "ext3" ] && FSTYPE="ext2"
+
+    ## Make partition with label $WRITE_LABEL writeable
+    if [ "$(blkid -s LABEL -o value "$DEVICE")" = "LABEL=\"$WRITE_LABEL\"" ]; then
+        echo "\"$WRITE_LABEL\" save partition found at $DEVICE, write enabled."
+        OPTIONS="default"
     fi
 
-    ## Process options
-    [ $INSTALL = 1 ] && install_script
-    [ $REMOVE = 1 ] && remove_script
+    # Add modified mounting options to fstab
+    printf "%-15s %-15s %-8s %-20s %-s\n" "$DEVICE" "$MOUNTPOINT" "$FSTYPE" "$OPTIONS" "0 0 $ADDEDBY" >> $TMP
+done
 
-    ## Remove existing rbfstab rules
-    grep -v "$ADDEDBY" /etc/fstab > $TMP
-    
-    ## Loop through attached block devices found in sysfs
-    for DEVICE in $(blkid -o device)
-        do
-        ## skip loop, ram, and network boot devices
-        case $DEVICE in
-            *loop*|*ram*|*nbd*|*vbox*) continue ;;
-        esac
 
-        ## skip fstab entry for devices present during OS install
-        grep -q $(blkid -s UUID -o value $DEVICE) /etc/fstab
-        [ $? = 0 ] && continue
-    
-        ## identify file system type for device
-        FSTYPE=$(blkid -s TYPE -o value "$DEVICE")
+## write new /ect/fstab
+mv $TMP /etc/fstab
 
-        ## get UUID for device
-        #UUIDREF=$(blkid -o value "$DEVICE" -s UUID)
+## remove process file for next run, remove unused dirs in /media
+rm -f /var/run/rbfstab.pid
+remove_unused_dirs
 
-        ## skip fstab entry if no file system detected
-        [ -z "$FSTYPE" ] && continue
-    
-        ## create a mountpoint for device if none exists
-        MOUNTPOINT="${DEVICE//dev/media}"
-        [ -d $MOUNTPOINT ] || mkdir -p $MOUNTPOINT 
-    
-        ## default read-only options
-        OPTIONS="ro,loop,noauto,noexec,nodev,noatime"
+## Flush file system buffers
+sync
 
-        ## file system specific options
-        case "$FSTYPE" in
-            ntfs) FSTYPE="ntfs-3g"; OPTIONS="${OPTIONS},umask=000,\
-            show_sys_files,streams_interface=windows,allow_other" ;;
-            msdos) OPTIONS="${OPTIONS},umask=000,quiet" ;;
-            vfat) OPTIONS="${OPTIONS},umask=000,shortname=mixed,quiet" ;;
-            ext) OPTIONS="${OPTIONS}" ;;
-            ext2) OPTIONS="${OPTIONS}" ;;
-            ext3) OPTIONS="${OPTIONS}" ;;
-            ext4) OPTIONS="${OPTIONS},noload" ;;
-            xfs) OPTIONS="norecovery,${OPTIONS}" ;;
-            jfs) OPTIONS="nointegrity,${OPTIONS}" ;;
-            reiserfs) OPTIONS="nolog,${OPTIONS}" ;;
-            hfs) FSTYPE="hfsplus"; OPTIONS="${OPTIONS}" ;;
-            hfsplus) OPTIONS="${OPTIONS}" ;;
-            swap) OPTIONS=rw,auto ;;
-        esac
-
-        [ "$FSTYPE" = "ext3" ] && FSTYPE="ext2"
-
-        ## Make partition with label $WRITE_LABEL writeable
-        if [ "$(blkid -s LABEL -o value "$DEVICE")" = "LABEL=\"$WRITE_LABEL\"" ]; then
-            echo "\"$WRITE_LABEL\" save partition found at $DEVICE, write enabled."
-            OPTIONS="default"
-        fi
-
-        # Add modified mounting options to fstab
-        printf "%-15s %-15s %-8s %-20s %-s\n" "$DEVICE" "$MOUNTPOINT" "$FSTYPE" "$OPTIONS" "0 0 $ADDEDBY" >> $TMP
-        #printf "%-36s %-15s %-8s %-20s %-s\n" UUID="$UUIDREF" "$MOUNTPOINT" "$FSTYPE" "$OPTIONS" "0 0 $ADDEDBY" >> $TMP
-    done
-
-    ## write new /ect/fstab
-    mv $TMP /etc/fstab
-
-    # Remove unused dirs in /media
-    remove_unused_dirs
-
-    ## Flush file system buffers
-    sync
-
-    exit 0
-
-}
-
-# Run the script
-main
+exit 0
 
