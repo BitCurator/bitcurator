@@ -8,5 +8,4 @@ GenericName=ForensicTool
 Comment=ssdeep command-line tool
 Terminal=true
 Icon=/usr/share/icons/bitcurator/bcarchives.svg
-Icon[en_US]=/
 Exec=run-ssdeep.sh

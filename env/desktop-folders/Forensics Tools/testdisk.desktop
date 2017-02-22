@@ -8,5 +8,4 @@ GenericName=TestDisk (Partition Recovery)
 Comment=TestDisk Lost Partition Recovery
 Terminal=true
 Icon=/usr/share/icons/Humanity/apps/128/terminal.svg
-Icon[en_US]=/
 Exec=sudo testdisk

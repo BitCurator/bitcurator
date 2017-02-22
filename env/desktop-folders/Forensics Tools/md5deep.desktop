@@ -8,5 +8,4 @@ GenericName=ForensicTool
 Comment=md5deep command-line tool
 Terminal=true
 Icon=/usr/share/icons/Humanity/apps/128/terminal.svg
-Icon[en_US]=/
 Exec=run-md5deep.sh

@@ -8,5 +8,4 @@ GenericName=FIDO
 Comment=FIDO command-line
 Terminal=true
 Icon=/usr/share/icons/Humanity/apps/128/terminal.svg
-Icon[en_US]=/
 Exec=run-fido.sh

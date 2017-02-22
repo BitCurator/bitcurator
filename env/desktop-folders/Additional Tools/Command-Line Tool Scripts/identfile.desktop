@@ -8,5 +8,4 @@ GenericName=ForensicTool
 Comment=identify filenames command-line tool
 Terminal=true
 Icon=/usr/share/icons/unity-icon-theme/apps/128/web.svg
-Icon[en_US]=/
 Exec=run-identfile.sh
