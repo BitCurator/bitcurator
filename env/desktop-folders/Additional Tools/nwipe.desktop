@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Type=Application
+Version=1.2.3
+Name=nwipe (zero out devices)
+GenericName=ImagingTool
+Comment=nwipe command-line tool
+Terminal=true
+Icon=/usr/share/icons/Humanity/apps/128/terminal.svg
+Exec=run-nwipe.sh
