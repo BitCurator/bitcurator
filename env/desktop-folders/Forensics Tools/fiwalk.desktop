@@ -3,9 +3,9 @@
 [Desktop Entry]
 Type=Application
 Version=0.6.16
-Name=Fiwalk Command Line
+Name=Fiwalk
 GenericName=ForensicTool
 Comment=fiwalk command-line tool
 Terminal=true
-Icon=/usr/share/icons/unity-icon-theme/apps/128/web.svg
+Icon=/usr/share/icons/Humanity/apps/128/terminal.svg
 Exec=run-fiwalk.sh
