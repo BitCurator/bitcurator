@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Type=Application
+Version=0.0.1
+Name=Brunnhilde
+GenericName=ForensicTool
+Comment=brunnhilde command-line tool
+Terminal=true
+Icon=/usr/share/icons/Humanity/apps/128/terminal.svg
+Exec=run-brunnhilde.sh
