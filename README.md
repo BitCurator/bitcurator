@@ -1,7 +1,7 @@
 # bitcurator-distro-main
 
-![alt tag](https://img.shields.io/github/issues/bitcurator/bitcurator-distro-main.svg)
-![alt tag](https://img.shields.io/github/forks/bitcurator/bitcurator-distro-main.svg)
+[![GitHub issues](https://img.shields.io/github/issues/bitcurator/bitcurator-distro-main.svg)](https://github.com/bitcurator/bitcurator-distro-main/issues)
+[![GitHub forks](https://img.shields.io/github/forks/bitcurator/bitcurator-distro-main.svg)](https://github.com/bitcurator/bitcurator-distro-main/network)
 
 This repository contains scripts, tools and assets required to build the BitCurator ISO for distribution. It is intended solely for use by developers and maintainers working on the BitCurator environment. 
 
