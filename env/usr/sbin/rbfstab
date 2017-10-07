@@ -30,7 +30,7 @@ TMP="/tmp/fstab.$$.tmp"
 ADDEDBY="# by rbfstab"
 WRITE_LABEL="RBFSTAB"
 SCRIPT=/usr/sbin/${0##*/}
-RULE=/etc/udev/rules.d/10-fstab.rules
+RULE=/etc/udev/rules.d/fstab.rules
 
 ## Functions
 install_script()
