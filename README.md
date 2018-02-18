@@ -3,6 +3,12 @@
 [![GitHub issues](https://img.shields.io/github/issues/bitcurator/bitcurator-distro-main.svg)](https://github.com/bitcurator/bitcurator-distro-main/issues)
 [![GitHub forks](https://img.shields.io/github/forks/bitcurator/bitcurator-distro-main.svg)](https://github.com/bitcurator/bitcurator-distro-main/network)
 
+## DEPRECATION NOTICE:
+
+This repository has been deprecated, and is no longer actively maintained. Future releases of BitCurator will be created and maintained using SaltStack (https://saltstack.com/). You can find additional information in the current main repository (https://github.com/bitcurator/bitcurator-distro) and the Salt-based build tool repository (https://github.com/bitcurator/bitcurator-distro-salt).
+
+## Overview
+
 This repository contains scripts, tools and assets required to build the BitCurator ISO for distribution. It is intended solely for use by developers and maintainers working on the BitCurator environment. 
 
 Looking for the latest release? You can find it packaged as live-boot and installation ISO and as a VirtualBox virtual machine at:
