@@ -11,9 +11,7 @@ This repository has been deprecated, and is no longer actively maintained. Futur
 
 This repository contains scripts, tools and assets required to build the BitCurator ISO for distribution. It is intended solely for use by developers and maintainers working on the BitCurator environment. 
 
-Looking for the latest release? You can find it packaged as live-boot and installation ISO and as a VirtualBox virtual machine at:
-
-  http://wiki.bitcurator.net/
+Looking for the latest release? You can find it packaged as live-boot and installation ISO and as a VirtualBox virtual machine at https://github.com/BitCurator/bitcurator-distro/wiki/Releases
 
 ## Introduction to building the BitCurator distro (for developers)
 
