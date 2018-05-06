@@ -132,7 +132,7 @@ Files in "/scripts/bash_scripts" and "/scripts/nautilus_scripts" are based on or
 
 The py3fpdf code is a local fork of J. Rivera's Python 3 port of the fpdf library distributed under the LGPL.
 
-See http://wiki.bitcurator.net/ for up-to-date project information.
+See http://bitcurator.net/ for up-to-date project information.
 
 
 ## Development Team and Support
