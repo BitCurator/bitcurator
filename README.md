@@ -51,7 +51,7 @@ Return to the main window by clicking on __All Settings__, click on the __Theme_
 
 Return to the main window by clicking on __All Settings__, click on __Brightness and Lock__, and select __Never__ for __Turn screen off when inactive for__. Disable __Lock__, and disable the password requirement for returning from lock.
 
-Open __Firefox__ and set the homepage to __https://wiki.bitcurator.net/__.
+Open __Firefox__ and set the homepage to __https://www.bitcurator.net/__.
 
 In a terminal, install dkms to ensure any kernel extensions installed in the remaining tasks are automatically transferred to new kernels:
 
@@ -91,7 +91,7 @@ If you are building the release in a VM, now is a good time to shut down, create
 
 BitCurator uses Bodhibuilder (a fork and update of the Remastersys tool) to repin the environment as a Live / Installable CD. Bodhibuilder is installed automatically by the __bitcurator-distro-bootstrap__ bootstrap script.
 
-Click the Unity launcher and type __Bodhibuilder__. Click the Bodhibuilder icon and select the __Settings__ tab. Enter __bcadmin__ for Username, __BitCurator-X.X.X__ (where X.X.X is the release number) for CD Label, __BitCurator-X.X.X.iso__ for ISO Filename, "BitCurator-X-X-X" for GRUB Name, and "http://wiki.bitcurator.net/" for URL for ISO.
+Click the Unity launcher and type __Bodhibuilder__. Click the Bodhibuilder icon and select the __Settings__ tab. Enter __bcadmin__ for Username, __BitCurator-X.X.X__ (where X.X.X is the release number) for CD Label, __BitCurator-X.X.X.iso__ for ISO Filename, "BitCurator-X-X-X" for GRUB Name, and "http://www.bitcurator.net/" for URL for ISO.
 
 Click on the __Actions__ tab and click __Select__ next to __Boot menu picture for the Live CD__. Select the image at __/usr/share/bitcurator/resources/images/BitCuratorEnv3Logo300px-invert.png__. Click __Open__. Click __OK__ in the popup dialog.
 
@@ -112,7 +112,7 @@ Create a new VirtualBox VM with 2048MB RAM and 2 processors assigned. Set the vi
 ## BitCurator documentation, help, and other information
 
 User documentation and additional resources are available at
-[http://wiki.bitcurator.net/](http://wiki.bitcurator.net/).
+[http://www.bitcurator.net/](http://www.bitcurator.net/).
 
 Questions and comments can also be directed to the bitcurator-users list.
 
