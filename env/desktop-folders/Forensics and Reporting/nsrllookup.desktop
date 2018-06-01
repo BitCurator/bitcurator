@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Type=Application
+Version=1.2.3
+Name=nsrllookup
+GenericName=NSRLLookup
+Comment=nsrllookup command-line tool
+Terminal=true
+Icon=/usr/share/icons/Humanity/apps/128/terminal.svg
+Exec=run-nsrllookup.sh
