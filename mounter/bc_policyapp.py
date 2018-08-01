@@ -59,14 +59,14 @@ class MounterAppIndicator:
         #self.menu.append(mounter)
 
         # Read-only status
-        rostatus = gtk.MenuItem("Set mount policy READ-ONLY")
+        rostatus = gtk.MenuItem("Set USB mount policy READ-ONLY")
         rostatus.connect("activate", self.ro_set)
         rostatus.show()
         self.menu.append(rostatus)
         
 	# Read-write status
         #if os.path.isfile("/etc/udev/rules.d/fstab.rules"):
-        rwstatus = gtk.MenuItem("Set mount policy WRITEABLE")
+        rwstatus = gtk.MenuItem("Set USB mount policy WRITEABLE")
         rwstatus.connect("activate", self.rw_set)
         rwstatus.show()
         self.menu.append(rwstatus)
@@ -100,11 +100,11 @@ class MounterAppIndicator:
     def ro_set(self, widget, data=None):
         #Call RO warning indicator here    
         if not os.path.isfile("/etc/udev/rules.d/fstab.rules"):
-            win = PolicyDialog("You are about to set the system-wide mount policy to:" \
+            win = PolicyDialog("You are about to set the system-wide USB mount policy to:" \
                            + "\n\n" + "READ-ONLY" + "\n\n" + \
-                           "Currently mounted volumes will not be affected until remounted.")
+                           "Currently mounted volumes on USB devices will not be affected until remounted.")
         else:
-            win = PolicyDialog("\nThe mount policy is already in the READ-ONLY state." + "\n") 
+            win = PolicyDialog("\nThe USB mount policy is already in the READ-ONLY state." + "\n") 
         #win.connect("delete-event", gtk.main_quit)
         #win.show_all()
         response = win.run()
@@ -124,12 +124,12 @@ class MounterAppIndicator:
     def rw_set(self, widget, data=None):
         #Call RW warning indicator here
         if os.path.isfile("/etc/udev/rules.d/fstab.rules"):
-            win = PolicyDialog("CAUTION! You are about to set the system-wide mount policy to:" \
+            win = PolicyDialog("CAUTION! You are about to set the system-wide USB mount policy to:" \
                            + "\n\n" + "WRITEABLE" + "\n\n" + \
                            "Click CANCEL to remain in the READ-ONLY state. Currently " \
-                           + "\n" + "mounted volumes will not be affected until remounted.")
+                           + "\n" + "mounted volumes on USB devices will not be affected until remounted.")
         else:
-            win = PolicyDialog("\nThe mount policy is already in the WRITEABLE state." + "\n")
+            win = PolicyDialog("\nThe USB mount policy is already in the WRITEABLE state." + "\n")
 
         #win.connect("delete-event", gtk.main_quit)
         response = win.run()
