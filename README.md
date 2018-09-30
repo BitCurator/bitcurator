@@ -5,7 +5,7 @@
 
 ## DEPRECATION NOTICE:
 
-This repository has been deprecated, and is no longer actively maintained. Future releases of BitCurator will be created and maintained using SaltStack (https://saltstack.com/). You can find additional information in the current main repository (https://github.com/bitcurator/bitcurator-distro) and the Salt-based build tool repository (https://github.com/bitcurator/bitcurator-distro-salt).
+This repository has been deprecated, and is no longer maintained. Details on the latest release can be found at (https://github.com/bitcurator/bitcurator-distro). The most recent Salt-based build repository can be found at (https://github.com/bitcurator/bitcurator-distro-salt).
 
 ## Overview
 
