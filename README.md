@@ -1,3 +1,5 @@
+![Logo](https://github.com/BitCurator/bitcurator.github.io/blob/master/logos/BitCurator-Basic-400px.png)
+
 # bitcurator-distro-main
 
 [![GitHub issues](https://img.shields.io/github/issues/bitcurator/bitcurator-distro-main.svg)](https://github.com/bitcurator/bitcurator-distro-main/issues)
